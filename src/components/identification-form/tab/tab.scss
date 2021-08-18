@@ -1,0 +1,23 @@
+@import "../../../styles/settings.scss";
+
+.register-or-login {
+  width: 100%;
+  @include flex-center;
+  background: $white;
+  a {
+    text-decoration: none;
+    color: $black;
+    width: 100%;
+    @include flex-center;
+    &.active {
+        background: $primary-color;
+        color: $white;
+    }
+  }
+  .tab {
+    padding: 20px;
+    h3 {
+      text-transform: capitalize;
+    }
+  }
+}
