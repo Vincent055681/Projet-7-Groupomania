@@ -1,7 +1,16 @@
+@import "../../../styles/settings.scss";
+
 button {
   margin: auto;
   padding: 15px 30px;
   margin: 10px 0;
   font-size: 1.1rem;
   font-weight: 500;
+  cursor: pointer;
+  background: $grey;
+  border: solid 1px darken($grey, 40%);
+  transition: .2s;
+  &:hover {
+    background: darken($grey, 5%);
+  }
 }

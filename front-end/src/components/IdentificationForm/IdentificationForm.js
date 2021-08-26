@@ -1,47 +1,47 @@
 import React, { useState } from "react";
-import Button from "./Button/Button";
-import Input from "./Input/Input";
 import Link from "./Link/Link";
 import "./IdentificationForm.scss";
-import Tabs from "./Tabs/Tabs";
 import Tab from "./Tabs/Tab";
 import Form from "./Form/Form";
 
 const IdentificationForm = () => {
-  const [registerForm, setRegisterForm] = useState(false);
+  const [formLogin, setFormLogin] = useState("login");
+  const [formRegister, setFormRegister] = useState("register");
 
-  const tabHandler = () => {
-    setRegisterForm(!registerForm);
+  const displayRegister = () => {
+    setFormRegister("register");
+    setFormLogin(null);
   };
 
-  if (registerForm) {
-    return (
-      <div className="identification-container">
-        <div className="register-or-login">
-          <Tab onClick={tabHandler}>Inscription</Tab>
-          <Tab onClick={tabHandler}>Connexion</Tab>
-        </div>
-        <Form form="register" />
-        <div className="links">
-          <Link content="Vous avez déjà un compte ?" />
-        </div>
+  const displayLogin = () => {
+    setFormLogin("login");
+    setFormRegister(null);
+  };
+
+  return (
+    <div className="identification-container">
+      <div className="register-or-login">
+        <Tab onClick={displayRegister}>Inscription</Tab>
+        <Tab onClick={displayLogin}>Connexion</Tab>
       </div>
-    );
-  } else {
-    return (
-      <div className="identification-container">
-        <div className="register-or-login">
-          <Tab onClick={tabHandler}>Inscription</Tab>
-          <Tab onClick={tabHandler}>Connexion</Tab>
-        </div>
-        <Form form="login" />
-        <div className="links">
-          <Link content="Mot de passe oublié ?" />
-          <Link content="Pas encore de compte ?" />
-        </div>
-      </div>
-    );
-  }
+      {formRegister === "register" ? (
+        <>
+          <Form form="register" />
+          <div className="links">
+            <Link content="Vous avez déjà un compte ?" onClick={displayLogin}/>
+          </div>
+        </>
+      ) : (
+        <>
+          <Form form="login" />
+          <div className="links">
+            <Link content="Mot de passe oublié ?" onClick={displayRegister} />
+            <Link content="Pas encore de compte ?" onClick={displayRegister} />
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default IdentificationForm;

@@ -5,7 +5,8 @@
   height: 500px;
   border: 1px black solid;
   border-radius: 10px;
-  background: pink;
-  transform: translateY(20%);
+  transform: translateY(0%); // don't touch
+  margin-top: 70px;
   overflow: hidden;
+  background: white;
 }

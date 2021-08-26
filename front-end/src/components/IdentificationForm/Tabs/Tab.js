@@ -1,5 +1,6 @@
 import React from "react";
 import "./Tab.scss"
+import "./Tabs.scss"
 
 const Tab = ( {children, onClick} ) => {
   return (
