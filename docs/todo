@@ -1,0 +1,31 @@
+Utiliser redux
+utiliser next
+utiliser la convention de nomage BEM
+
+dans le form d'inscription : 
+Akouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
+rajotuer les messages d'erreurs
+si possible, enlever la logique du jsx, la mettre ailleurs
+
+Demander : pourquoi je peux pas faire ça dans identificationForm pour améliorer la lisibilité:
+const display = {formRegister === "register" ? (
+        <>
+          <Form form="register" />
+          <div className="links">
+            <Link content="Vous avez déjà un compte ?" onClick={displayLogin} />
+          </div>
+        </>
+      ) : (
+        <>
+          <Form form="login" />
+          <div className="links">
+            <Link content="Mot de passe oublié ?" onClick={displayRegister} />
+            <Link content="Pas encore de compte ?" onClick={displayRegister} />
+          </div>
+        </>
+      )}
+
+      en ensuite j'appelle display dans mon jsx
+
+      demander pourquoi quand j'écris sur un input, ca écris sur les 2 state
+      demander comment faire pour que par défaut quand on arrive sur la page d'accueil, on arrive sur l'url "/" qui correspond à la page du fil d'actualité, mais si on est pas connecté et uniquement dans ce cas, rediriger avec react-router-dom sur la page de connexion
