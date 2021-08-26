@@ -5,27 +5,43 @@ import Tab from "./Tabs/Tab";
 import Form from "./Form/Form";
 
 const IdentificationForm = () => {
-  const [formLogin, setFormLogin] = useState("login");
-  const [formRegister, setFormRegister] = useState("register");
+  const [form, setForm] = useState({
+    formLogin: "login",
+    formRegister: "register",
+  });
 
   const displayRegister = () => {
-    setFormRegister("register");
-    setFormLogin(null);
+    setForm({
+      formLogin: null,
+      formRegister: "register",
+    });
   };
 
   const displayLogin = () => {
-    setFormLogin("login");
-    setFormRegister(null);
+    setForm({
+      formLogin: "login",
+      formRegister: null,
+    });
   };
 
   return (
     <div className="identification-container">
       <div className="register-or-login">
-        <Tab onClick={displayRegister} className={formRegister ? "tab active-style" : "tab"}>Inscription</Tab>
+        <Tab
+          onClick={displayRegister}
+          className={form.formRegister ? "tab active-style" : "tab"}
+        >
+          Inscription
+        </Tab>
         <div className="break" />
-        <Tab onClick={displayLogin} className={formLogin ? "tab active-style" : "tab"}>Connexion</Tab>
+        <Tab
+          onClick={displayLogin}
+          className={form.formLogin ? "tab active-style" : "tab"}
+        >
+          Connexion
+        </Tab>
       </div>
-      {formRegister === "register" ? (
+      {form.formRegister === "register" ? (
         <>
           <Form form="register" />
           <div className="links">
