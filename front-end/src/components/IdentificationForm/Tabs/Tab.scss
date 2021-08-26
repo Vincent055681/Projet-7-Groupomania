@@ -5,3 +5,23 @@
   @include flex-center;
   cursor: pointer;
 }
+
+.register-or-login {
+  width: 100%;
+  @include flex-center;
+  background: $white;
+  .break {
+    width: 1px;
+    height: 63px;
+    background-color: $black;
+  }
+}
+.tab {
+  @include flex-center;
+  padding: 20px;
+  width: 100%;
+  border-bottom: 1px solid $black;
+  h3 {
+    text-transform: capitalize;
+  }
+}

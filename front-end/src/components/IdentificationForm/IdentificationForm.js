@@ -22,13 +22,14 @@ const IdentificationForm = () => {
     <div className="identification-container">
       <div className="register-or-login">
         <Tab onClick={displayRegister}>Inscription</Tab>
+        <div className="break" />
         <Tab onClick={displayLogin}>Connexion</Tab>
       </div>
       {formRegister === "register" ? (
         <>
           <Form form="register" />
           <div className="links">
-            <Link content="Vous avez déjà un compte ?" onClick={displayLogin}/>
+            <Link content="Vous avez déjà un compte ?" onClick={displayLogin} />
           </div>
         </>
       ) : (
