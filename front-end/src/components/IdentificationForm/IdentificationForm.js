@@ -29,14 +29,14 @@ const IdentificationForm = () => {
       <div className="register-or-login">
         <Tab
           onClick={displayRegister}
-          className={form.formRegister ? "tab active-style" : "tab"}
+          className={form.formRegister === "register" ? "tab active-style" : "tab"}
         >
           Inscription
         </Tab>
         <div className="break" />
         <Tab
           onClick={displayLogin}
-          className={form.formLogin ? "tab active-style" : "tab"}
+          className={form.formLogin === "login" ? "tab active-style" : "tab"}
         >
           Connexion
         </Tab>
