@@ -1,0 +1,11 @@
+@import "../../styles/settings.scss";
+
+.identification-container {
+  width: 400px;
+  height: 500px;
+  border: 1px black solid;
+  border-radius: 10px;
+  background: pink;
+  transform: translateY(20%);
+  overflow: hidden;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "./input.scss"
+import "./Input.scss"
 
 const Input = ({ type, id, name, placeholder, min, max }) => {
     
@@ -10,8 +10,8 @@ const Input = ({ type, id, name, placeholder, min, max }) => {
         id={id}
         name={name}
         placeholder={placeholder}
-        minlength={min}
-        maxlength={max}
+        minLength={min}
+        maxLength={max}
         required
       />
     </div>

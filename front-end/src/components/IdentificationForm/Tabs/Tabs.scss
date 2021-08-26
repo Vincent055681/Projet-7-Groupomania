@@ -10,9 +10,8 @@
     color: $white;
   }
 }
-.tab {
+.tabs {
   @include flex-center;
-  cursor: pointer;
   padding: 20px;
   width: 100%;
   h3 {

@@ -1,0 +1,7 @@
+@import "../../../styles/settings.scss";
+
+.tab-connexion {
+  width: 100%;
+  @include flex-center;
+  cursor: pointer;
+}

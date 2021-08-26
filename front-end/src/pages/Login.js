@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../components/header/Header";
-import IdentificationForm from "../components/identification-form/IdentificationForm";
-import "./login.scss"
+import Header from "../components/Header/Header";
+import IdentificationForm from "../components/IdentificationForm/IdentificationForm";
+import "./Login.scss"
 
 const Login = () => {
   return (
