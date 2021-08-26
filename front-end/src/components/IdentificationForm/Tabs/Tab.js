@@ -1,9 +1,9 @@
 import React from "react";
 import "./Tab.scss"
 
-const Tab = ( {children, onClick} ) => {
+const Tab = ( {children, onClick, className} ) => {
   return (
-    <div className="tab" onClick={onClick}>
+    <div className={className} onClick={onClick}>
         <h3>{children}</h3>
     </div>
   );

@@ -18,13 +18,12 @@ const IdentificationForm = () => {
     setFormRegister(null);
   };
 
- 
   return (
     <div className="identification-container">
       <div className="register-or-login">
-        <Tab onClick={displayRegister} >Inscription</Tab>
+        <Tab onClick={displayRegister} className={formRegister ? "tab active-style" : "tab"}>Inscription</Tab>
         <div className="break" />
-        <Tab onClick={displayLogin}>Connexion</Tab>
+        <Tab onClick={displayLogin} className={formLogin ? "tab active-style" : "tab"}>Connexion</Tab>
       </div>
       {formRegister === "register" ? (
         <>
