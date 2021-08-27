@@ -22,3 +22,13 @@ $black: #12100E;
   padding: 0;
   box-sizing: border-box;
 }
+
+main {
+  @include flex-center;
+}
+
+body {
+  @include flex-center;
+  width: 100%;
+  background: $primary-color;
+}

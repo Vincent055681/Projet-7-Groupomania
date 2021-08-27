@@ -3,12 +3,3 @@
   width: 100%;
 }
 
-main {
-  @include flex-center;
-}
-
-body {
-  @include flex-center;
-  width: 100%;
-  background: $primary-color;
-}
