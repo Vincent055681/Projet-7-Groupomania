@@ -1,15 +1,17 @@
 import React from "react";
+import "./WhatsUp.scss";
+
 import Avatar from "../UI/Avatar/Avatar";
 import IconAlone from "../UI/IconAlone/IconAlone";
-import TextArea from "../UI/TextArea/TextArea";
+import Input from "../UI/Input/Input";
 
 const WhatsUp = () => {
   return (
-    <>
+    <div className="whats_up">
       <Avatar />
-      <TextArea />
+      <Input />
       <IconAlone />
-    </>
+    </div>
   );
 };
 

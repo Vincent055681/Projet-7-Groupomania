@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button/Button";
-import Input from "../Input/Input";
+import Input from "../../UI/Input/Input";
 import "./Form.scss"
 
 const Form = ({ form }) => {

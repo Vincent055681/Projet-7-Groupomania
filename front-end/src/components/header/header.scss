@@ -5,6 +5,7 @@ header {
   @include flex-center;
   background: white;
   width: 100% !important;
+  margin-bottom: 80px;
   & a {
     height: 100%;
     & > img {

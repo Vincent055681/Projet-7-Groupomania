@@ -8,8 +8,10 @@ const NewsFeed = () => {
   return (
     <>
       <Header />
-      <WhatsUp />
-      <Publications />
+      <div className="container">
+        <WhatsUp />
+        <Publications />
+      </div>
     </>
   );
 };

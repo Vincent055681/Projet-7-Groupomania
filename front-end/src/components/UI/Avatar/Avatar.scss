@@ -1,0 +1,10 @@
+@import "../../../styles/settings.scss";
+
+.whats_up-img {
+  @include flex-center();
+  img {
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+  }
+}
