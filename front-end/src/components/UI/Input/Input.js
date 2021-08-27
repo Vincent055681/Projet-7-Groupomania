@@ -1,10 +1,9 @@
 import React from "react";
-import "./Input.scss"
+import "./Input.scss";
 
-const Input = ({ type, id, name, placeholder, min, max }) => {
-    
+const Input = ({ className, type, id, name, placeholder, min, max }) => {
   return (
-    <div className="input-container">
+    <div className={className}>
       <input
         type={type}
         id={id}

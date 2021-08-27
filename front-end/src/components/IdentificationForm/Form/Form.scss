@@ -1,5 +1,8 @@
 @import "../../../styles/settings.scss";
 
-.form {
-    @include flex-center()
+form {
+  @include flex-center();
+  margin-top: 20px;
+  flex-direction: column;
+  width: 100%;
 }

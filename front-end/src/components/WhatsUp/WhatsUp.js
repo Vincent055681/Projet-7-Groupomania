@@ -9,7 +9,7 @@ const WhatsUp = () => {
   return (
     <div className="whats_up">
       <Avatar />
-      <Input />
+      <Input className="input_container"/>
       <IconAlone />
     </div>
   );

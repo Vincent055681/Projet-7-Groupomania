@@ -1,26 +1,21 @@
 @import "../../../styles/settings.scss";
 
-form {
-  margin-top: 20px;
-  flex-direction: column;
+.input_container {
   width: 100%;
-  .input-container {
-    width: 100%;
-    @include flex-center;
-    input {
-      width: 80%;
-      height: 40px;
-      padding: 0 0 0 20px;
-      margin: 10px 0;
+  @include flex-center;
+  input {
+    width: 80%;
+    height: 40px;
+    padding: 0 0 0 20px;
+    margin: 10px 0;
+    font-size: 1rem;
+    &:focus {
+      outline: none !important;
+      border: 1px solid $primary-color;
+      box-shadow: 0 0 3px $primary-color;
+    }
+    &::placeholder {
       font-size: 1rem;
-      &:focus {
-        outline: none !important;
-        border: 1px solid $primary-color;
-        box-shadow: 0 0 3px $primary-color;
-      }
-      &::placeholder {
-        font-size: 1rem;
-      }
     }
   }
 }
