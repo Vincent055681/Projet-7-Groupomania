@@ -6,10 +6,11 @@ import IconAlone from "../UI/IconAlone/IconAlone";
 import Input from "../UI/Input/Input";
 
 const WhatsUp = () => {
+  const firstName = "Prénom"
   return (
     <div className="whats_up">
       <Avatar />
-      <Input className="input_container"/>
+      <Input className="input_container" placeholder={`Quoi de neuf, ${firstName} ?`}/>
       <IconAlone />
     </div>
   );

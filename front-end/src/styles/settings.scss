@@ -4,7 +4,7 @@
 }
 
 $primary-color: #F57251;
-$secondary-color: #4F6D7A;
+$secondary-color: #38618C;
 $tertiary-color: #A13D63;
 $pure-white: #FFFFFF;
 $white: #F5F5F5;
@@ -24,12 +24,13 @@ $black: #12100E;
   box-sizing: border-box;
 }
 
-main {
-  @include flex-center;
-}
-
 body {
   @include flex-center;
   width: 100%;
   background: $primary-color;
 }
+
+main {
+  @include flex-center;
+}
+

@@ -30,3 +30,5 @@ const display = {formRegister === "register" ? (
       demander pourquoi quand j'écris sur un input, ca écris sur les 2 state
       demander comment faire pour que par défaut quand on arrive sur la page d'accueil, on arrive sur l'url "/" qui correspond à la page du fil d'actualité, mais si on est pas connecté et uniquement dans ce cas, rediriger avec react-router-dom sur la page de connexion
       Demander pour un scroll infini sur page newsfeed
+      Demander si y a pas meilleure facon que d'importer settings a chaque form
+      react native, electron

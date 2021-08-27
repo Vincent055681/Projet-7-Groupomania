@@ -1,5 +1,18 @@
 @import "../styles/settings.scss";
 
+#root {
+    @include flex-center();
+    flex-direction: column;
+}
+
 .container {
-    @include flex-center()
+    @include flex-center();
+    align-items: flex-start;
+    width: 70%;
+    max-width: 700px;
+    height: 500px; // Temporaire, le scroll sera infini
+    background: lighten($secondary-color, 35%);
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px $black;
 }
