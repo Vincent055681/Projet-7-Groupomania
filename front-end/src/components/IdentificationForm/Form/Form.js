@@ -4,6 +4,7 @@ import Input from "../../UI/Input/Input";
 import "./Form.scss"
 
 const Form = ({ form }) => {
+
     return (
       <form className="form">
           {form === "register" ? 
