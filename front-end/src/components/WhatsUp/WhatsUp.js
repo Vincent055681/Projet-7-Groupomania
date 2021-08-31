@@ -12,7 +12,7 @@ const WhatsUp = () => {
   return (
     <div className="whats_up">
       <Avatar />
-      <Input className="input_container" placeholder={`Quoi de neuf, ${firstName} ?`} icon={faImages} icon2={faPaperPlane} />
+      <Input className="input_container" placeholder={`Quoi de neuf, ${firstName} ?`} icon1={faImages} icon2={faPaperPlane} />
       <IconAlone />
     </div>
   );
