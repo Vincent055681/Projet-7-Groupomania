@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./Input.scss";
 
-const Input = ({ className, type, id, name, placeholder, min, max }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const Input = ({ className, type, id, name, placeholder, min, max, icon, icon2 }) => {
 
   const inputHandler = (e) => {
     setInputValue(e.target.value)
-    console.log(inputValue);
   }
 
   const [inputValue, setInputValue] = useState('')
@@ -13,6 +14,12 @@ const Input = ({ className, type, id, name, placeholder, min, max }) => {
   return (
     <div className={className}>
       <input type={type} id={id} name={name} placeholder={placeholder} minLength={min} maxLength={max} required value={inputValue} onChange={inputHandler} />
+      {icon &&
+      <div className="icons_container">
+        <FontAwesomeIcon icon={icon} />
+        <FontAwesomeIcon icon={icon2} />
+      </div>
+       }
     </div>
   );
 };
