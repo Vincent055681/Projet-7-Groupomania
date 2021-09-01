@@ -13,7 +13,7 @@ const Input = ({ className, type, id, name, placeholder, min, max, icon1, icon2 
 
   return (
     <div className={className}>
-      <input type={type} id={id} name={name} placeholder={placeholder} minLength={min} maxLength={max} required value={inputValue} onChange={inputHandler} />
+      <input className='testt' type={type} id={id} name={name} placeholder={placeholder} minLength={min} maxLength={max} required value={inputValue} onChange={inputHandler} />
       {icon1 &&
       <div className="icons_container">
         <FontAwesomeIcon icon={icon1} />

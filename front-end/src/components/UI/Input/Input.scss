@@ -4,6 +4,7 @@
   width: 100%;
   @include flex-center;
   flex-direction: column;
+  
   .icons_container {
     width: 80%;
     display: flex;
@@ -29,4 +30,8 @@
       font-size: 1rem;
     }
   }
+}
+
+.testt {
+  width: 100%;
 }
