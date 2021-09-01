@@ -6,6 +6,7 @@ dans le form d'inscription :
 Akouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
 rajotuer les messages d'erreurs
 si possible, enlever la logique du jsx, la mettre ailleurs
+supprimer le node_modules dans le back end sur le repo github
 
 
       demander comment faire pour que par défaut quand on arrive sur la page d'accueil, on arrive sur l'url "/" qui correspond à la page du fil d'actualité, mais si on est pas connecté et uniquement dans ce cas, rediriger avec react-router-dom sur la page de connexion

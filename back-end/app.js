@@ -1,6 +1,24 @@
 const express = require("express");
+const mysql = require('mysql')
 const helmet = require("helmet");
 const bodyParser = require('body-parser'); 
+
+// Create connexion
+const db = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'ssMRhrc68xVReAJtIxFg',
+  database : 'foodly'
+});
+
+// Connect
+db.connect((err, result) => {
+  if(err) {
+    throw err;
+  }
+  console.log("MySQL Connected !");
+})
+
 
 const app = express();
 
