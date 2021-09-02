@@ -15,6 +15,12 @@
 .active-style {
   background-color: white;
   border-bottom: none !important;
+  &__signup {
+    border-right: solid 1px $black;
+  }
+  &__login {
+    border-left: solid 1px $black;
+  }
 }
 h3 {
   text-transform: capitalize;

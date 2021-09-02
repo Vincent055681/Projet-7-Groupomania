@@ -27,9 +27,8 @@ const IdentificationForm = () => {
   return (
     <div className="identification-container">
       <div className="register-or-login">
-         <Tab onClick={displayRegister} className={form.formRegister === "register" ? "tab active-style" : "tab"}>Inscription</Tab>
-        <div className="break" />
-        <Tab onClick={displayLogin} className={form.formLogin === "login" ? "tab active-style" : "tab"}>Connexion</Tab>
+         <Tab onClick={displayRegister} className={form.formRegister === "register" ? "tab active-style active-style__signup" : "tab"}>Inscription</Tab>
+        <Tab onClick={displayLogin} className={form.formLogin === "login" ? "tab active-style active-style__login" : "tab"}>Connexion</Tab>
       </div>
       {form.formRegister === "register" ? (
         <>
