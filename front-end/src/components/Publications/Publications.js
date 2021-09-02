@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import "./Publications";
+const axios = require("axios");
 
 const Publications = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    const api = axios.create({
+        baseURL: `http://localhost:4200/api/post`
+    })
+  useEffect(() => {
+    api.get('/').then(res => {
+        console.log(res.data)
+    })
+  }, [])
+
+  return <div></div>;
 };
 
 export default Publications;
