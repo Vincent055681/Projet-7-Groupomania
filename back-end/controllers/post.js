@@ -19,7 +19,7 @@ db.connect((err) => {
 });
 
 exports.createPost = (req, res, next) => {
-  console.log(res);
+  console.log(req.body);
   let post = {
     author: "req.params.author",
     message: req.params.message,
@@ -30,5 +30,14 @@ exports.createPost = (req, res, next) => {
     if (err) throw err;
     console.log(result);
     res.send("Post added...");
+  });
+};
+
+exports.getAllPosts = (req, res, next) => {
+  let sql = "SELECT * FROM posts;";
+  let query = db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.send("All posts fetched...");
   });
 };
