@@ -27,10 +27,6 @@ router.get("/", (req, res, next) => {
   });
 
   router.post("/", postCtrl.createPost)
-  // router.post("/", (req, res, next) => {
-  //   res.json({ publications: "publier un post" });
-  //   console.log('ping');
-  //   next();
-  // });
+
 
   module.exports = router;

@@ -19,9 +19,9 @@ db.connect((err) => {
 });
 
 exports.createPost = (req, res, next) => {
-    console.log(req.params);
+  console.log(res);
   let post = {
-    author: 'req.params.author',
+    author: "req.params.author",
     message: req.params.message,
     date_creation: req.params.date_creation,
   };
