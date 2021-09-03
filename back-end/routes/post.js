@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router()
+const postCtrl = require("../controllers/post");
+
 
 // router.get("/", auth, sauceCtrl.getAllSauces);
 // router.get('/:id', auth, sauceCtrl.getOneSauce);
@@ -24,9 +26,11 @@ router.get("/", (req, res, next) => {
     next();
   });
 
-  router.post("/", (req, res, next) => {
-    res.json({ publications: "publier un post" });
-    next();
-  });
+  router.post("/", postCtrl.createPost)
+  // router.post("/", (req, res, next) => {
+  //   res.json({ publications: "publier un post" });
+  //   console.log('ping');
+  //   next();
+  // });
 
   module.exports = router;
