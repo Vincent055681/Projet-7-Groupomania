@@ -4,8 +4,6 @@ import "./WhatsUp.scss";
 import Avatar from "../UI/Avatar/Avatar";
 import WhatsUpForm from "./WhatsUpForm";
 
-import { faImages, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-
 const WhatsUp = () => {
   const firstName = "Prénom"
   return (
