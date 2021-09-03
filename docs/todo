@@ -17,3 +17,4 @@ supprimer le node_modules dans le back end sur le repo github
       Demander si y a pas une meilleure facçon de mettre les icones en props
       Demander comment passer prop child to parent
       dans whatsup, mieux vaut utiliser un "icon alone" ou bienmettre les icones en props dans input ?
+      importer le module db dans le controllers post.js sans le re déclarer

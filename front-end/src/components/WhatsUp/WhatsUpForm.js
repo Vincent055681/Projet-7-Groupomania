@@ -18,7 +18,7 @@ const WhatsUpForm = ({ className, type, id, name, placeholder, min, max, icon1, 
     const post = {
       author: 'Vincent',
       message: inputValue,
-      date: '',
+      date_creation: new Date().toISOString().slice(0, 19).replace('T', ' '),
 
     }
 
