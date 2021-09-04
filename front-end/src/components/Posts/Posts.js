@@ -23,7 +23,7 @@ const Posts = () => {
     <div className="posts">
       <Post />
       {dataApi.map((post) => {
-        return <Post post={post} />;
+        return <Post post={post} key={uuidv4()} />;
       })}
     </div>
   );
