@@ -10,7 +10,7 @@ import Text from "./Text/Text";
 
 
 const Post = ({post}) => {
-  const [author, date_creation, message] = post
+  const {author, date_creation, message} = post
   return (
     <div className="post">
       <div className="post__author_group">
