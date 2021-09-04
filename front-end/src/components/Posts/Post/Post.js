@@ -7,7 +7,10 @@ import Author from "./Author/Author";
 import Interactions from "./Interactions/Interactions";
 import Text from "./Text/Text";
 
-const Post = () => {
+
+
+const Post = ({post}) => {
+  console.log(post);
   return (
     <div className="post">
       <div className="post__author_group">

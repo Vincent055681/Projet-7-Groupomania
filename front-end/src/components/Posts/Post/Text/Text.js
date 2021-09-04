@@ -4,7 +4,7 @@ import "./Text.scss"
 const Text = () => {
     return (
         <p>
-            en train d'écrire
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed distinctio modi accusantium quod voluptas iste, rem dolor vel quibusdam accusamus voluptatibus, natus in maxime.
         </p>
     );
 };

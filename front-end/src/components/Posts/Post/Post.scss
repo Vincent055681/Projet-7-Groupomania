@@ -1,17 +1,17 @@
 @import "../../../styles/settings.scss";
 
 .post {
+  background: $white;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   border: solid 1px $black;
   border-radius: 5px;
   width: 100%;
-  background: lightgreen;
   padding: 5px;
+  margin: 0 0 10px 0;
 
   &__author_group {
-    background: pink;
     display: flex;
     justify-content: flex-start;
     align-items: center;
