@@ -23,7 +23,7 @@ const Posts = () => {
     <div className="posts">
       <Post />
       {dataApi.map((post) => {
-        return <Post post={dataApi} />;
+        return <Post post={post} />;
       })}
     </div>
   );
