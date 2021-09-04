@@ -1,9 +1,10 @@
 import React from 'react';
+import "./Date.scss";
 
-const Date = () => {
+const Date = ({className, date}) => {
     return (
-        <div>
-            
+        <div className={className}>
+            {date}
         </div>
     );
 };

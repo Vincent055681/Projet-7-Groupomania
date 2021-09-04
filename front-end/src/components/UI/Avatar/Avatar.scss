@@ -1,11 +1,16 @@
 @import "../../../styles/settings.scss";
 
-.whats_up-img {
-  @include flex-center();
+.whatsup__avatar {
+  @include flex-center;
   img {
-    height: 60px;
-    width: 60px;
-    border-radius: 100%;
-    border: solid 1px $black;
+ @include avatar
+  }
+}
+
+.post__avatar {
+  img {
+    @include avatar;
+    width: 45px;
+    height: 45px;
   }
 }

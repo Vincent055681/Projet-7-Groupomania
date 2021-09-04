@@ -1,10 +1,10 @@
 import React from 'react';
 import "./Author.scss"
 
-const Author = () => {
+const Author = ({className, author}) => {
     return (
-        <div>
-            
+        <div className={className}>
+            {author}
         </div>
     );
 };

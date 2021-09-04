@@ -1,0 +1,35 @@
+@import "../../../styles/settings.scss";
+
+.post {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border: solid 1px $black;
+  border-radius: 5px;
+  width: 100%;
+  background: lightgreen;
+  padding: 5px;
+
+  &__author_group {
+    background: pink;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .post__author_and_date {
+      display: flex;
+      justify-content: start;
+      flex-direction: column;
+    }
+  }
+  &__avatar {
+    padding: 5px;
+  }
+  &__author {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.05rem;
+  }
+  &__date {
+    font-size: 0.75rem;
+  }
+}

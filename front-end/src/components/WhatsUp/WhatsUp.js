@@ -8,7 +8,7 @@ const WhatsUp = () => {
   const firstName = "Prénom"
   return (
     <div className="whats_up">
-      <Avatar />
+      <Avatar className={"whatsup__avatar"} />
       <WhatsUpForm className={"whatsup__form"} placeholder={`Quoi de neuf, ${firstName} ?`}  />
     </div>
   );

@@ -3,9 +3,9 @@ import "./Text.scss"
 
 const Text = () => {
     return (
-        <div>
-            
-        </div>
+        <p>
+            en train d'écrire
+        </p>
     );
 };
 
