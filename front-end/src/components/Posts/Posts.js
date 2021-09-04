@@ -19,13 +19,11 @@ const Posts = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  
-
   return (
     <div className="posts">
       <Post />
       {dataApi.map((post) => {
-        return <Post post={dataApi} />
+        return <Post post={dataApi} />;
       })}
     </div>
   );
