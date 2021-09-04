@@ -36,8 +36,10 @@ exports.createPost = (req, res, next) => {
 exports.getAllPosts = (req, res, next) => {
   let sql = "SELECT * FROM posts;";
   let query = db.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log(result);
-    res.send("All posts fetched...");
+    if (err) {
+      res.status(404).json({ err });
+      throw err;
+    }
+    res.status(200).json(result);
   });
 };

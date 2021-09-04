@@ -1,6 +1,7 @@
 import React from 'react';
+import "./Text.scss"
 
-const Date = () => {
+const Text = () => {
     return (
         <div>
             
@@ -8,4 +9,4 @@ const Date = () => {
     );
 };
 
-export default Date;
+export default Text;

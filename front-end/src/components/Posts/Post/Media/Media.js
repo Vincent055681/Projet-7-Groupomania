@@ -1,6 +1,7 @@
 import React from 'react';
+import "./Media.scss"
 
-const Date = () => {
+const Media = () => {
     return (
         <div>
             
@@ -8,4 +9,4 @@ const Date = () => {
     );
 };
 
-export default Date;
+export default Media;

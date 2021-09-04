@@ -1,12 +1,13 @@
 Utiliser redux
 utiliser next
-utiliser la convention de nomage BEM
+utiliser la convention de nomage BEM et de l'anglais partout
 
 dans le form d'inscription : 
-Akouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
+Ajouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
 rajotuer les messages d'erreurs
 si possible, enlever la logique du jsx, la mettre ailleurs
 supprimer le node_modules dans le back end sur le repo github
+ranger tous les fichiers les rendre joli
 
 
       demander comment faire pour que par défaut quand on arrive sur la page d'accueil, on arrive sur l'url "/" qui correspond à la page du fil d'actualité, mais si on est pas connecté et uniquement dans ce cas, rediriger avec react-router-dom sur la page de connexion
@@ -18,3 +19,4 @@ supprimer le node_modules dans le back end sur le repo github
       Demander comment passer prop child to parent
       dans whatsup, mieux vaut utiliser un "icon alone" ou bienmettre les icones en props dans input ?
       importer le module db dans le controllers post.js sans le re déclarer
+      Demander pourquoi dans publications.js, si j'initialise le state à null ça marche pas, mais si je l'initialise en tant que tableau vide, ça marche
