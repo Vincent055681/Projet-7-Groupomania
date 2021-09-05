@@ -25,6 +25,8 @@ const Post = ({ post }) => {
       </div>
     );
   } else return null;
+  
+
 };
 
 export default Post;

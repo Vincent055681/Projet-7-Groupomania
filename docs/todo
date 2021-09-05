@@ -15,4 +15,4 @@ faire le README
 
       importer le module db dans le controllers post.js sans le re déclarer
       Demander pourquoi dans publications.js, si j'initialise le state à null ça marche pas, mais si je l'initialise en tant que tableau vide, ça marche
-      Demander pourquoi je peux pas passer les props vers mes posts
+      Demander comment améliorer le code de post.js (ternaire ? async await ?)
