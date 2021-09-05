@@ -28,7 +28,7 @@ const WhatsUpForm = ({
     const post = {
       author: "Vincent",
       message: inputValue,
-      date_creation: new Date().toISOString().slice(0, 19).replace("T", " "),
+      date_creation: new Date().toISOString().slice(0, 16).replace("T", " "),
     };
 
     axios

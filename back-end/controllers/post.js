@@ -1,5 +1,6 @@
 const fs = require("fs");
 const mysql = require("mysql");
+const dayjs = require("dayjs")
 // const db = require("../app")
 
 // Create connexion
@@ -21,9 +22,9 @@ db.connect((err) => {
 exports.createPost = (req, res, next) => {
   console.log(req.body);
   let post = {
-    author: "req.params.author",
-    message: req.params.message,
-    date_creation: req.params.date_creation,
+    author: "Auteur en dur",
+    message: "message en dur bla blablabla bla blabla",
+    date_creation: "2021-09-02 12:25:06",
   };
   let sql = "INSERT INTO posts SET ?";
   let query = db.query(sql, post, (err, result) => {

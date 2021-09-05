@@ -18,7 +18,6 @@ const Posts = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
   return (
     <div className="posts">
       <Post />
