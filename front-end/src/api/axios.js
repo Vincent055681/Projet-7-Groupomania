@@ -1,6 +1,6 @@
 const Axios = require('axios');
 
-Axios.defaults.baseURL = 'https://react-http-8bdda-default-rtdb.europe-west1.firebasedatabase.app';
+Axios.defaults.baseURL = 'http://localhost:4200';
 Axios.defaults.headers.post['Content-Type'] = 'application/json';
 Axios.defaults.timeout = 60000;
 

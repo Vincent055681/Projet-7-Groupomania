@@ -20,11 +20,10 @@ db.connect((err) => {
 });
 
 exports.createPost = (req, res, next) => {
-  // Vu que req.pody.post a exactement la même structure que celle attendue par la BDD SQL, je peux envoyer dans ma query directement le body.post sans avoir à destrcturer l'author, la date et le message depuis le res.body.post
-  console.log(req.body);
-  const { post } = req.body
+  console.log(req);
+  const { body } = req
    let sql = "INSERT INTO posts SET ?";
-  let query = db.query(sql, post, (err, result) => {
+  let query = db.query(sql, body, (err, result) => {
     if (err) throw err;
     console.log(result);
     res.send("Post added...");

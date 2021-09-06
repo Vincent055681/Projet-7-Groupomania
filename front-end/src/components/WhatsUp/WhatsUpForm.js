@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./WhatsUpForm.scss";
 
+import ENDPOINTS from "../../api/endpoints"
+import { POST } from "../../api/axios"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,7 +25,7 @@ const WhatsUpForm = ({
     setInputValue(e.target.value);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     const post = {
@@ -31,17 +34,12 @@ const WhatsUpForm = ({
       date_creation: new Date().toISOString().slice(0, 19).replace("T", " "),
     };
 
-    axios
-      .post("http://localhost:4200/api/post", {
-        post,
-      })
-      .then(function (res) {
-        console.log(res);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+      // Requête POST axios
+      const requete = await POST(ENDPOINTS.CREATE_POST, post)
+      console.log(requete);
   };
+
+  
 
   return (
     <form className={className} onSubmit={submitHandler}>

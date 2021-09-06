@@ -11,7 +11,6 @@ const Posts = () => {
     const toFetch = async () => {
       const response = await fetch("http://localhost:4200/api/post");
       const data = await response.json();
-      console.log(data);
       setDataApi(data);
     };
     toFetch();
