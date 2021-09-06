@@ -27,3 +27,4 @@ router.put("/", (req, res, next) => {
 router.post("/", postCtrl.createPost);
 
 module.exports = router;
+

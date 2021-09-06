@@ -8,25 +8,21 @@ import Interactions from "./Interactions/Interactions";
 import Text from "./Text/Text";
 
 const Post = ({ post }) => {
-  if (post) {
-    const { author, date_creation, message } = post;
-    return (
-      <div className="post">
-        <div className="post__author_group">
-          <Avatar className={"post__avatar"} />
-          <div className="post__author_and_date">
-            <Author className="post__author" author={author} />
-            <Date className="post__date" date={date_creation} />
-          </div>
+  const { author, date_creation, message } = post;
+  return (
+    <div className="post">
+      <div className="post__author_group">
+        <Avatar className={"post__avatar"} />
+        <div className="post__author_and_date">
+          <Author className="post__author" author={author} />
+          <Date className="post__date" date={date_creation} />
         </div>
-        <Text message={message} />
-        {/* <Media /> */}
-        <Interactions />
       </div>
-    );
-  } else return null;
-  
-
+      <Text message={message} />
+      {/* <Media /> */}
+      <Interactions />
+    </div>
+  );
 };
 
 export default Post;
