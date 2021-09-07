@@ -1,24 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./WhatsUpForm.scss";
 
-import ENDPOINTS from "../../api/endpoints"
-import { POST } from "../../api/axios"
+import ENDPOINTS from "../../api/endpoints";
+import { POST } from "../../api/axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-const WhatsUpForm = ({
-  className,
-  type,
-  id,
-  name,
-  placeholder,
-  min,
-  max,
-  icon1,
-  icon2,
-}) => {
+const WhatsUpForm = ({ className, id, name, placeholder }) => {
   const [inputValue, setInputValue] = useState("");
 
   const inputHandler = (e) => {
@@ -34,12 +23,9 @@ const WhatsUpForm = ({
       date_creation: new Date().toISOString().slice(0, 19).replace("T", " "),
     };
 
-      // Requête POST axios
-      const requete = await POST(ENDPOINTS.CREATE_POST, post)
-      console.log(requete);
+    // Requête POST axios
+    await POST(ENDPOINTS.CREATE_POST, post);
   };
-
-  
 
   return (
     <form className={className} onSubmit={submitHandler}>
