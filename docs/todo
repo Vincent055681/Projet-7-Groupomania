@@ -13,8 +13,9 @@ faire le README
  Demander comment passer prop child to parent
 
       importer le module db dans le controllers post.js sans le re déclarer
-      Demander pourquoi dans publications.js, si j'initialise le state à null ça marche pas, mais si je l'initialise en tant que tableau vide, ça marche
-      Demander comment améliorer le code de post.js (ternaire ? async await ?)
+  
       pour les dates, demander pourquoi il y a un T et un Z, et demander si c'est ici que je dois utiliser dayjs / moment JS, ou si c'est dans le front
-      Demander aussi pourquoi je n'arrive pas, dans node, à faire un req.body pour récupérer les données de manière dynamique
+      
       pour trier les posts dans l'ordre chronologique, filter en js ou bien depuis une commande sql ?
+
+      Demander si je peux laisser uuid pour les key des composant qui ne viennent pas de ma bdd comme des input customs
