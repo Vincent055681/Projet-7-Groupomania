@@ -1,6 +1,6 @@
 const fs = require("fs");
 const mysql = require("mysql");
-const dayjs = require("dayjs")
+const dayjs = require("dayjs");
 // const db = require("../app")
 
 // Create connexion
@@ -20,18 +20,18 @@ db.connect((err) => {
 });
 
 exports.createPost = (req, res, next) => {
-  console.log(req);
-  const { body } = req
-   let sql = "INSERT INTO posts SET ?";
+  const { body } = req;
+  console.log(body);
+  let sql = "INSERT INTO posts SET ?";
   let query = db.query(sql, body, (err, result) => {
     if (err) throw err;
-    console.log(result);
+    console.log(res.body);
     res.send("Post added...");
   });
 };
 
 exports.getAllPosts = (req, res, next) => {
-  let sql = "SELECT * FROM posts;";
+  let sql = "SELECT * FROM posts ORDER BY date_creation DESC;";
   let query = db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });

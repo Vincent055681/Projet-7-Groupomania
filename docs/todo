@@ -19,3 +19,4 @@ faire le README
       pour trier les posts dans l'ordre chronologique, filter en js ou bien depuis une commande sql ?
 
       Demander si je peux laisser uuid pour les key des composant qui ne viennent pas de ma bdd comme des input customs
+      demander si l'id des posts ne serait pas mieux si il était chiffré plutpt que être simpleent dans l'ordre 1 2 3 4...
