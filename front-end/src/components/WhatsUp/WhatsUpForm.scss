@@ -25,6 +25,7 @@
   width: 80%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   & > * {
     margin: 0 5px;
     font-size: 18px;
@@ -32,6 +33,12 @@
     background: none;
     border: none;
     padding: 0;
+    transition: 0.25s ease;
+    &:hover {
+      background: none;
+      color: lighten($primary-color, 3%);
+      cursor: pointer;
+    }
   }
 }
 

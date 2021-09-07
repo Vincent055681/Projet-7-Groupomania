@@ -2,6 +2,7 @@ Utiliser redux
 utiliser next
 utiliser sequelize
 reprendre tous les fichiers pour utiliser la convention de nomage BEM et de l'anglais partout
+Commenter mon code
 
 dans le form d'inscription : 
 Ajouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
