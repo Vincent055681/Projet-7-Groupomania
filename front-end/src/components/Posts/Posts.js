@@ -12,7 +12,6 @@ const Posts = () => {
     const toFetch = async () => {
       const axiosCall = await GET(ENDPOINTS.GET_POSTS);
       setDataApi(axiosCall.data);
-      console.log(axiosCall.data);
     };
     toFetch();
   }, []);

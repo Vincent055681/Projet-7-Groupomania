@@ -7,6 +7,8 @@ import Author from "./Author/Author";
 import Interactions from "./Interactions/Interactions";
 import Text from "./Text/Text";
 
+import dayjs from "dayjs"
+
 const Post = ({ post }) => {
   const { author, date_creation, message } = post;
   return (
@@ -15,7 +17,7 @@ const Post = ({ post }) => {
         <Avatar className={"post__avatar"} />
         <div className="post__author_and_date">
           <Author className="post__author" author={author} />
-          <Date className="post__date" date={date_creation} />
+          <Date className="post__date" date={dayjs(date_creation).format("DD/MM/YYYY")} />
         </div>
       </div>
       <Text message={message} />

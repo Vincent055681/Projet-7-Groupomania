@@ -7,6 +7,8 @@ import { POST } from "../../api/axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
+import dayjs from "dayjs"
+
 const WhatsUpForm = ({ className, id, name, placeholder }) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -20,7 +22,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
     const post = {
       author: "Vincent",
       message: inputValue,
-      date_creation: new Date().toISOString().slice(0, 19).replace("T", " "),
+      date_creation: dayjs().format(),
     };
 
     // Requête POST axios
