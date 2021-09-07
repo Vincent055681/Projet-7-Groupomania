@@ -8,6 +8,8 @@ import Interactions from "./Interactions/Interactions";
 import Text from "./Text/Text";
 
 import dayjs from "dayjs"
+var relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
 
 const Post = ({ post }) => {
   const { author, date_creation, message } = post;
@@ -17,7 +19,7 @@ const Post = ({ post }) => {
         <Avatar className={"post__avatar"} />
         <div className="post__author_and_date">
           <Author className="post__author" author={author} />
-          <Date className="post__date" date={dayjs(date_creation).format("DD/MM/YYYY")} />
+          <Date className="post__date" date={dayjs(date_creation).fromNow()} />
         </div>
       </div>
       <Text message={message} />
