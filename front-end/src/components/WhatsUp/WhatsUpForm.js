@@ -30,7 +30,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
   };
 
   return (
-    <form className={className} onSubmit={submitHandler}>
+    <form className={className} onSubmit={submitHandler} method="post" action="/file" encType="multipart/form-data">
       <input
         className="testt"
         type="text"
@@ -43,8 +43,9 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       />
 
       <div className="icons_container">
+        <input type="file" name="file" className="icons_container__add_file"></input>
         <FontAwesomeIcon icon={faImages} />
-        <button type="submit" className="whatsup__submit">
+        <button type="submit" className="icons_container__submit">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </div>
