@@ -3,6 +3,12 @@ utiliser next
 utiliser sequelize
 reprendre tous les fichiers pour utiliser la convention de nomage BEM et de l'anglais partout
 Commenter mon code
+Améliorer les contraintes des tables
+Améliorer le nom des table, par exemple dans la table posts, les colonnes devraient commencer par posts par exemple post_message, post_author, post_date_creation..
+Ajouter une securité pour pas spammer le post de message
+utiliser webflow pour la syncrhonisation des posts
+Faire des tests
+mettre un compteur 3000 caratères max dans un post.
 
 dans le form d'inscription : 
 Ajouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
@@ -11,13 +17,12 @@ supprimer le node_modules dans le back end sur le repo github
 ranger tous les fichiers les rendre joli
 faire le README
 
- Demander comment passer prop child to parent
+     Demander comment passer prop child to parent
 
       importer le module db dans le controllers post.js sans le re déclarer
   
-      pour les dates, demander pourquoi il y a un T et un Z, et demander si c'est ici que je dois utiliser dayjs / moment JS, ou si c'est dans le front
-      
-      pour trier les posts dans l'ordre chronologique, filter en js ou bien depuis une commande sql ?
+     Demander si il vaut mieux socket.io, state, ré appel API etc.
 
       Demander si je peux laisser uuid pour les key des composant qui ne viennent pas de ma bdd comme des input customs
       demander si l'id des posts ne serait pas mieux si il était chiffré plutpt que être simpleent dans l'ordre 1 2 3 4...
+      Mettre l'icone d'ajout de fichier dans l'input file

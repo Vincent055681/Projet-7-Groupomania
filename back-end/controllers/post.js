@@ -1,6 +1,7 @@
 const fs = require("fs");
 const mysql = require("mysql");
 const dayjs = require("dayjs");
+
 // const db = require("../app")
 
 // Create connexion
@@ -22,6 +23,8 @@ db.connect((err) => {
 exports.createPost = (req, res, next) => {
   const { body } = req;
   console.log(body);
+  
+ 
   let sql = "INSERT INTO posts SET ?";
   let query = db.query(sql, body, (err, result) => {
     if (err) throw err;

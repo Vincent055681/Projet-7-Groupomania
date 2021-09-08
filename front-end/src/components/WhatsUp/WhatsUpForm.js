@@ -7,7 +7,7 @@ import { POST } from "../../api/axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-import dayjs from "dayjs"
+import dayjs from "dayjs";
 
 const WhatsUpForm = ({ className, id, name, placeholder }) => {
   const [inputValue, setInputValue] = useState("");
@@ -30,7 +30,13 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
   };
 
   return (
-    <form className={className} onSubmit={submitHandler} method="post" action="/file" encType="multipart/form-data">
+    <form
+      className={className}
+      onSubmit={submitHandler}
+      method="post"
+      action="/file"
+      encType="multipart/form-data"
+    >
       <input
         className="testt"
         type="text"
@@ -43,8 +49,15 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       />
 
       <div className="icons_container">
-        <input type="file" name="file" className="icons_container__add_file"></input>
-        <FontAwesomeIcon icon={faImages} />
+        <input
+          type="file"
+          name="send-file"
+          id="send-file"
+          className="icons_container__add_file"
+        />
+        <label for="send-file">
+          <FontAwesomeIcon icon={faImages} />
+        </label>
         <button type="submit" className="icons_container__submit">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
