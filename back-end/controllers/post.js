@@ -25,9 +25,12 @@ exports.createPost = (req, res, next) => {
   console.log(body);
   let sql = "INSERT INTO posts SET ?";
   let query = db.query(sql, body, (err, result) => {
-    if (err) throw err;
+    if (err) {
+      res.status(404).json({ err });
+      throw err
+    }
     console.log(res.body);
-    res.send("Post added...");
+    res.status(200).json({msg: "Post added..."});
   });
 };
 
