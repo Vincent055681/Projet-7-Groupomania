@@ -22,9 +22,10 @@ const Form = ({ form }) => {
   };
 
   return (
-    <form className="form" onSubmit={callApi}>
-      {form === "register" ? (
-        <>
+    <>
+    { form === "register" ? (
+      
+      <form className="form" onSubmit={callApi}>
           <Input
             key={uuidv4()}
             className="input_container"
@@ -74,9 +75,9 @@ const Form = ({ form }) => {
             max="32"
           />
           <Button name="Inscription" />
-        </>
+          </form>
       ) : (
-        <>
+        <form className="form" onSubmit={callApi}>
           <Input
             key={uuidv4()}
             className="input_container"
@@ -98,9 +99,9 @@ const Form = ({ form }) => {
             max="32"
           />
           <Button name="Connexion" />
-        </>
+        </form>
       )}
-    </form>
+      </>
   );
 };
 
