@@ -4,9 +4,9 @@ import "./Button.scss";
 
 const Button = ({ name }) => {
   return (
-    <NavLink exact to="/">
+    // <NavLink exact to="/">
       <button>{name}</button>
-    </NavLink>
+    // </NavLink>
   );
 };
 

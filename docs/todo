@@ -9,6 +9,7 @@ Ajouter une securité pour pas spammer le post de message
 utiliser webflow pour la syncrhonisation des posts
 Faire des tests
 mettre un compteur 3000 caratères max dans un post.
+Ajouter une icone pour ajotuer des gifs aux posts, a coté de l'icone d'ajout d'images
 
 dans le form d'inscription : 
 Ajouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
@@ -25,4 +26,3 @@ faire le README
 
       Demander si je peux laisser uuid pour les key des composant qui ne viennent pas de ma bdd comme des input customs
       demander si l'id des posts ne serait pas mieux si il était chiffré plutpt que être simpleent dans l'ordre 1 2 3 4...
-      Mettre l'icone d'ajout de fichier dans l'input file

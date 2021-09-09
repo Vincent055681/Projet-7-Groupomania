@@ -2,13 +2,27 @@ import React from "react";
 import Button from "../Button/Button";
 import Input from "../../UI/Input/Input";
 import "./Form.scss"
+import {POST} from "../../../api/axios"
+import ENDPOINTS from "../../../api/endpoints"
 
 import { v4 as uuidv4 } from 'uuid';
 
 const Form = ({ form }) => {
 
+  const user = {
+    user_firstname : 'OO',
+    user_lastname : 'OO',
+    user_email : 'lOOl0jyyv',
+    user_password : 'OO',
+  }
+
+  const callApi = async (e) => {
+    e.preventDefault()
+    await POST(ENDPOINTS.CREATE_USER, user)
+  }
+
     return (
-      <form className="form">
+      <form className="form" onSubmit={callApi}>
           {form === "register" ? 
           <>
           <Input key={uuidv4()} className="input_container" type="text" placeholder="Prénom" id="firstname" name="firstname" min="2" max="40" />
