@@ -14,15 +14,13 @@ Ajouter une icone pour ajotuer des gifs aux posts, a coté de l'icone d'ajout d'
 dans le form d'inscription : 
 Ajouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
 rajotuer les messages d'erreurs
-supprimer le node_modules dans le back end sur le repo github
 ranger tous les fichiers les rendre joli
 faire le README
 
      Demander comment passer prop child to parent
-
       importer le module db dans le controllers post.js sans le re déclarer
-  
-     Demander si il vaut mieux socket.io, state, ré appel API etc.
 
+     Demander si il vaut mieux socket.io, state, ré appel API etc.
       Demander si je peux laisser uuid pour les key des composant qui ne viennent pas de ma bdd comme des input customs
       demander si l'id des posts ne serait pas mieux si il était chiffré plutpt que être simpleent dans l'ordre 1 2 3 4...
+      Bloqué : récup le state d'un composant enfant pour l'utiliser dans le parent

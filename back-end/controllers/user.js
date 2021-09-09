@@ -20,9 +20,10 @@ db.connect((err) => {
 exports.signUp = (req, res, next) => {
   console.log("okiiii");
   const { body } = req;
+  console.log(body);
   const sql = "INSERT INTO users SET ?";
   const query = db.query(sql, body, (err, result) => {
     if (err) throw err;
-    console.log("REPONSE : ", result);
+    console.log(result);
   });
 };
