@@ -55,7 +55,7 @@ exports.login = (req, res, next) => {
       if (match) {
         console.log("match ... user_id : ", user_id);
 
-        // If match, verify JWT token
+        // If match, generate JWT token
         res.status(200).json({
           user_id: user_id,
           token: jwt.sign({ userId: user_id }, "TOOOKEN", {
