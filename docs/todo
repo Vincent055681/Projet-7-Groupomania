@@ -10,6 +10,9 @@ utiliser webflow pour la syncrhonisation des posts
 Faire des tests
 mettre un compteur 3000 caratères max dans un post.
 Ajouter une icone pour ajotuer des gifs aux posts, a coté de l'icone d'ajout d'images
+Vérification de l'email lors de l'inscription avec un envoie de mail avec code
+crop une photo de profil
+rechercher quelqu'un dans l'équipe
 
 dans le form d'inscription : 
 Ajouter des animations sur les onglets, quand il change, quand on clique sur celui déjà ouvert etc
@@ -24,3 +27,4 @@ faire le README
       Demander si je peux laisser uuid pour les key des composant qui ne viennent pas de ma bdd comme des input customs
       demander si l'id des posts ne serait pas mieux si il était chiffré plutpt que être simpleent dans l'ordre 1 2 3 4...
       Bloqué : récup le state d'un composant enfant pour l'utiliser dans le parent
+      Dans la fonction login du controller user, c'est la bonne manière de faire ?

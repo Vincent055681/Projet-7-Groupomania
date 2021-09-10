@@ -2,30 +2,38 @@ import React, { useState } from "react";
 import Button from "../Button/Button";
 import Input from "../../UI/Input/Input";
 import "./Form.scss";
-import { POST } from "../../../api/axios";
+import { POST, GET } from "../../../api/axios";
 import ENDPOINTS from "../../../api/endpoints";
 
 import { v4 as uuidv4 } from "uuid";
 
 const Form = ({ form }) => {
-  const [user, setUser] = useState({
-    user_firstname: "OO",
-    user_lastname: "OO",
-    user_email: "l26",
-    user_password: "OO",
+  const [userSignup, setUserSignup] = useState({
+    user_firstname: "Jean",
+    user_lastname: "Luc",
+    user_email: "testgrettte@mail.com",
+    user_password: "589655896558965589655896558965",
   });
 
-  const callApi = async (e) => {
+  const [userLogin, setUserLogin] = useState({
+    user_email: "testgrettte@mail.com",
+    user_password: "589655896558965589655896558965",
+  });
+
+  const signup = async (e) => {
     e.preventDefault();
-    console.log();
-    await POST(ENDPOINTS.CREATE_USER, user)
+    await POST(ENDPOINTS.USER_SIGNUP, userSignup);
+  };
+
+  const login = async (e) => {
+    e.preventDefault();
+    await POST(ENDPOINTS.USER_LOGIN, userLogin);
   };
 
   return (
     <>
-    { form === "register" ? (
-      
-      <form className="form" onSubmit={callApi}>
+      {form === "register" ? (
+        <form className="form" onSubmit={signup}>
           <Input
             key={uuidv4()}
             className="input_container"
@@ -75,9 +83,9 @@ const Form = ({ form }) => {
             max="32"
           />
           <Button name="Inscription" />
-          </form>
+        </form>
       ) : (
-        <form className="form" onSubmit={callApi}>
+        <form className="form" onSubmit={login}>
           <Input
             key={uuidv4()}
             className="input_container"
@@ -101,7 +109,7 @@ const Form = ({ form }) => {
           <Button name="Connexion" />
         </form>
       )}
-      </>
+    </>
   );
 };
 

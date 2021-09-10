@@ -21,7 +21,7 @@ db.connect((err) => {
 exports.signup = async (req, res, next) => {
   // ====== Password encryption =========
   const saltRounds = 10;
-  const { user_password:password } = req.body;
+  const { user_password: password } = req.body;
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
   // ====================================
   const user = {
@@ -35,16 +35,26 @@ exports.signup = async (req, res, next) => {
   });
 };
 
-exports.login =  (req, res, next) => {
-   const { user_email } = req.body
-   let sql = `SELECT user_email FROM users WHERE user_email=${user_email};`;
-   let query = db.query(sql, (err, result) => {
-     if (err) {
-       res.status(404).json({ err });
-       throw err;
-     }
-     console.log(result);
-     res.status(200).json(result);
-   })
-  };
-  
+exports.login = (req, res, next) => {
+  async function checkUser() {
+    const { user_email, user_password: clearPassword } = req.body;
+    let sql = `SELECT user_password FROM users WHERE user_email=${user_email}`;
+    db.query(sql, async (err, result) => {
+      if (err) {
+        res.status(404).json({ err });
+        throw err;
+      }
+      // const result1 = Object.values(JSON.parse(JSON.stringify(result)));
+      const resultString = result[0].user_password;
+      console.log(clearPassword, resultString);
+      console.log(typeof resultString, typeof clearPassword);
+      const match = await bcrypt.compare(clearPassword, resultString);
+      if (match) {
+        console.log("match :)");
+      } else {
+        console.log("not match :(");
+      }
+    });
+  }
+  checkUser();
+};

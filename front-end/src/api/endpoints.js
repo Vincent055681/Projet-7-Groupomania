@@ -1,7 +1,8 @@
 export default {
   GET_POSTS: "/api/post",
   CREATE_POST: "/api/post",
-  CREATE_USER: "api/auth/signup",
+  USER_SIGNUP: "api/auth/signup",
+  USER_LOGIN: "api/auth/login",
 };
 
 
