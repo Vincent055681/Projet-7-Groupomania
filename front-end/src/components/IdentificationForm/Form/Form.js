@@ -11,13 +11,13 @@ const Form = ({ form }) => {
   const [userSignup, setUserSignup] = useState({
     user_firstname: "Jean",
     user_lastname: "Luc",
-    user_email: "testgrettte@mail.com",
-    user_password: "589655896558965589655896558965",
+    user_email: "etoujiiu@mail.com",
+    user_password: "5azd85",
   });
 
   const [userLogin, setUserLogin] = useState({
-    user_email: "testgrettte@mail.com",
-    user_password: "589655896558965589655896558965",
+    user_email: "etoujii@mail.com",
+    user_password: "5azd85",
   });
 
   const signup = async (e) => {
