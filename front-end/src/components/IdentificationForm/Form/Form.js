@@ -11,18 +11,18 @@ const Form = ({ form }) => {
   const [userSignup, setUserSignup] = useState({
     user_firstname: "Jean",
     user_lastname: "Luc",
-    user_email: "89474678@mail.com",
+    user_email: "61d9@dd.com",
     user_password: "5azd85",
   });
 
   const [userLogin, setUserLogin] = useState({
-    user_email: "84@mail.com",
+    user_email: "61d9@dd.com",
     user_password: "5azd85",
   });
 
   const signup = async (e) => {
     e.preventDefault();
-    await POST(ENDPOINTS.USER_SIGNUP, userSignup );
+    await POST(ENDPOINTS.USER_SIGNUP, userSignup);
   };
 
   const login = async (e) => {
