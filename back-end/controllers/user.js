@@ -46,8 +46,6 @@ exports.login = (req, res, next) => {
       }
       // const result1 = Object.values(JSON.parse(JSON.stringify(result)));
       const hashedPassword = result[0].user_password;
-      console.log(clearPassword, hashedPassword);
-      console.log(typeof hashedPassword, typeof clearPassword);
       try {
         const match = await bcrypt.compare(clearPassword, hashedPassword);
       } catch (error) {
