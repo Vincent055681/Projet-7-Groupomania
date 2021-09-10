@@ -1,6 +1,8 @@
 const mysql = require("mysql");
 // const db = require("../app")
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 // Create connexion
 const db = mysql.createConnection({
@@ -36,27 +38,35 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  function checkUser() {
-    const { user_email, user_password: clearPassword } = req.body;
-    let sql = `SELECT user_password FROM users WHERE user_email=${user_email}`;
-    db.query(sql, async (err, result) => {
-      if (err) {
-        res.status(404).json({ err });
-        // throw err;
-      }
-      // const result1 = Object.values(JSON.parse(JSON.stringify(result)));
-      const hashedPassword = result[0].user_password;
-      try {
-        const match = await bcrypt.compare(clearPassword, hashedPassword);
-      } catch (error) {
-        console.log(error);
-      }
+  //===== Check if user exists in DB ======
+  const { user_email, user_password: clearPassword } = req.body;
+  let sql = `SELECT user_password, user_id FROM users WHERE user_email=?`;
+  db.query(sql, [user_email], async (err, results) => {
+    console.log(results);
+    console.log(req.body);
+    if (err) {
+      return res.status(404).json({ err });
+    }
+
+    // ===== Verify password with hash in DB ======
+    const { user_password: hashedPassword, user_id } = results[0];
+    try {
+      const match = await bcrypt.compare(clearPassword, hashedPassword);
       if (match) {
-        console.log("match :)");
+        console.log("match ... user_id : ", user_id);
+
+        // If match, verify JWT token
+        res.status(200).json({
+          user_id: user_id,
+          token: jwt.sign({ userId: user_id }, "TOOOKEN", {
+            expiresIn: "24h",
+          }),
+        });
       } else {
-        console.log("not match :(");
+        console.log("not match");
       }
-    });
-  }
-  checkUser();
+    } catch (err) {
+      return res.status(400).json({ err: "une erreur" });
+    }
+  });
 };

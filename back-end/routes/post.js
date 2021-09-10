@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const postCtrl = require("../controllers/post");
+const auth = require('../middlewares/auth')
 
 // router.get("/", auth, sauceCtrl.getAllSauces);
 // router.get('/:id', auth, sauceCtrl.getOneSauce);
