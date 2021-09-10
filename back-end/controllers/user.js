@@ -36,19 +36,23 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  async function checkUser() {
+  function checkUser() {
     const { user_email, user_password: clearPassword } = req.body;
     let sql = `SELECT user_password FROM users WHERE user_email=${user_email}`;
     db.query(sql, async (err, result) => {
       if (err) {
         res.status(404).json({ err });
-        throw err;
+        // throw err;
       }
       // const result1 = Object.values(JSON.parse(JSON.stringify(result)));
-      const resultString = result[0].user_password;
-      console.log(clearPassword, resultString);
-      console.log(typeof resultString, typeof clearPassword);
-      const match = await bcrypt.compare(clearPassword, resultString);
+      const hashedPassword = result[0].user_password;
+      console.log(clearPassword, hashedPassword);
+      console.log(typeof hashedPassword, typeof clearPassword);
+      try {
+        const match = await bcrypt.compare(clearPassword, hashedPassword);
+      } catch (error) {
+        console.log(error);
+      }
       if (match) {
         console.log("match :)");
       } else {
