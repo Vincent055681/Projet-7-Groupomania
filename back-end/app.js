@@ -43,5 +43,5 @@ const postRoutes = require('./routes/post');
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes)
 
-// module.exports = db;
+module.exports = db;
 module.exports = app;
