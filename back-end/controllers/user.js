@@ -56,14 +56,14 @@ exports.login = (req, res, next) => {
         console.log("match ... user_id : ", user_id);
 
         // If match, generate JWT token
-        return res.status(200).json({ test: "affiché" });
+        res.status(200).json({ test: "pjol" }); // marche pas
 
         // return res.status(200).json({
-        //   test: "iyu",
-        //   user_id: user_id,
-        //   token: jwt.sign({ userId: user_id }, "TOOOKEN", {
-        //     expiresIn: "24h",
-        //   }),
+        // test: "iyu",
+        // user_id: user_id,
+        // token: jwt.sign({ userId: user_id }, "TOOOKEN", {
+        //   expiresIn: "24h",
+        // }),
         // });
       } else {
         console.log("not match");
@@ -71,5 +71,15 @@ exports.login = (req, res, next) => {
     } catch (err) {
       return res.status(400).json({ err: "une erreur" });
     }
+  });
+};
+
+exports.sendToken = (req, res, next) => {
+  res.status(200).json({
+    test: "iyu",
+    user_id: user_id,
+    token: jwt.sign({ userId: user_id }, "TOOOKEN", {
+      expiresIn: "24h",
+    }),
   });
 };
