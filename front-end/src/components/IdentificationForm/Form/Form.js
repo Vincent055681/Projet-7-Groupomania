@@ -29,13 +29,13 @@ const Form = ({ form }) => {
     e.preventDefault();
     await POST(ENDPOINTS.USER_LOGIN, userLogin);
     // await GET(ENDPOINTS.USER_LOGIN)
+    fetch("http://localhost:4200/api/auth/login")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
-  fetch("http://localhost:4200/api/auth/login")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
 
   return (
     <>
