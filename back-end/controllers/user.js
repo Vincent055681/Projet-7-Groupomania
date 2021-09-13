@@ -56,13 +56,15 @@ exports.login = (req, res, next) => {
         console.log("match ... user_id : ", user_id);
 
         // If match, generate JWT token
-        return res.status(200).json({
-          test: "iyu",
-          user_id: user_id,
-          token: jwt.sign({ userId: user_id }, "TOOOKEN", {
-            expiresIn: "24h",
-          }),
-        });
+        return res.status(200).json({ test: "affiché" });
+
+        // return res.status(200).json({
+        //   test: "iyu",
+        //   user_id: user_id,
+        //   token: jwt.sign({ userId: user_id }, "TOOOKEN", {
+        //     expiresIn: "24h",
+        //   }),
+        // });
       } else {
         console.log("not match");
       }
