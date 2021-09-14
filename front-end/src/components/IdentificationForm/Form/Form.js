@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import Button from "../Button/Button";
-import Input from "../../UI/Input/Input";
 import "./Form.scss";
 import { POST, GET } from "../../../api/axios";
 import ENDPOINTS from "../../../api/endpoints";
@@ -16,17 +15,17 @@ const Form = ({ form }) => {
   });
 
   const [userLogin, setUserLogin] = useState({
-    user_email: "61d9@dd.com",
-    user_password: "5azd855azd85sssss",
+    user_email: "azerty@mail.coma",
+    user_password: "azertyazerty",
   });
 
   const signup = async (e) => {
     e.preventDefault();
     console.log(refSignupEmail.current.value);
-    // C'est toujours le state précédent qui s'envoie... je cherche comment régler ça
-    setUserSignup((prevstate) => {
+    // C'est toujours le state précédent qui s'envoie, même avec prevState... je cherche comment régler ça
+    setUserSignup((prevState) => {
       return {
-        ...prevstate,
+        ...prevState,
         user_firstname: refSignupFirstName.current.value,
         user_lastname: refSignupLastName.current.value,
         user_email: refSignupEmail.current.value,
@@ -38,10 +37,6 @@ const Form = ({ form }) => {
 
   const login = async (e) => {
     e.preventDefault();
-    setUserLogin({
-      ...userLogin,
-      user_email: refLoginMail.current.value,
-    });
     await POST(ENDPOINTS.USER_LOGIN, userLogin);
     // await GET(ENDPOINTS.USER_LOGIN)
     fetch("http://localhost:4200/api/auth/login")
@@ -50,9 +45,6 @@ const Form = ({ form }) => {
         console.log(data);
       });
   };
-
-  const refLoginMail = useRef(null);
-  const refLoginPassword = useRef(null);
 
   const refSignupFirstName = useRef(null);
   const refSignupLastName = useRef(null);
@@ -117,26 +109,6 @@ const Form = ({ form }) => {
         </form>
       ) : (
         <form className="form" onSubmit={login}>
-          {/* <Input
-            key={uuidv4()}
-            className="input_container"
-            type="email"
-            placeholder="Adresse mail"
-            id="email"
-            name="email"
-            min="2"
-            max="40"
-          />
-          <Input
-            key={uuidv4()}
-            className="input_container"
-            type="password"
-            placeholder="Mot de passe"
-            id="password"
-            name="password"
-            min="10"
-            max="32"
-          /> */}
           <input
             key={uuidv4()}
             type="email"
@@ -144,7 +116,6 @@ const Form = ({ form }) => {
             placeholder="Adresse mail"
             id="email"
             name="email"
-            ref={refLoginMail}
           />
           <input
             key={uuidv4()}
@@ -153,7 +124,6 @@ const Form = ({ form }) => {
             placeholder="Mot de passe"
             id="password"
             name="password"
-            ref={refLoginMail}
           />
           <Button name="Connexion" />
         </form>
