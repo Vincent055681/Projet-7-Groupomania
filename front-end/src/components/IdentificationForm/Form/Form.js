@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Button from "../Button/Button";
 import Input from "../../UI/Input/Input";
 import "./Form.scss";
@@ -9,24 +9,39 @@ import { v4 as uuidv4 } from "uuid";
 
 const Form = ({ form }) => {
   const [userSignup, setUserSignup] = useState({
-    user_firstname: "Jean",
-    user_lastname: "Luc",
-    user_email: "61d9@dd.com",
-    user_password: "5azd85",
+    user_firstname: "",
+    user_lastname: "",
+    user_email: "",
+    user_password: "",
   });
 
   const [userLogin, setUserLogin] = useState({
     user_email: "61d9@dd.com",
-    user_password: "5azd85",
+    user_password: "5azd855azd85sssss",
   });
 
   const signup = async (e) => {
     e.preventDefault();
+    console.log(refSignupEmail.current.value);
+    // C'est toujours le state précédent qui s'envoie... je cherche comment régler ça
+    setUserSignup((prevstate) => {
+      return {
+        ...prevstate,
+        user_firstname: refSignupFirstName.current.value,
+        user_lastname: refSignupLastName.current.value,
+        user_email: refSignupEmail.current.value,
+        user_password: refSignupPassword.current.value,
+      };
+    });
     await POST(ENDPOINTS.USER_SIGNUP, userSignup);
   };
 
   const login = async (e) => {
     e.preventDefault();
+    setUserLogin({
+      ...userLogin,
+      user_email: refLoginMail.current.value,
+    });
     await POST(ENDPOINTS.USER_LOGIN, userLogin);
     // await GET(ENDPOINTS.USER_LOGIN)
     fetch("http://localhost:4200/api/auth/login")
@@ -36,64 +51,73 @@ const Form = ({ form }) => {
       });
   };
 
+  const refLoginMail = useRef(null);
+  const refLoginPassword = useRef(null);
+
+  const refSignupFirstName = useRef(null);
+  const refSignupLastName = useRef(null);
+  const refSignupEmail = useRef(null);
+  const refSignupPassword = useRef(null);
 
   return (
     <>
       {form === "register" ? (
         <form className="form" onSubmit={signup}>
-          <Input
-            key={uuidv4()}
-            className="input_container"
-            type="text"
-            placeholder="Prénom"
-            id="firstname"
-            name="firstname"
-            min="2"
-            max="40"
-          />
-          <Input
-            key={uuidv4()}
-            className="input_container"
-            type="text"
-            placeholder="Nom"
-            id="lastname"
-            name="lastname"
-            min="2"
-            max="60"
-          />
-          <Input
-            key={uuidv4()}
-            className="input_container"
-            type="email"
-            placeholder="Votre adresse mail"
-            id="email"
-            name="email"
-          />
-          <Input
-            key={uuidv4()}
-            className="input_container"
-            type="password"
-            placeholder="Mot de passe"
-            id="password"
-            name="password"
-            min="10"
-            max="32"
-          />
-          <Input
-            key={uuidv4()}
-            className="input_container"
-            type="password"
-            placeholder="Confirmez le mot de passe"
-            id="verify-password"
-            name="verify-password"
-            min="10"
-            max="32"
-          />
+          {
+            <>
+              <input
+                key={uuidv4()}
+                type="text"
+                className="input_container"
+                placeholder="Prénom"
+                id="firstname"
+                name="firstname"
+                ref={refSignupFirstName}
+              />
+              <input
+                key={uuidv4()}
+                type="text"
+                className="input_container"
+                placeholder="Nom"
+                id="lastname"
+                name="lastname"
+                ref={refSignupLastName}
+              />
+              <input
+                key={uuidv4()}
+                type="email"
+                className="input_container"
+                placeholder="Adresse email"
+                id="email"
+                name="email"
+                ref={refSignupEmail}
+              />
+              <input
+                key={uuidv4()}
+                type="password"
+                className="input_container"
+                placeholder="Mot de passe"
+                id="password"
+                name="password"
+                ref={refSignupPassword}
+              />
+              <input
+                key={uuidv4()}
+                type="password"
+                className="input_container"
+                placeholder="Confirmer le mot de passe"
+                id="password"
+                name="password"
+                ref={refSignupPassword}
+              />
+            </>
+          }
+
           <Button name="Inscription" />
         </form>
       ) : (
         <form className="form" onSubmit={login}>
-          <Input
+          {/* <Input
             key={uuidv4()}
             className="input_container"
             type="email"
@@ -112,6 +136,24 @@ const Form = ({ form }) => {
             name="password"
             min="10"
             max="32"
+          /> */}
+          <input
+            key={uuidv4()}
+            type="email"
+            className="input_container"
+            placeholder="Adresse mail"
+            id="email"
+            name="email"
+            ref={refLoginMail}
+          />
+          <input
+            key={uuidv4()}
+            type="password"
+            className="input_container"
+            placeholder="Mot de passe"
+            id="password"
+            name="password"
+            ref={refLoginMail}
           />
           <Button name="Connexion" />
         </form>

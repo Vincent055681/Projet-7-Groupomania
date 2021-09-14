@@ -53,18 +53,15 @@ exports.login = (req, res, next) => {
     try {
       const match = await bcrypt.compare(clearPassword, hashedPassword);
       if (match) {
+        // If match, generate JWT token  ( Ce code n'est pas exécuté, l'execution du code saute cette étape pour aller dans la fonction sendToken)
         console.log("match ... user_id : ", user_id);
-
-        // If match, generate JWT token
-        res.status(200).json({ test: "pjol" }); // marche pas
-
-        // return res.status(200).json({
-        // test: "iyu",
-        // user_id: user_id,
-        // token: jwt.sign({ userId: user_id }, "TOOOKEN", {
-        //   expiresIn: "24h",
-        // }),
-        // });
+        res.status(200).json({
+          test: "iyu",
+          user_id: user_id,
+          token: jwt.sign({ userId: user_id }, "TOOOKEN", {
+            expiresIn: "24h",
+          }),
+        });
       } else {
         console.log("not match");
       }
@@ -75,11 +72,5 @@ exports.login = (req, res, next) => {
 };
 
 exports.sendToken = (req, res, next) => {
-  res.status(200).json({
-    test: "iyu",
-    user_id: user_id,
-    token: jwt.sign({ userId: user_id }, "TOOOKEN", {
-      expiresIn: "24h",
-    }),
-  });
+  res.status(200).json({ test: "pjo" });
 };
