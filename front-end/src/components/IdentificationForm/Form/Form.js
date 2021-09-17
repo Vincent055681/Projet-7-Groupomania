@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Button from "../Button/Button";
 import "./Form.scss";
-import { POST, GET } from "../../../api/axios";
+import { POST } from "../../../api/axios";
 import ENDPOINTS from "../../../api/endpoints";
 
 import { v4 as uuidv4 } from "uuid";
@@ -19,6 +19,7 @@ const Form = ({ form }) => {
     user_password: "",
   });
 
+  // Signup / login functions
   const signup = async (e) => {
     try {
       e.preventDefault();
@@ -36,7 +37,7 @@ const Form = ({ form }) => {
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     } catch (err) {
-      console.log("Erreur lors de l'inscription : ", err);
+      console.log("Error during registration... : ", err);
     }
   };
 
@@ -54,7 +55,7 @@ const Form = ({ form }) => {
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     } catch (err) {
-      console.log("Erreur lors de la connexion : ", err);
+      console.log("Error during connection... : ", err);
     }
   };
 
