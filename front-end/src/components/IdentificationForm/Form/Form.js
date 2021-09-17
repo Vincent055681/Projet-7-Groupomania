@@ -15,41 +15,57 @@ const Form = ({ form }) => {
   });
 
   const [userLogin, setUserLogin] = useState({
-    user_email: "azerty@mail.coma",
-    user_password: "azertyazerty",
+    user_email: "",
+    user_password: "",
   });
 
   const signup = async (e) => {
-    e.preventDefault();
-    console.log(refSignupEmail.current.value);
-    // C'est toujours le state précédent qui s'envoie, même avec prevState... je cherche comment régler ça
-    setUserSignup((prevState) => {
-      return {
-        ...prevState,
-        user_firstname: refSignupFirstName.current.value,
-        user_lastname: refSignupLastName.current.value,
-        user_email: refSignupEmail.current.value,
-        user_password: refSignupPassword.current.value,
-      };
-    });
-    await POST(ENDPOINTS.USER_SIGNUP, userSignup);
+    try {
+      e.preventDefault();
+      // C'est toujours le state précédent qui s'envoie, même avec prevState... je cherche comment régler ça
+      setUserSignup((prevState) => {
+        return {
+          ...prevState,
+          user_firstname: refSignupFirstName.current.value,
+          user_lastname: refSignupLastName.current.value,
+          user_email: refSignupEmail.current.value,
+          user_password: refSignupPassword.current.value,
+        };
+      });
+      await POST(ENDPOINTS.USER_SIGNUP, userSignup)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log("Erreur lors de l'inscription : ", err);
+    }
   };
 
   const login = async (e) => {
-    e.preventDefault();
-    await POST(ENDPOINTS.USER_LOGIN, userLogin);
-    // await GET(ENDPOINTS.USER_LOGIN)
-    fetch("http://localhost:4200/api/auth/login")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+    try {
+      e.preventDefault();
+      setUserLogin((prevState) => {
+        return {
+          ...prevState,
+          user_email: refLoginEmail.current.value,
+          user_password: refLoginPassword.current.value,
+        };
       });
+      await POST(ENDPOINTS.USER_LOGIN, userLogin)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log("Erreur lors de la connexion : ", err);
+    }
   };
 
+  // Input refs
   const refSignupFirstName = useRef(null);
   const refSignupLastName = useRef(null);
   const refSignupEmail = useRef(null);
   const refSignupPassword = useRef(null);
+
+  const refLoginEmail = useRef(null);
+  const refLoginPassword = useRef(null);
 
   return (
     <>

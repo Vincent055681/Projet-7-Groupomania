@@ -21,20 +21,25 @@ db.connect((err) => {
 });
 
 exports.signup = async (req, res, next) => {
-  // ====== Password encryption =========
-  const saltRounds = 10;
-  const { user_password: password } = req.body;
-  const encryptedPassword = await bcrypt.hash(password, saltRounds);
-  // ====================================
-  const user = {
-    ...req.body,
-    user_password: encryptedPassword,
-  };
-  const sql = "INSERT INTO users SET ?";
-  const query = db.query(sql, user, (err, result) => {
-    if (err) throw err;
-    console.log(result);
-  });
+  try {
+    const { user_password: password } = req.body;
+
+    // ====== Password encryption =========
+    const salt = await bcrypt.genSalt(10);
+    const encryptedPassword = await bcrypt.hash(password, salt);
+
+    const user = {
+      ...req.body,
+      user_password: encryptedPassword,
+    };
+    const sql = "INSERT INTO users SET ?";
+    const query = db.query(sql, user, (err, result) => {
+      console.log(result);
+      res.status(201).json({ message: "User created !" });
+    });
+  } catch (err) {
+    res.status(400).json({ message: "Failed registration", err });
+  }
 };
 
 exports.login = (req, res, next) => {
@@ -42,8 +47,8 @@ exports.login = (req, res, next) => {
   const { user_email, user_password: clearPassword } = req.body;
   let sql = `SELECT user_password, user_id FROM users WHERE user_email=?`;
   db.query(sql, [user_email], async (err, results) => {
-    console.log(results);
     console.log(req.body);
+    console.log(results);
     if (err) {
       return res.status(404).json({ err });
     }
@@ -69,8 +74,4 @@ exports.login = (req, res, next) => {
       return res.status(400).json({ err: "une erreur" });
     }
   });
-};
-
-exports.sendToken = (req, res, next) => {
-  res.status(200).json({ test: "pjo" });
 };

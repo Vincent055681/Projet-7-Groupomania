@@ -18,7 +18,6 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
     const post = {
       author: "Vincent",
       message: inputValue,
