@@ -33,9 +33,8 @@ const Form = ({ form }) => {
           user_password: refSignupPassword.current.value,
         };
       });
-      await POST(ENDPOINTS.USER_SIGNUP, userSignup)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+      const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
+      console.log(response);
     } catch (err) {
       console.log("Error during registration... : ", err);
     }
@@ -51,9 +50,8 @@ const Form = ({ form }) => {
           user_password: refLoginPassword.current.value,
         };
       });
-      await POST(ENDPOINTS.USER_LOGIN, userLogin)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+      const response = await POST(ENDPOINTS.USER_LOGIN, userLogin);
+      console.log(response);
     } catch (err) {
       console.log("Error during connection... : ", err);
     }
