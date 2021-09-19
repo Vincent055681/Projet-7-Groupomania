@@ -58,7 +58,7 @@ exports.login = (req, res, next) => {
     try {
       const match = await bcrypt.compare(clearPassword, hashedPassword);
       if (match) {
-        // If match, generate JWT token  ( Ce code n'est pas exécuté, l'execution du code saute cette étape pour aller dans la fonction sendToken)
+        // If match, generate JWT token 
         console.log("match ... user_id : ", user_id);
         res.status(200).json({
           test: "iyu",
