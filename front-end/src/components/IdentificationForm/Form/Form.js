@@ -19,12 +19,22 @@ const Form = ({ form }) => {
     user_password: "",
   });
 
+  // Input refs
+  const refSignupFirstName = useRef();
+  const refSignupLastName = useRef();
+  const refSignupEmail = useRef();
+  const refSignupPassword = useRef();
+
+  const refLoginEmail = useRef();
+  const refLoginPassword = useRef();
+
   // Signup / login functions
   const signup = async (e) => {
     try {
       e.preventDefault();
       // C'est toujours le state précédent qui s'envoie, même avec prevState... je cherche comment régler ça
       setUserSignup((prevState) => {
+        console.table(refSignupFirstName.current.value);
         return {
           ...prevState,
           user_firstname: refSignupFirstName.current.value,
@@ -56,15 +66,6 @@ const Form = ({ form }) => {
       console.log("Error during connection... : ", err);
     }
   };
-
-  // Input refs
-  const refSignupFirstName = useRef(null);
-  const refSignupLastName = useRef(null);
-  const refSignupEmail = useRef(null);
-  const refSignupPassword = useRef(null);
-
-  const refLoginEmail = useRef(null);
-  const refLoginPassword = useRef(null);
 
   return (
     <>
@@ -131,6 +132,7 @@ const Form = ({ form }) => {
             placeholder="Adresse mail"
             id="email"
             name="email"
+            ref={refLoginEmail}
           />
           <input
             key={uuidv4()}
@@ -139,6 +141,7 @@ const Form = ({ form }) => {
             placeholder="Mot de passe"
             id="password"
             name="password"
+            ref={refLoginPassword}
           />
           <Button name="Connexion" />
         </form>

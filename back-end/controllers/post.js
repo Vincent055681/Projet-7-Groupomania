@@ -2,24 +2,6 @@ const fs = require("fs");
 const mysql = require("mysql");
 const dayjs = require("dayjs");
 
-// const db = require("../app")
-
-// Create connexion
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "ssMRhrc68xVReAJtIxFg",
-  database: "groupomania",
-});
-
-// Connect
-db.connect((err) => {
-  if (err) {
-    throw err;
-  }
-  console.log("MySQL Connected ...");
-});
-
 exports.createPost = (req, res, next) => {
   const { body } = req;
   console.log(body);
