@@ -20,10 +20,15 @@ exports.signup = async (req, res, next) => {
     let db = dbc.getDB();
     const query = db.query(sql, user, (err, result) => {
       console.log(result);
-      res.status(201).json({ message: "User created !" });
+      if (!result) {
+        res.status(200).json({ message: "Email déjà enregistré" });
+
+      } else {
+        res.status(201).json({ message: "User created !" });
+      }
     });
   } catch (err) {
-    res.status(400).json({ message: "Failed registration", err });
+    res.status(200).json({ message: "Failed registration", err });
   }
 };
 
@@ -31,7 +36,7 @@ exports.login = (req, res, next) => {
   //===== Check if user exists in DB ======
   const { user_email, user_password: clearPassword } = req.body;
   let sql = `SELECT user_password, user_id FROM users WHERE user_email=?`;
-  let db = dbc.getDB()
+  let db = dbc.getDB();
   db.query(sql, [user_email], async (err, results) => {
     console.log(req.body);
     console.log(results);
@@ -47,9 +52,8 @@ exports.login = (req, res, next) => {
         // If match, generate JWT token
         console.log("match ... user_id : ", user_id);
         res.status(200).json({
-          test: "iyu",
           user_id: user_id,
-          token: jwt.sign({ userId: user_id }, "TOOOKEN", {
+          token: jwt.sign({ userId: user_id }, process.env.JWT_TOKEN, {
             expiresIn: "24h",
           }),
         });

@@ -5,6 +5,10 @@ form {
   margin-top: 20px;
   flex-direction: column;
   width: 100%;
+  .error {
+    color: red;
+    text-align: left;
+  }
 }
 
 

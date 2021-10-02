@@ -20,20 +20,60 @@ const Form = ({ form }) => {
   });
 
   // Input refs
-  // const refSignupFirstName = useRef();
-  // const refSignupLastName = useRef();
-  // const refSignupEmail = useRef();
-  // const refSignupPassword = useRef();
+  const refSignupFirstName = useRef();
+  const refSignupLastName = useRef();
+  const refSignupEmail = useRef();
+  const refSignupPassword = useRef();
 
   // const refLoginEmail = useRef();
   // const refLoginPassword = useRef();
+  const { user_firstname, user_lastname, user_email, user_password } =
+    userSignup;
+
+  // Verify input data
+
+  const checkFirstName = () => {
+    if (user_firstname.trim().length < 2 || user_firstname.trim().length > 30) {
+      refSignupFirstName.current.innerText =
+        "Votre prénom doit faire entre 2 et 30 caractères";
+    } else {
+      refSignupFirstName.current.innerText = "";
+    }
+  };
+
+  const checkLastName = () => {
+    if (user_lastname.trim().length < 2 || user_lastname.trim().length > 30) {
+      refSignupLastName.current.innerText =
+        "Votre nom doit faire entre 2 et 30 caractères";
+    } else {
+      refSignupLastName.current.innerText = "";
+    }
+  };
+
+  const checkEmail = (email) => {
+    const regex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const check = regex.test(String(email).toLowerCase());
+    refSignupEmail.current.innerText = `${check ? "" : "Email incorrect"}`;
+  };
+
+  const checkPassword = () => {
+    const passwordFlag = {
+      
+    }
+  }
 
   // Signup / login functions
   const signup = async (e) => {
     try {
       e.preventDefault();
       const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
-      console.log(response);
+      if (response.status === 200) {
+      refSignupEmail.current.innerText = "Email déjà enregistré";
+
+      }
+      if (response.status === 201) {
+      }
     } catch (err) {
       console.log("Error during registration... : ", err);
     }
@@ -44,6 +84,9 @@ const Form = ({ form }) => {
       e.preventDefault();
       const response = await POST(ENDPOINTS.USER_LOGIN, userLogin);
       console.log(response);
+      if (response.data.token) {
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+      }
     } catch (err) {
       console.log("Error during connection... : ", err);
     }
@@ -67,8 +110,10 @@ const Form = ({ form }) => {
                     user_firstname: e.target.value,
                   })
                 }
+                onBlur={checkFirstName}
                 value={userSignup.user_firstname}
               />
+              <div className="firstname error" ref={refSignupFirstName}></div>
               <input
                 type="text"
                 className="input_container"
@@ -81,8 +126,10 @@ const Form = ({ form }) => {
                     user_lastname: e.target.value,
                   })
                 }
+                onBlur={checkLastName}
                 value={userSignup.user_lastname}
               />
+              <div className="lastname error" ref={refSignupLastName}></div>
               <input
                 type="email"
                 className="input_container"
@@ -92,8 +139,11 @@ const Form = ({ form }) => {
                 onChange={(e) =>
                   setUserSignup({ ...userSignup, user_email: e.target.value })
                 }
+                onBlur={(e) => checkEmail(e.target.value)}
                 value={userSignup.user_email}
               />
+              <div className="email error" ref={refSignupEmail}></div>
+
               <input
                 type="password"
                 className="input_container"
@@ -106,8 +156,11 @@ const Form = ({ form }) => {
                     user_password: e.target.value,
                   })
                 }
+                onBlur={checkPassword}
                 value={userSignup.user_password}
+                ref={refSignupPassword}
               />
+              <div className="password error"></div>
               <input
                 type="password"
                 className="input_container"
@@ -115,6 +168,7 @@ const Form = ({ form }) => {
                 id="password"
                 name="password"
               />
+              <div className="password-conf error"></div>
             </>
           }
 
@@ -137,7 +191,6 @@ const Form = ({ form }) => {
             value={userLogin.user_email}
           />
           <input
-            
             type="password"
             className="input_container"
             placeholder="Mot de passe"
