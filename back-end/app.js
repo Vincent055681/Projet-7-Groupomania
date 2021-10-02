@@ -4,23 +4,24 @@ const mysql = require('mysql')
 const helmet = require("helmet");
 const bodyParser = require('body-parser'); 
 
+
 app.use(helmet());
 
-// Create connexion
-const db = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'ssMRhrc68xVReAJtIxFg',
-  database : "groupomania"
-});
+// // Create connexion
+// const db = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : 'ssMRhrc68xVReAJtIxFg',
+//   database : "groupomania"
+// });
 
-// Connect
-db.connect((err) => {
-  if(err) {
-    throw err;
-  }
-  console.log("MySQL Connected ...");
-})
+// // Connect
+// db.connect((err) => {
+//   if(err) {
+//     throw err;
+//   }
+//   console.log("MySQL Connected ...");
+// })
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -43,5 +44,5 @@ const postRoutes = require('./routes/post');
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postRoutes)
 
-module.exports = db;
+// module.exports = db;
 module.exports = app;
