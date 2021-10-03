@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Button from "../Button/Button";
 import "./Form.scss";
 import { POST } from "../../../api/axios";
@@ -7,6 +7,7 @@ import ENDPOINTS from "../../../api/endpoints";
 import { v4 as uuidv4 } from "uuid";
 
 const Form = ({ form }) => {
+  // States
   const [userSignup, setUserSignup] = useState({
     user_firstname: "",
     user_lastname: "",
@@ -18,6 +19,16 @@ const Form = ({ form }) => {
     user_email: "",
     user_password: "",
   });
+
+  const [passwordFlag, setPasswordFlag] = useState({
+    length: false,
+    min: false,
+    maj: false,
+    num: false,
+    special: false,
+  });
+
+  const [accountCreated, setAccountCreated] = useState(false);
 
   // Input refs
   const refSignupFirstName = useRef();
@@ -57,11 +68,33 @@ const Form = ({ form }) => {
     refSignupEmail.current.innerText = `${check ? "" : "Email incorrect"}`;
   };
 
-  const checkPassword = () => {
-    const passwordFlag = {
-      
+  const checkPassword = (password) => {
+    var flags = {
+      length: false,
+      min: false,
+      maj: false,
+      num: false,
+      special: false,
+    };
+
+    if (password.length > 10) {
+      flags.length = true;
     }
-  }
+    if (password.match(/[a-z]/, "g")) {
+      flags.min = true;
+    }
+    if (password.match(/[A-Z]/, "g")) {
+      flags.maj = true;
+    }
+    if (password.match(/[0-9]/, "g")) {
+      flags.num = true;
+    }
+    if (password.match(/\W|_/g)) {
+      flags.special = true;
+    }
+    // setPasswordFlag((prev) => ({ ...prev, ...flags }));
+    console.log(flags);
+  };
 
   // Signup / login functions
   const signup = async (e) => {
@@ -69,10 +102,10 @@ const Form = ({ form }) => {
       e.preventDefault();
       const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
       if (response.status === 200) {
-      refSignupEmail.current.innerText = "Email déjà enregistré";
-
+        refSignupEmail.current.innerText = "Email déjà enregistré";
       }
       if (response.status === 201) {
+        setAccountCreated(true)
       }
     } catch (err) {
       console.log("Error during registration... : ", err);
@@ -150,13 +183,13 @@ const Form = ({ form }) => {
                 placeholder="Mot de passe"
                 id="password"
                 name="password"
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserSignup({
                     ...userSignup,
                     user_password: e.target.value,
-                  })
-                }
-                onBlur={checkPassword}
+                  });
+                  checkPassword(e.target.value);
+                }}
                 value={userSignup.user_password}
                 ref={refSignupPassword}
               />
@@ -173,6 +206,7 @@ const Form = ({ form }) => {
           }
 
           <Button name="Inscription" />
+          <div className="account-created succes">{accountCreated && "Vous pouvez maintenant vous connecter !"}</div>
         </form>
       ) : (
         <form className="form" onSubmit={login}>
