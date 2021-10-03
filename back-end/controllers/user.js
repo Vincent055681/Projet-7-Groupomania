@@ -57,7 +57,7 @@ exports.login = (req, res, next) => {
           expiresIn: maxAge,
         });
         
-        res.cookie("jwt", token, { maxAge });
+        res.cookie("jwt", token, {httpOnly: true, maxAge, sameSite: true, secure: true });
         res.status(200).json({
           user_id: user_id,
           token: jwt.sign({ userId: user_id }, process.env.JWT_TOKEN, {
