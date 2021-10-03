@@ -3,8 +3,12 @@ import Button from "../Button/Button";
 import "./Form.scss";
 import { POST } from "../../../api/axios";
 import ENDPOINTS from "../../../api/endpoints";
+import axios from "axios"
+
 
 import { v4 as uuidv4 } from "uuid";
+
+
 
 const Form = ({ form }) => {
   // States
@@ -115,10 +119,10 @@ const Form = ({ form }) => {
   const login = async (e) => {
     try {
       e.preventDefault();
-      const response = await POST(ENDPOINTS.USER_LOGIN, userLogin);
+      const response = await POST(ENDPOINTS.USER_LOGIN, userLogin, {withCredentials: true});
       console.log(response);
       if (response.data.token) {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
+        // localStorage.setItem("token", JSON.stringify(response.data.token));
       }
     } catch (err) {
       console.log("Error during connection... : ", err);

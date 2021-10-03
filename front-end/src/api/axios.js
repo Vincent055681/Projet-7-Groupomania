@@ -3,6 +3,7 @@ const Axios = require("axios");
 Axios.defaults.baseURL = "http://localhost:4200";
 Axios.defaults.headers.post["Content-Type"] = "application/json";
 Axios.defaults.timeout = 6000;
+Axios.defaults.withCredentials = true;
 
 const setRequestConfig = (queryParams) => {
   const source = Axios.CancelToken.source();

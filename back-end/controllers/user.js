@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const dbc = require("../config/db");
+const cookieParser = require("cookie-parser");
 
 exports.signup = async (req, res, next) => {
   try {
@@ -22,7 +23,6 @@ exports.signup = async (req, res, next) => {
       console.log(result);
       if (!result) {
         res.status(200).json({ message: "Email déjà enregistré" });
-
       } else {
         res.status(201).json({ message: "User created !" });
       }
@@ -51,6 +51,13 @@ exports.login = (req, res, next) => {
       if (match) {
         // If match, generate JWT token
         console.log("match ... user_id : ", user_id);
+
+        const maxAge = 1 * (24 * 60 * 60 * 1000);
+        const token = jwt.sign({ user_id }, process.env.JWT_TOKEN, {
+          expiresIn: maxAge,
+        });
+        
+        res.cookie("jwt", token, { maxAge });
         res.status(200).json({
           user_id: user_id,
           token: jwt.sign({ userId: user_id }, process.env.JWT_TOKEN, {
