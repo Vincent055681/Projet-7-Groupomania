@@ -8,18 +8,27 @@ import { GET } from "../../api/axios";
 
 const Posts = () => {
   const [dataApi, setDataApi] = useState([]);
+  const [displayData, setDisplayData] = useState(true)
   useEffect(() => {
     const toFetch = async () => {
-      const axiosCall = await GET(ENDPOINTS.GET_POSTS);
-      setDataApi(axiosCall.data);
+      const axiosResponse = await GET(ENDPOINTS.GET_ALL_POSTS);
+      if (axiosResponse.status === 200) {
+        setDataApi(axiosResponse.data);
+        console.log(axiosResponse);
+      } else {
+        setDisplayData(false)
+      }
     };
     toFetch();
   }, []);
+
+
+
   return (
     <div className="posts">
-      {dataApi.map((post) => {
+      {displayData ? dataApi.map((post) => {
         return <Post post={post} key={post.id} />;
-      })}
+      }) : `Vous devez être connecté pour pouvoir poster un message`}
     </div>
   );
 };

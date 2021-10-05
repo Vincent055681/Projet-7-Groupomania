@@ -7,7 +7,7 @@ import "./NewsFeed.scss";
 const NewsFeed = () => {
   return (
     <>
-      <Header />
+      <Header logged={true} />
       <div className="container">
         <WhatsUp />
         <h3 className="publication__title">Publications récentes</h3>

@@ -122,7 +122,7 @@ const Form = ({ form }) => {
       const response = await POST(ENDPOINTS.USER_LOGIN, userLogin, {withCredentials: true});
       console.log(response);
       if (response.data.token) {
-        // localStorage.setItem("token", JSON.stringify(response.data.token));
+         localStorage.setItem("user", JSON.stringify(response.data.user));
       }
     } catch (err) {
       console.log("Error during connection... : ", err);

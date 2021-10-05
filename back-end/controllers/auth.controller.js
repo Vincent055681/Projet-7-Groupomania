@@ -1,11 +1,9 @@
-const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const dbc = require("../config/db");
-const cookieParser = require("cookie-parser");
 
-exports.signup = async (req, res, next) => {
+exports.signup = async (req, res) => {
   try {
     const { user_password: password } = req.body;
 
@@ -18,8 +16,8 @@ exports.signup = async (req, res, next) => {
       user_password: encryptedPassword,
     };
     const sql = "INSERT INTO users SET ?";
-    let db = dbc.getDB();
-    const query = db.query(sql, user, (err, result) => {
+    const db = dbc.getDB();
+    db.query(sql, user, (err, result) => {
       console.log(result);
       if (!result) {
         res.status(200).json({ message: "Email déjà enregistré" });
@@ -32,11 +30,11 @@ exports.signup = async (req, res, next) => {
   }
 };
 
-exports.login = (req, res, next) => {
+exports.login = (req, res) => {
   //===== Check if user exists in DB ======
   const { user_email, user_password: clearPassword } = req.body;
-  let sql = `SELECT user_password, user_id FROM users WHERE user_email=?`;
-  let db = dbc.getDB();
+  const sql = `SELECT user_firstname, user_lastname, user_password, user_id FROM users WHERE user_email=?`;
+  const db = dbc.getDB();
   db.query(sql, [user_email], async (err, results) => {
     console.log(req.body);
     console.log(results);
@@ -56,10 +54,15 @@ exports.login = (req, res, next) => {
         const token = jwt.sign({ user_id }, process.env.JWT_TOKEN, {
           expiresIn: maxAge,
         });
-        
-        res.cookie("jwt", token, {httpOnly: true, maxAge, sameSite: true, secure: true });
+
+        res.cookie("jwt", token, {
+          httpOnly: true,
+          maxAge,
+          sameSite: true,
+          secure: true,
+        });
         res.status(200).json({
-          user_id: user_id,
+          user: results[0], // need to remove password, i must not send in front
           token: jwt.sign({ userId: user_id }, process.env.JWT_TOKEN, {
             expiresIn: "24h",
           }),
@@ -68,7 +71,13 @@ exports.login = (req, res, next) => {
         console.log("not match");
       }
     } catch (err) {
-      return res.status(400).json({ err: "une erreur" });
+      console.log(err);
+      return res.status(400).json({ err });
     }
   });
+};
+
+exports.logout = (req, res) => {
+  res.clearCookie("jwt");
+  res.redirect("/");
 };

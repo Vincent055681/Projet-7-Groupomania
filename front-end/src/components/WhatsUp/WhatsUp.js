@@ -5,11 +5,15 @@ import Avatar from "../UI/Avatar/Avatar";
 import WhatsUpForm from "./WhatsUpForm";
 
 const WhatsUp = () => {
-  const firstName = "Prénom"
+  const userName = JSON.parse(localStorage.getItem("user")).user_firstname;
+
   return (
     <div className="whats_up">
       <Avatar className={"whatsup__avatar"} />
-      <WhatsUpForm className={"whatsup__form"} placeholder={`Quoi de neuf, ${firstName} ?`}  />
+      <WhatsUpForm
+        className={"whatsup__form"}
+        placeholder={`Quoi de neuf, ${userName} ?`}
+      />
     </div>
   );
 };

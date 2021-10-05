@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 
-app.use(helmet());
-
+// Cors (need to create a config file for better lisibility)
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
   res.setHeader(
@@ -16,19 +14,21 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
   );
-  res.setHeader(
-    "Access-Control-Allow-Credentials", "true"
-  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
 
+//
+const userRoutes = require("./routes/user.routes");
+const postRoutes = require("./routes/post.routes");
+const authRoutes = require("./routes/auth.routes");
+
+app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
-const userRoutes = require("./routes/user");
-const postRoutes = require("./routes/post");
-
-app.use("/api/auth", userRoutes);
+app.use("/api/auth", authRoutes);
+// app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 
 module.exports = app;
