@@ -1,6 +1,7 @@
 const dbc = require("../config/db");
 
 exports.createPost = (req, res, next) => {
+  console.log(req.body);
   const { body } = req;
   console.log(body);
   const db = dbc.getDB();

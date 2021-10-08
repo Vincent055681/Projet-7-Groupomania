@@ -55,14 +55,18 @@ exports.login = (req, res) => {
           expiresIn: maxAge,
         });
 
-        res.cookie("jwt", token, {
-          httpOnly: true,
-          maxAge,
-          sameSite: true,
-          secure: true,
-        });
+        // httpOnly: true,
+        // maxAge,
+        // sameSite: true,
+        // secure: true,
+
+        // remove the password key of the response
+        delete results[0].user_password
+
+        res.cookie("jwt", token);
         res.status(200).json({
-          user: results[0], // need to remove password, i must not send in front
+          // user: results[0], // need to remove password, i must not send in front
+          user: results[0],
           token: jwt.sign({ userId: user_id }, process.env.JWT_TOKEN, {
             expiresIn: "24h",
           }),
@@ -79,5 +83,5 @@ exports.login = (req, res) => {
 
 exports.logout = (req, res) => {
   res.clearCookie("jwt");
-  res.redirect("/");
+  res.redirect("/connexion");
 };

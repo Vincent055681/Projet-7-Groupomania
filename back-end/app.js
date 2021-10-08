@@ -3,6 +3,7 @@ const app = express();
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 
+
 // Cors (need to create a config file for better lisibility)
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
