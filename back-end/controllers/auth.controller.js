@@ -83,5 +83,5 @@ exports.login = (req, res) => {
 
 exports.logout = (req, res) => {
   res.clearCookie("jwt");
-  res.redirect("/connexion");
+  res.redirect("/ereddede");
 };
