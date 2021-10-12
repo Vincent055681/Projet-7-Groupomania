@@ -33,3 +33,7 @@ export const DELETE = async (url, queryParams = null) => {
 export const PUT = async (url, data = null, queryParams = null) => {
   return Axios.put(url, data, { ...setRequestConfig(queryParams) });
 };
+
+export const PATCH = async (url, data, queryParams = null) => {
+  return await Axios.patch(url, data, { ...setRequestConfig(queryParams) });
+};

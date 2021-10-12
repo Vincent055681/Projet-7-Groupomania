@@ -9,4 +9,12 @@ router.post("/", auth, postCtrl.createPost);
 router.delete("/:id", auth, postCtrl.deletePost);
 router.put("/:id", auth, postCtrl.updatePost);
 
+router.patch("/:id/likeunlike", auth, postCtrl.likeUnlikePost);
+router.post("/:id/likeunlike", auth, postCtrl.countLikes);
+
+// Comments CRUD
+router.post("/:id/comments", auth, postCtrl.getAllComments);
+
+
+
 module.exports = router;

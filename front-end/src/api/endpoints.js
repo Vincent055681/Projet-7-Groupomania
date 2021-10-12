@@ -1,12 +1,19 @@
 export default {
 
-  // CRUD post
+  // CRUD posts
   GET_ALL_POSTS: "/api/post",
   CREATE_POST: "/api/post",
+
+  // Like & unlike post
+  LIKE_UNLINKE: "/api/post/:id/likeunlike",
+
+  // CRUD comments
+  GET_ALL_COMMENTS: "/api/post/:id/comments",
 
   // Auth
   USER_SIGNUP: "api/auth/signup",
   USER_LOGIN: "api/auth/login",
+  USER_LOGOUT: "api/auth/logout",
 
   // RUD user
   GET_USER: "api/user/:id",

@@ -4,24 +4,27 @@ import "./Post.scss";
 import Avatar from "../../UI/Avatar/Avatar";
 import Date from "../../UI/Date/Date";
 import Author from "./Author/Author";
-import Interactions from "./Interactions/Interactions";
 import Text from "./Text/Text";
 
 // Permet d'afficher le temps relatif par rapport à la date actuelle, et en français
 import dayjs from "dayjs";
+import ToInteract from "./ToInteract/ToInteract";
+import ToRespond from "./ToRespond/ToRespond";
+import Comments from "./Comments/Comments";
 require("dayjs/locale/fr");
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 // ===
 
 const Post = ({ post }) => {
-  const { author, date_creation, message } = post;
+  const { author_firstname, author_lastname, date_creation, message, id: postId } = post;
   return (
+    <>
     <div className="post">
       <div className="post__author_group">
         <Avatar className={"post__avatar"} />
         <div className="post__author_and_date">
-          <Author className="post__author" author={author} />
+          <Author className="post__author" author={`${author_firstname} ${author_lastname}`} />
           <Date
             className="post__date"
             date={dayjs(date_creation).locale("fr").fromNow()}
@@ -30,8 +33,11 @@ const Post = ({ post }) => {
       </div>
       <Text message={message} />
       {/* <Media /> */}
-      <Interactions />
+      <ToInteract postId={postId} /> 
+      <Comments postId={postId} />
+      <ToRespond />
     </div>
+      </>
   );
 };
 

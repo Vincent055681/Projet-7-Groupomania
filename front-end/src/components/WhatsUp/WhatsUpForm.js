@@ -19,7 +19,8 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const post = {
-      author: "Vincent",
+      author_firstname: JSON.parse(localStorage.getItem("user")).user_firstname,
+      author_lastname: JSON.parse(localStorage.getItem("user")).user_lastname,
       message: inputValue,
       date_creation: dayjs().format(),
     };

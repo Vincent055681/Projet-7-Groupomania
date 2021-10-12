@@ -14,15 +14,13 @@ const Posts = () => {
       const axiosResponse = await GET(ENDPOINTS.GET_ALL_POSTS);
       if (axiosResponse.status === 200) {
         setDataApi(axiosResponse.data);
-        console.log(axiosResponse);
       } else {
         setDisplayData(false)
+        // localStorage.clear()
       }
     };
     toFetch();
   }, []);
-
-
 
   return (
     <div className="posts">

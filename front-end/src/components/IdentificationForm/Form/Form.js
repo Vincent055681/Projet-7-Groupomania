@@ -3,12 +3,6 @@ import Button from "../Button/Button";
 import "./Form.scss";
 import { POST } from "../../../api/axios";
 import ENDPOINTS from "../../../api/endpoints";
-import axios from "axios"
-
-
-import { v4 as uuidv4 } from "uuid";
-
-
 
 const Form = ({ form }) => {
   // States
@@ -33,46 +27,71 @@ const Form = ({ form }) => {
   });
 
   const [accountCreated, setAccountCreated] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
 
   // Input refs
   const refSignupFirstName = useRef();
-  const refSignupLastName = useRef();
   const refSignupEmail = useRef();
   const refSignupPassword = useRef();
+  const refSignupPasswordInfos = useRef();
+  const refSignupPasswordConfirmation = useRef();
 
-  // const refLoginEmail = useRef();
-  // const refLoginPassword = useRef();
-  const { user_firstname, user_lastname, user_email, user_password } =
-    userSignup;
+  const refSignupFirstNameError = useRef();
+  const refSignupLastNameError = useRef();
+  const refSignupEmailError = useRef();
+  const refSignupPasswordError = useRef();
+  const refSignupPasswordConfirmationError = useRef();
+
+  const { user_firstname, user_lastname } = userSignup;
 
   // Verify input data
 
   const checkFirstName = () => {
-    if (user_firstname.trim().length < 2 || user_firstname.trim().length > 30) {
-      refSignupFirstName.current.innerText =
+    if (user_firstname.trim() === "") {
+      refSignupFirstNameError.current.innerText = "";
+    } else if (
+      user_firstname.trim().length < 2 ||
+      user_firstname.trim().length > 30
+    ) {
+      refSignupFirstNameError.current.innerText =
         "Votre prénom doit faire entre 2 et 30 caractères";
     } else {
-      refSignupFirstName.current.innerText = "";
+      refSignupFirstNameError.current.innerText = "";
+      return true;
     }
   };
 
   const checkLastName = () => {
-    if (user_lastname.trim().length < 2 || user_lastname.trim().length > 30) {
-      refSignupLastName.current.innerText =
+    if (user_lastname.trim() === "") {
+      refSignupLastNameError.current.innerText = "";
+    } else if (
+      user_lastname.trim().length < 2 ||
+      user_lastname.trim().length > 30
+    ) {
+      refSignupLastNameError.current.innerText =
         "Votre nom doit faire entre 2 et 30 caractères";
     } else {
-      refSignupLastName.current.innerText = "";
+      refSignupLastNameError.current.innerText = "";
+      return true;
     }
   };
 
   const checkEmail = (email) => {
-    const regex =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const check = regex.test(String(email).toLowerCase());
-    refSignupEmail.current.innerText = `${check ? "" : "Email incorrect"}`;
+    if (email.trim() === "") {
+      refSignupEmailError.current.innerText = "";
+    } else {
+      const regex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const check = regex.test(String(email).toLowerCase());
+      refSignupEmailError.current.innerText = `${
+        check ? "" : "Email incorrect"
+      }`;
+      if (check) return true;
+    }
   };
 
   const checkPassword = (password) => {
+    setPasswordFocus(true);
     var flags = {
       length: false,
       min: false,
@@ -81,7 +100,7 @@ const Form = ({ form }) => {
       special: false,
     };
 
-    if (password.length > 10) {
+    if (password.length >= 10) {
       flags.length = true;
     }
     if (password.match(/[a-z]/, "g")) {
@@ -96,20 +115,52 @@ const Form = ({ form }) => {
     if (password.match(/\W|_/g)) {
       flags.special = true;
     }
-    // setPasswordFlag((prev) => ({ ...prev, ...flags }));
+    setPasswordFlag((prev) => ({ ...prev, ...flags }));
     console.log(flags);
+  };
+
+  const checkSamePassword = () => {
+    if (
+      refSignupPasswordConfirmation.current.value ===
+      refSignupPassword.current.value
+    ) {
+      refSignupPasswordConfirmationError.current.innerHTML = "";
+      return true;
+    } else {
+      refSignupPasswordConfirmationError.current.innerHTML =
+        "Les mots de passe ne correspondent pas";
+    }
   };
 
   // Signup / login functions
   const signup = async (e) => {
     try {
       e.preventDefault();
-      const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
-      if (response.status === 200) {
-        refSignupEmail.current.innerText = "Email déjà enregistré";
-      }
-      if (response.status === 201) {
-        setAccountCreated(true)
+
+      const { length, min, maj, num, special } = passwordFlag;
+      if (
+        checkFirstName() &&
+        checkLastName() &&
+        checkEmail(refSignupEmail.current.value) &&
+        length &&
+        min &&
+        maj &&
+        num &&
+        special &&
+        checkSamePassword()
+      ) {
+
+        const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
+        console.log(response);
+        if (response.status === 200) {
+          refSignupEmailError.current.innerText = "Email déjà enregistré";
+        }
+        if (response.status === 201) {
+          setAccountCreated(true);
+          setTimeout(() => {
+            
+          },2000)
+        }
       }
     } catch (err) {
       console.log("Error during registration... : ", err);
@@ -119,10 +170,12 @@ const Form = ({ form }) => {
   const login = async (e) => {
     try {
       e.preventDefault();
-      const response = await POST(ENDPOINTS.USER_LOGIN, userLogin, {withCredentials: true});
+      const response = await POST(ENDPOINTS.USER_LOGIN, userLogin, {
+        withCredentials: true,
+      });
       console.log(response);
       if (response.data.token) {
-         localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       }
     } catch (err) {
       console.log("Error during connection... : ", err);
@@ -149,8 +202,12 @@ const Form = ({ form }) => {
                 }
                 onBlur={checkFirstName}
                 value={userSignup.user_firstname}
+                ref={refSignupFirstName}
               />
-              <div className="firstname error" ref={refSignupFirstName}></div>
+              <div
+                className="firstname error"
+                ref={refSignupFirstNameError}
+              ></div>
               <input
                 type="text"
                 className="input_container"
@@ -166,7 +223,10 @@ const Form = ({ form }) => {
                 onBlur={checkLastName}
                 value={userSignup.user_lastname}
               />
-              <div className="lastname error" ref={refSignupLastName}></div>
+              <div
+                className="lastname error"
+                ref={refSignupLastNameError}
+              ></div>
               <input
                 type="email"
                 className="input_container"
@@ -178,8 +238,9 @@ const Form = ({ form }) => {
                 }
                 onBlur={(e) => checkEmail(e.target.value)}
                 value={userSignup.user_email}
+                ref={refSignupEmail}
               />
-              <div className="email error" ref={refSignupEmail}></div>
+              <div className="email error" ref={refSignupEmailError}></div>
 
               <input
                 type="password"
@@ -194,23 +255,59 @@ const Form = ({ form }) => {
                   });
                   checkPassword(e.target.value);
                 }}
+                onBlur={() => {
+                  checkSamePassword();
+                }}
                 value={userSignup.user_password}
                 ref={refSignupPassword}
               />
-              <div className="password error"></div>
+              <div
+                className="password error"
+                ref={refSignupPasswordError}
+              ></div>
+              {passwordFocus ? (
+                <ul className="password infos" ref={refSignupPasswordInfos}>
+                  <div>
+                    <li className="length">
+                      {passwordFlag.length ? "✔️" : "❌"} 10 caractères
+                    </li>
+                    <li className="maj">
+                      {passwordFlag.maj ? "✔️" : "❌"} Une majuscule
+                    </li>
+                    <li className="min">
+                      {passwordFlag.min ? "✔️" : "❌"} Une minuscule
+                    </li>
+                    <li className="num">
+                      {passwordFlag.num ? "✔️" : "❌"} Un nombre
+                    </li>
+                    <li className="special">
+                      {passwordFlag.special ? "✔️" : "❌"} Un caractère spécial
+                    </li>
+                  </div>
+                </ul>
+              ) : null}
               <input
                 type="password"
                 className="input_container"
                 placeholder="Confirmer le mot de passe"
                 id="password"
                 name="password"
+                ref={refSignupPasswordConfirmation}
+                onChange={() => {
+                  checkSamePassword();
+                }}
               />
-              <div className="password-conf error"></div>
+              <div
+                className="password-conf error"
+                ref={refSignupPasswordConfirmationError}
+              ></div>
             </>
           }
 
           <Button name="Inscription" />
-          <div className="account-created succes">{accountCreated && "Vous pouvez maintenant vous connecter !"}</div>
+          <div className="account-created succes">
+            {accountCreated && "Vous pouvez maintenant vous connecter !"}
+          </div>
         </form>
       ) : (
         <form className="form" onSubmit={login}>

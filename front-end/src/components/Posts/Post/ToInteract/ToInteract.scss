@@ -1,0 +1,22 @@
+.to-interact {
+  &__buttons {
+    button {
+      font-size: 14px;
+      padding: 5px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    span {
+      margin-right: 10px;
+    }
+  }
+  &__nb-of-likes {
+    display: flex;
+    font-size: 13px;
+    margin: 20px 0 5px 0;
+    &--number {
+        margin: 0 0 0 5px;
+    }
+  }
+}

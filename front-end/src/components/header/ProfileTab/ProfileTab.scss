@@ -1,0 +1,30 @@
+@import "../../../styles/settings.scss";
+
+.profil-tab {
+    @include flex-center;
+    padding: 5px 10px;
+    position: absolute;
+    right: 20px;
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+    text-transform: capitalize;
+  ul {
+    li {
+      @include flex-center;
+    }
+    .profil-tab__img {
+      @include avatar;
+      width: 35px;
+      height: 35px;
+    }
+    .profil-tab__user-name {
+      padding: 0 8px;
+      font-size: 18px;
+    }
+    .profil-tab__chevron {
+      font-size: 18px;
+      opacity: 0.66;
+      color: $secondary-color;
+    }
+  }
+}
