@@ -9,6 +9,7 @@ export default {
 
   // CRUD comments
   GET_ALL_COMMENTS: "/api/post/:id/comments",
+  CREATE_COMMENT: "/api/post/:id/comments/create",
 
   // Auth
   USER_SIGNUP: "api/auth/signup",

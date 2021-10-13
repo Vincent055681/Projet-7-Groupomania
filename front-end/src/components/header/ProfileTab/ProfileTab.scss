@@ -1,30 +1,50 @@
 @import "../../../styles/settings.scss";
 
 .profil-tab {
+  @include flex-center;
+  flex-direction: column;
+  background: white;
+  padding: 2px 10px;
+  position: absolute;
+  right: 200px;
+  border: 1px solid $secondary-color;
+  border-radius: 5px;
+  text-transform: capitalize;
+  &:hover .profil-tab__menu-roller {
+    display: block;
+  }
+  &__id {
     @include flex-center;
-    padding: 5px 10px;
-    position: absolute;
-    right: 20px;
-    border: 1px solid $secondary-color;
-    border-radius: 5px;
-    text-transform: capitalize;
-  ul {
-    li {
-      @include flex-center;
-    }
-    .profil-tab__img {
+    overflow: hidden;
+    &-img {
       @include avatar;
       width: 35px;
       height: 35px;
     }
-    .profil-tab__user-name {
+    &-user-name {
       padding: 0 8px;
       font-size: 18px;
     }
-    .profil-tab__chevron {
+    &-chevron {
       font-size: 18px;
       opacity: 0.66;
       color: $secondary-color;
     }
+  }
+  &__menu-roller {
+    display: none;
+  }
+}
+
+.profil-tab__menu-roller {
+  animation: slide-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) alternate;
+}
+
+@keyframes slide-bottom {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }

@@ -18,7 +18,6 @@ const ToInteract = ({ postId }) => {
     };
 
     const response = await PATCH(ENDPOINTS.LIKE_UNLINKE, data);
-    console.log(response);
   };
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const ToInteract = ({ postId }) => {
       const data = { postId };
       const response = await POST(ENDPOINTS.LIKE_UNLINKE, data);
       const nbOfLikes = response.data[0].likes.split(",").length - 1;
-      console.log(nbOfLikes);
       setNbOfLikes(nbOfLikes)
     };
     getLikesNb()

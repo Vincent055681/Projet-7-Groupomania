@@ -20,23 +20,7 @@ rajotuer les messages d'erreurs
 ranger tous les fichiers les rendre joli
 faire le README
 
-     Demander comment passer prop child to parent
-      importer le module db dans le controllers post.js sans le re déclarer
-
-     Demander si il vaut mieux socket.io, state, ré appel API etc.
-      Demander si je peux laisser uuid pour les key des composant qui ne viennent pas de ma bdd comme des input customs
-      demander si l'id des posts ne serait pas mieux si il était chiffré plutpt que être simpleent dans l'ordre 1 2 3 4...
       Bloqué : récup le state d'un composant enfant pour l'utiliser dans le parent
-      Dans la fonction login du controller user, c'est la bonne manière de faire ?
-
-
-Faire en sorte d'intégrer les commentaires aux posts correspondant
-
-
-
-
-requete : SELECT * FROM commentaire, posts WHERE commentaire.post_id = posts.id AND posts.id = 130
-(peut enlever les AS)
 
 Se renseigner sur indexation d'une table
 réparer le res.redirect
@@ -45,3 +29,4 @@ Faire toute l'intégration (design) d'un post type avec l'input pour écrire un 
 Photo de profil pour chaque user doit fonctionner
 CRUD user
 Menu de naviguation design
+9gag gif

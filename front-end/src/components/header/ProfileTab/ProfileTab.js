@@ -23,28 +23,26 @@ const ProfileTab = () => {
   return (
     // remplacer les a par react router dom
     <nav className="profil-tab">
-      <ul>
-        <li className="profil-tab__menu-roller">
-          <img
-            className="profil-tab__img"
-            src={`${process.env.PUBLIC_URL}/imgs/profile-imgs/me.jpg`}
-            alt="Profil"
-          />
-          <div className="profil-tab__user-name">{userName}</div>
-          <FontAwesomeIcon
-            className="profil-tab__chevron"
-            icon={faChevronCircleDown}
-          />
-          <div className="profil-tab__sub-menu">
-            <li>
-              <a href="#">Profil</a>
-            </li>
-            <li onClick={logoutHandler} id="test123">
-              Déconnexion
-            </li>
-          </div>
-        </li>
-      </ul>
+      <div className="profil-tab__id">
+        <img
+              className="profil-tab__id-img"
+              src={`${process.env.PUBLIC_URL}/imgs/profile-imgs/me.jpg`}
+              alt="Profil"
+            />
+        <div className="profil-tab__id-user-name">{userName}</div>
+        <FontAwesomeIcon
+          className="profil-tab__id-chevron"
+          icon={faChevronCircleDown}
+        />
+      </div>
+      <div className="profil-tab__menu-roller">
+        <div>
+          <a href="#">Profil</a>
+        </div>
+        <div onClick={logoutHandler} id="test123">
+          Déconnexion
+        </div>
+      </div>
     </nav>
   );
 };

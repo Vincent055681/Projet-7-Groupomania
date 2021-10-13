@@ -5,8 +5,9 @@ header {
   height: 80px;
   @include flex-center;
   background: white;
-  width: 800px !important;
-  max-width: 800px;
+  width: 100%;
+  // width: 800px !important;
+  // max-width: 800px;
   margin-bottom: 80px;
   & a {
     height: 100%;

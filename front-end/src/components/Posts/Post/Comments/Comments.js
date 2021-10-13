@@ -3,36 +3,34 @@ import "./Comments.scss";
 
 import { POST } from "../../../../api/axios";
 import ENDPOINTS from "../../../../api/endpoints";
+import Comment from "./Comment";
+
+import { v4 as uuid } from "uuid";
 
 const Comments = ({ postId }) => {
-
-    // States
-    const [comments, setComments] = useState()
+  // States
+  const [allComments, setAllComments] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const data = {
-        postId: postId,
-      };
-      const response = await POST(ENDPOINTS.GET_ALL_COMMENTS, data);
-      if (response.data[0]) {
-        console.log(response.data[0].message);
-        setComments(response.data[0].message)
-        
+      const response = await POST(ENDPOINTS.GET_ALL_COMMENTS, { postId });
+      const data = response.data;
+      if (Array.isArray(data)) {
+        setAllComments((prevState) => [...prevState, ...data]);
       } else {
-          console.log('else');
-        setComments("Pas de commentaires")
+        console.log("else...");
+        throw new Error("Oops, didn't get an array.");
       }
     }
     fetchData();
-    console.log(comments);
-  }, []);
+  }, [postId]);
 
-  return (
-    <>
-      <div>{comments}</div>
-      <div>jyty</div>
-    </>
+   return (
+    <div className="comments">
+      {allComments.map((comment) => (
+        <Comment comment={comment} key={comment.id} />
+      ))}
+    </div>
   );
 };
 

@@ -14,7 +14,7 @@ router.post("/:id/likeunlike", auth, postCtrl.countLikes);
 
 // Comments CRUD
 router.post("/:id/comments", auth, postCtrl.getAllComments);
-
+router.post("/:id/comments/create", auth, postCtrl.createComment);
 
 
 module.exports = router;
