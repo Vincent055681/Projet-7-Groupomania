@@ -1,0 +1,18 @@
+.divider {
+    margin: 10px 0;
+}
+
+form {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0;
+    #input-comment {
+        border: 1px solid grey;
+        border-radius: 5px;
+        padding-left: 20px;
+        margin: 0;
+        &::placeholder {
+            margin-left: 20px;
+        }
+    }
+}
