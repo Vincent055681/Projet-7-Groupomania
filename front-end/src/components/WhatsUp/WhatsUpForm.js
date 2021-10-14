@@ -27,14 +27,17 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
 
     // Requête POST axios
     await POST(ENDPOINTS.CREATE_POST, post);
+
+    // this code is just for MVP, it will be upgrade in final version
+    document.location.reload()
   };
 
   return (
     <form
       className={className}
       onSubmit={submitHandler}
-      method="post"
-      action="/file"
+      method="POST"
+      action="/api/post"
       encType="multipart/form-data"
     >
       <input
@@ -51,7 +54,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       <div className="icons_container">
         <input
           type="file"
-          name="send-file"
+          name="image"
           id="send-file"
           className="icons_container__add_file"
         />

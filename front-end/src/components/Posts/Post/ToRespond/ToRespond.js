@@ -21,7 +21,9 @@ const ToRespond = ({postId}) => {
       message: commentMessage,
     };
     const response = await POST(ENDPOINTS.CREATE_COMMENT, data);
-    
+
+    // this code is just for MVP, it will be upgrade in final version
+    document.location.reload()
   };
 
   const inputHandle = (e) => {
@@ -31,7 +33,7 @@ const ToRespond = ({postId}) => {
   return (
     <>
       <hr className="divider" />
-      <form onSubmit={submitHandle}>
+      <form onSubmit={submitHandle} id={"form-comment"}>
         <input
           type="text"
           placeholder="Écrivez un commentaire..."

@@ -32,3 +32,4 @@ Menu de naviguation design
 9gag gif
 admin avec tous les droits
 création de post avec média (multer)
+recursivité lors de suppression de post vers commentaire et suppression d'utilisateur

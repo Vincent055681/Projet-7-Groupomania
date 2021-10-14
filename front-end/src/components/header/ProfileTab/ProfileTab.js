@@ -36,11 +36,11 @@ const ProfileTab = () => {
         />
       </div>
       <div className="profil-tab__menu-roller">
-        <div>
-          <a href="#">Profil</a>
-        </div>
-        <div onClick={logoutHandler} id="test123">
+        <div onClick={logoutHandler} className="profil-tab__menu-roller--logout">
           Déconnexion
+        </div>
+      <div  className="profil-tab__menu-roller--delete-account">
+          Supprimer mon compte
         </div>
       </div>
     </nav>

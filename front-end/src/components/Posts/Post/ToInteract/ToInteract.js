@@ -25,7 +25,8 @@ const ToInteract = ({ postId }) => {
     const getLikesNb = async () => {
       const data = { postId };
       const response = await POST(ENDPOINTS.LIKE_UNLINKE, data);
-      const nbOfLikes = response.data[0].likes.split(",").length - 1;
+      let nbOfLikes = response.data[0].likes.split(" ");
+      nbOfLikes = nbOfLikes.filter(val => val !== "0").length -1
       setNbOfLikes(nbOfLikes)
     };
     getLikesNb()

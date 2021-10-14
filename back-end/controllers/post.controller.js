@@ -1,8 +1,23 @@
 const dbc = require("../config/db");
 
+// const path = require("path");
+// const multer = require("multer");
+// const storage = multer.diskStorage({
+//   destination: (req, file, callback) => {
+//     callback(null, "../images");
+//   },
+//   filename: (req, file, callback) => {
+//     console.log(file);
+//     callback(null, Date.now() + path.extname(file.originalname));
+//   },
+// });
+
+// const upload = multer({ storage: storage });
+
 // CRUD post
 
 exports.createPost = (req, res, next) => {
+  console.log(req.body);
   console.log(req.body);
   let { body } = req;
   body = {
@@ -49,9 +64,9 @@ exports.updatePost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  const { postId } = req.body;
-  const sql = `DELETE FROM posts WHERE id = ${postId}`;
-  const db = dbc.getDB();
+  // const { postId } = req.body;
+  // const sql = `DELETE FROM posts WHERE id = ${postId}`;
+  // const db = dbc.getDB();
   // db.query(sql, (err, result) => {
   //   if (err) {
   //     res.status(404).json({ err });
@@ -68,10 +83,12 @@ exports.likeUnlikePost = (req, res) => {
   // console.log(req.body);
   const { userId, postId } = req.body;
 
-  const sql = `UPDATE posts SET likes=CONCAT("${userId},", likes) WHERE posts.id = ${postId}`;
+  const sql = `UPDATE posts SET likes = CONCAT("${userId} ", likes) WHERE posts.id = ${postId}`;
+  //  const sql = `UPDATE posts SET likes = ${(`likes` == userId ? "0 : userId)} WHERE posts.id = ${postId}`
   const db = dbc.getDB();
   db.query(sql, (err, result) => {
     if (err) {
+      console.log(err);
       res.status(404).json({ err });
       throw err;
     }
@@ -81,7 +98,7 @@ exports.likeUnlikePost = (req, res) => {
 };
 
 exports.postLikedByUser = (req, res) => {
-  console.log("on est là", req.body);
+  //console.log(req.body);
   const { userId, postId } = req.body;
 
   const sql = `SELECT likes FROM posts WHERE likes = ${userId} AND posts.id = ${postId}`;

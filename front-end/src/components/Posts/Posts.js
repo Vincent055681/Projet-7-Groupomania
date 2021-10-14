@@ -14,12 +14,14 @@ const Posts = () => {
       const axiosResponse = await GET(ENDPOINTS.GET_ALL_POSTS);
       if (axiosResponse.status === 200) {
         setDataApi(axiosResponse.data);
+        
       } else {
         setDisplayData(false)
         // localStorage.clear()
       }
     };
     toFetch();
+    
   }, []);
 
   return (
