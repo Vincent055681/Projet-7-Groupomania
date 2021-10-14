@@ -35,7 +35,7 @@ const Post = ({ post }) => {
       {/* <Media /> */}
       <ToInteract postId={postId} /> 
       <Comments postId={postId} />
-      <ToRespond />
+      <ToRespond postId={postId}/>
     </div>
       </>
   );

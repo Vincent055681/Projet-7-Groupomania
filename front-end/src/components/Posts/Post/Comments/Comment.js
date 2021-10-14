@@ -7,8 +7,6 @@ const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
 const Comment = ({ comment }) => {
-  console.log(comment);
-
   return (
     <div className="comment">
       <div className="comment__author-infos">

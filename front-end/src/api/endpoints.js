@@ -6,6 +6,7 @@ export default {
 
   // Like & unlike post
   LIKE_UNLINKE: "/api/post/:id/likeunlike",
+  POST_LIKED: "/api/post/:id/postLikedByUser",
 
   // CRUD comments
   GET_ALL_COMMENTS: "/api/post/:id/comments",

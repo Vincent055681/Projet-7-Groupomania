@@ -9,7 +9,7 @@ exports.createPost = (req, res, next) => {
     ...body,
     likes: "",
   };
-  console.log(body);
+  // console.log(body);
   const db = dbc.getDB();
   const sql = "INSERT INTO posts SET ?";
   db.query(sql, body, (err, result) => {
@@ -17,7 +17,7 @@ exports.createPost = (req, res, next) => {
       res.status(404).json({ err });
       throw err;
     }
-    console.log(res.body);
+    // console.log(res.body);
     res.status(200).json({ msg: "Post added..." });
   });
 };
@@ -65,10 +65,26 @@ exports.deletePost = (req, res, next) => {
 // Like & unlike a post
 
 exports.likeUnlikePost = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { userId, postId } = req.body;
 
   const sql = `UPDATE posts SET likes=CONCAT("${userId},", likes) WHERE posts.id = ${postId}`;
+  const db = dbc.getDB();
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(404).json({ err });
+      throw err;
+    }
+    // console.log(result);
+    res.status(200).json(result);
+  });
+};
+
+exports.postLikedByUser = (req, res) => {
+  console.log("on est là", req.body);
+  const { userId, postId } = req.body;
+
+  const sql = `SELECT likes FROM posts WHERE likes = ${userId} AND posts.id = ${postId}`;
   const db = dbc.getDB();
   db.query(sql, (err, result) => {
     if (err) {
@@ -89,14 +105,14 @@ exports.countLikes = (req, res) => {
       res.status(404).json({ err });
       throw err;
     }
-    console.log(result);
+    // console.log(result);
     res.status(200).json(result);
   });
 };
 
 // CRUD comments
 exports.getAllComments = (req, res) => {
-  console.log("reqbody", req.body);
+  // console.log("reqbody", req.body);
   const { postId } = req.body;
   const sql = `SELECT * FROM comments WHERE comments.post_id = ${postId}`;
   const db = dbc.getDB();
@@ -105,16 +121,16 @@ exports.getAllComments = (req, res) => {
       res.status(404).json({ err });
       throw err;
     }
-    console.log(result);
+    // console.log(result);
     res.status(200).json(result);
   });
 };
 
 exports.createComment = (req, res, next) => {
-  console.log(req.body);
-  const { message, post_id, author_id, author_firstname, author_lastname } = req.body;
-  const sql =
-    `INSERT INTO comments (id, post_id, author_id, author_firstname, author_lastname, message, created_at, updated_at, likes) VALUES (NULL, ${post_id}, ${author_id}, "${author_firstname}", "${author_lastname}", "${message}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0')`;
+  // console.log(req.body);
+  const { message, post_id, author_id, author_firstname, author_lastname } =
+    req.body;
+  const sql = `INSERT INTO comments (id, post_id, author_id, author_firstname, author_lastname, message, created_at, updated_at, likes) VALUES (NULL, ${post_id}, ${author_id}, "${author_firstname}", "${author_lastname}", "${message}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0')`;
   const db = dbc.getDB();
   db.query(sql, (err, result) => {
     if (err) {

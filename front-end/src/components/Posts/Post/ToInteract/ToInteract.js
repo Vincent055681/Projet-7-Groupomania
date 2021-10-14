@@ -10,6 +10,7 @@ const ToInteract = ({ postId }) => {
 
   // State
   const [nbOfLikes, setNbOfLikes] = useState(0)
+  const [postLiked, setPostLiked] = useState(false)
 
   const likeHandle = async () => {
     const data = {
@@ -30,6 +31,19 @@ const ToInteract = ({ postId }) => {
     getLikesNb()
   }, []);
 
+  useEffect(() => {
+    const getColorLikeButton = async () => {
+      const data = {
+        postId,
+        userId: JSON.parse(localStorage.getItem("user")).user_id
+       };
+      const response = await POST(ENDPOINTS.POST_LIKED, data);
+      console.log(response);
+      response.data[0] ? setPostLiked(true) : setPostLiked(false)
+    };
+    getColorLikeButton()
+  }, []);
+
   return (
     <div className="to-interact">
       <div className="to-interact__nb-of-likes">
@@ -40,7 +54,7 @@ const ToInteract = ({ postId }) => {
       <div className="to-interact__buttons">
         <button onClick={likeHandle}>
           <span>
-            <FontAwesomeIcon icon={faThumbsUp} color={"gray"} />
+            <FontAwesomeIcon icon={faThumbsUp} color={postLiked ? "#38618C" : "gray"} />
           </span>
           J'aime
         </button>

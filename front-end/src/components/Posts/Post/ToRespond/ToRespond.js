@@ -6,7 +6,7 @@ import "./ToRespond.scss";
 import { POST, PATCH } from "../../../../api/axios";
 import ENDPOINTS from "../../../../api/endpoints";
 
-const ToRespond = () => {
+const ToRespond = ({postId}) => {
   // States
   const [commentMessage, setCommentMessage] = useState("");
 
@@ -17,11 +17,11 @@ const ToRespond = () => {
       author_id: JSON.parse(localStorage.getItem("user")).user_id,
       author_firstname: JSON.parse(localStorage.getItem("user")).user_firstname,
       author_lastname: JSON.parse(localStorage.getItem("user")).user_lastname,
-      post_id: 144,
+      post_id: postId,
       message: commentMessage,
     };
     const response = await POST(ENDPOINTS.CREATE_COMMENT, data);
-    console.log(response);
+    
   };
 
   const inputHandle = (e) => {

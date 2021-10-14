@@ -30,3 +30,5 @@ Photo de profil pour chaque user doit fonctionner
 CRUD user
 Menu de naviguation design
 9gag gif
+admin avec tous les droits
+création de post avec média (multer)
