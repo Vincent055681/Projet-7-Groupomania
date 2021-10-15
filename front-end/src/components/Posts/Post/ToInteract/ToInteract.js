@@ -12,6 +12,7 @@ const ToInteract = ({ postId }) => {
   const [nbOfLikes, setNbOfLikes] = useState(0)
   const [postLiked, setPostLiked] = useState(false)
 
+  
   const likeHandle = async () => {
     const data = {
       userId: JSON.parse(localStorage.getItem("user")).user_id,
@@ -19,14 +20,15 @@ const ToInteract = ({ postId }) => {
     };
 
     const response = await PATCH(ENDPOINTS.LIKE_UNLINKE, data);
+    console.log(response);
   };
 
   useEffect(() => {
     const getLikesNb = async () => {
       const data = { postId };
       const response = await POST(ENDPOINTS.LIKE_UNLINKE, data);
-      let nbOfLikes = response.data[0].likes.split(" ");
-      nbOfLikes = nbOfLikes.filter(val => val !== "0").length -1
+      
+      const nbOfLikes = response.data[0].total
       setNbOfLikes(nbOfLikes)
     };
     getLikesNb()
