@@ -37,7 +37,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       className={className}
       onSubmit={submitHandler}
       method="POST"
-      action="/api/post"
+      action="/file"
       encType="multipart/form-data"
     >
       <input
@@ -55,10 +55,10 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
         <input
           type="file"
           name="image"
-          id="send-file"
+          id="image"
           className="icons_container__add_file"
         />
-        <label for="send-file">
+        <label for="image">
           <FontAwesomeIcon icon={faImages} />
         </label>
         <button type="submit" className="icons_container__submit">
