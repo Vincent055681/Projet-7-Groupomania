@@ -24,6 +24,7 @@ exports.createPost = (req, res, next) => {
   body = {
     ...body,
     likes: "",
+    
   };
   // console.log(body);
   const sql = "INSERT INTO posts SET ?";
