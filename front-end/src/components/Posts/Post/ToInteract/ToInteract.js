@@ -7,12 +7,10 @@ import { POST, PATCH } from "../../../../api/axios";
 import ENDPOINTS from "../../../../api/endpoints";
 
 const ToInteract = ({ postId }) => {
-
   // State
-  const [nbOfLikes, setNbOfLikes] = useState(0)
-  const [postLiked, setPostLiked] = useState(false)
+  const [nbOfLikes, setNbOfLikes] = useState(0);
+  const [postLiked, setPostLiked] = useState(false);
 
-  
   const likeHandle = async () => {
     const data = {
       userId: JSON.parse(localStorage.getItem("user")).user_id,
@@ -20,31 +18,34 @@ const ToInteract = ({ postId }) => {
     };
 
     const response = await PATCH(ENDPOINTS.LIKE_UNLINKE, data);
-    console.log(response);
+    document.location.reload()
   };
 
   useEffect(() => {
     const getLikesNb = async () => {
-      const data = { postId };
-      const response = await POST(ENDPOINTS.LIKE_UNLINKE, data);
-      
-      const nbOfLikes = response.data[0].total
-      setNbOfLikes(nbOfLikes)
+      const response = await POST(ENDPOINTS.LIKE_UNLINKE, { postId });
+
+      const nbOfLikes = response.data[0].total;
+      setNbOfLikes(nbOfLikes);
     };
-    getLikesNb()
+    getLikesNb();
   }, []);
 
   useEffect(() => {
     const getColorLikeButton = async () => {
       const data = {
         postId,
-        userId: JSON.parse(localStorage.getItem("user")).user_id
-       };
+        userId: JSON.parse(localStorage.getItem("user")).user_id,
+      };
       const response = await POST(ENDPOINTS.POST_LIKED, data);
       console.log(response);
-      response.data[0] ? setPostLiked(true) : setPostLiked(false)
+      if (response.data[0]) {
+        setPostLiked(true);
+      } else {
+        setPostLiked(false);
+      }
     };
-    getColorLikeButton()
+    getColorLikeButton();
   }, []);
 
   return (
@@ -57,7 +58,10 @@ const ToInteract = ({ postId }) => {
       <div className="to-interact__buttons">
         <button onClick={likeHandle}>
           <span>
-            <FontAwesomeIcon icon={faThumbsUp} color={postLiked ? "#38618C" : "gray"} />
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              color={postLiked ? "#38618C" : "gray"}
+            />
           </span>
           J'aime
         </button>

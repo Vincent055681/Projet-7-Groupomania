@@ -25,7 +25,6 @@ faire le README
 Se renseigner sur indexation d'une table
 réparer le res.redirect
 traiter l'erreur qu'il y a quand on affiche la page d'accueil sans avoir de données dans le localstorage
-Faire toute l'intégration (design) d'un post type avec l'input pour écrire un commentaire, les boutons like, dislike, etc...
 Photo de profil pour chaque user doit fonctionner
 CRUD user
 Menu de naviguation design

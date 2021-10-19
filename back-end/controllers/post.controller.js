@@ -116,15 +116,14 @@ exports.likeUnlikePost = (req, res) => {
 };
 
 exports.postLikedByUser = (req, res) => {
-  //console.log(req.body);
   const { userId, postId } = req.body;
-  const sql = `SELECT likes FROM posts WHERE likes = ${userId} AND posts.id = ${postId}`;
+  const sql = `SELECT post_id, user_id FROM likes WHERE user_id = ${userId} AND post_id = ${postId}`;
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });
       throw err;
     }
-    console.log(result);
+    console.log("result : " , result);
     res.status(200).json(result);
   });
 };
