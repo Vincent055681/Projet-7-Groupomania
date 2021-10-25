@@ -33,31 +33,10 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
   };
 
   return (
-    <form
-      className={className}
-      onSubmit={submitHandler}
-      method="POST"
-      action="/file"
-      encType="multipart/form-data"
-    >
-      <input
-        className="testt"
-        type="text"
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        required
-        value={inputValue}
-        onChange={inputHandler}
-      />
-
+    <form className={className} onSubmit={submitHandler} method="POST" action="/api/post" enctype="multipart/form-data">
+      <input className="testt" type="text" id={id} name={name} placeholder={placeholder} required  value={inputValue}  onChange={inputHandler}/>
       <div className="icons_container">
-        <input
-          type="file"
-          name="image"
-          id="image"
-          className="icons_container__add_file"
-        />
+        <input type="file" name="image" id="image" className="icons_container__add_file" />
         <label for="image">
           <FontAwesomeIcon icon={faImages} />
         </label>
