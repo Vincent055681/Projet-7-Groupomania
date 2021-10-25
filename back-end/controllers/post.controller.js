@@ -1,6 +1,7 @@
 const dbc = require("../config/db");
 const db = dbc.getDB();
 
+
 // const path = require("path");
 // const multer = require("multer");
 // const storage = multer.diskStorage({
@@ -18,9 +19,8 @@ const db = dbc.getDB();
 // CRUD post
 
 exports.createPost = (req, res, next) => {
-  console.log(req.body);
-  console.log(req.body);
   let { body } = req;
+  delete(req.body.image_url)
   body = {
     ...body,
     likes: "",
@@ -79,7 +79,6 @@ exports.deletePost = (req, res, next) => {
 // Like & unlike a post
 
 exports.likeUnlikePost = (req, res) => {
-  console.log(req.body);
   const { userId, postId } = req.body;
 
   const sqlSelect = `SELECT * FROM likes WHERE likes.user_id = ${userId} AND likes.post_id = ${postId}`;
@@ -92,7 +91,6 @@ exports.likeUnlikePost = (req, res) => {
 
     if (result.length === 0) {
       const sqlInsert = `INSERT INTO likes (user_id, post_id) VALUES (${userId}, ${postId})`;
-      console.log(sqlInsert);
       db.query(sqlInsert, (err, result) => {
         if (err) {
           console.log(err);
@@ -103,7 +101,6 @@ exports.likeUnlikePost = (req, res) => {
       });
     } else {
       const sqlDelete = `DELETE FROM likes WHERE likes.user_id = ${userId} AND likes.post_id = ${postId}`;
-      console.log(sqlDelete);
       db.query(sqlDelete, (err, result) => {
         if (err) {
           console.log(err);
@@ -124,7 +121,7 @@ exports.postLikedByUser = (req, res) => {
       res.status(404).json({ err });
       throw err;
     }
-    console.log("result : " , result);
+    // console.log("result : " , result);
     res.status(200).json(result);
   });
 };
