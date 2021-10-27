@@ -19,6 +19,7 @@ const db = dbc.getDB();
 // CRUD post
 
 exports.createPost = (req, res, next) => {
+  console.log(req.body);
   let { body } = req;
   delete(req.body.image)
   body = {

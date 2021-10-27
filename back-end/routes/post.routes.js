@@ -2,27 +2,7 @@ const express = require("express");
 const router = express.Router();
 const postCtrl = require("../controllers/post.controller");
 const auth = require("../middlewares/auth.middleware");
-
-// Multer
-const multer = require("multer");
-const path = require("path");
-
-const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "./images");
-  },
-  filename: (req, file, callback) => {
-    console.log("file :", file);
-    callback(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({storage: storage,
-  onFileUploadStart: function (file) {
-    console.log(file.originalname + ' is starting ...')
-  },
-});
-
+const upload = require("../middlewares/multer-config")
 
 // Post CRUD
 router.get("/", auth, postCtrl.getAllPosts);
