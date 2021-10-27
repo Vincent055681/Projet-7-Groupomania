@@ -1,7 +1,6 @@
 const dbc = require("../config/db");
 const db = dbc.getDB();
 
-
 // const path = require("path");
 // const multer = require("multer");
 // const storage = multer.diskStorage({
@@ -19,24 +18,26 @@ const db = dbc.getDB();
 // CRUD post
 
 exports.createPost = (req, res, next) => {
-  console.log(req.body);
-  let { body } = req;
-  delete(req.body.image)
-  body = {
-    ...body,
-    likes: "",
-    
-  };
-  // console.log(body);
-  const sql = "INSERT INTO posts SET ?";
-  db.query(sql, body, (err, result) => {
-    if (err) {
-      res.status(404).json({ err });
-      throw err;
-    }
-    // console.log(res.body);
-    res.status(200).json({ msg: "Post added..." });
-  });
+  let { body, file } = req;
+  if (!file) {
+    delete req.body.image;
+    body = {
+      ...body,
+      likes: "",
+    };
+    // console.log(body);
+    const sql = "INSERT INTO posts SET ?";
+    db.query(sql, body, (err, result) => {
+      if (err) {
+        res.status(404).json({ err });
+        throw err;
+      }
+      // console.log(res.body);
+      res.status(200).json({ msg: "Post added..." });
+    });
+  } else {
+    console.log("écrire le code pour stoker l'image dans la bdd puis le reste pour le post");
+  }
 };
 
 exports.getAllPosts = (req, res, next) => {
