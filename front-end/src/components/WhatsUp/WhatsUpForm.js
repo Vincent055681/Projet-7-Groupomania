@@ -23,14 +23,14 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
     //   author_lastname: JSON.parse(localStorage.getItem("user")).user_lastname,
     //   message: inputValue,
     //   date_creation: dayjs().format(),
-    //   image_url: ""
+    //   image: ""
     // };
     const post = new FormData()
     post.append("author_firstname", JSON.parse(localStorage.getItem("user")).user_firstname);
     post.append("author_lastname", JSON.parse(localStorage.getItem("user")).user_lastname);
     post.append("message", inputValue);
     post.append("date_creation", dayjs().format());
-    post.append("image_url",  document.getElementById("image").files[0]);
+    post.append("image",  document.getElementById("image").files[0]);
 
     // Requête POST axios
     await POST(ENDPOINTS.CREATE_POST, post);

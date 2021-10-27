@@ -20,7 +20,7 @@ const db = dbc.getDB();
 
 exports.createPost = (req, res, next) => {
   let { body } = req;
-  delete(req.body.image_url)
+  delete(req.body.image)
   body = {
     ...body,
     likes: "",
