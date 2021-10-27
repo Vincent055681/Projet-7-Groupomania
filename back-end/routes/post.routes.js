@@ -18,7 +18,12 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({storage: storage,
+  onFileUploadStart: function (file) {
+    console.log(file.originalname + ' is starting ...')
+  },
+});
+
 
 // Post CRUD
 router.get("/", auth, postCtrl.getAllPosts);
