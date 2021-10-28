@@ -1,49 +1,33 @@
 const dbc = require("../config/db");
 const db = dbc.getDB();
 
-
-// const path = require("path");
-// const multer = require("multer");
-// const storage = multer.diskStorage({
-//   destination: (req, file, callback) => {
-//     callback(null, "../images");
-//   },
-//   filename: (req, file, callback) => {
-//     console.log(file);
-//     callback(null, Date.now() + path.extname(file.originalname));
-//   },
-// });
-
-// const upload = multer({ storage: storage });
-
 // CRUD post
 
 exports.createPost = (req, res, next) => {
   let { body, file } = req;
-  console.log(body);
-  if (file) {
-    const sqlInsertImage = `INSERT INTO images (image_url, post_id) VALUES ("${file.filename}", 140)`;
-  db.query(sqlInsertImage, (err, result) => {
-    if (err) {
-      res.status(404).json({ err });
-      throw err;
-    }
-  });
-  }
-
-  delete(req.body.image)
+  if (!file) delete req.body.image;
   body = {
     ...body,
     likes: "",
   };
-
   const sqlInsert = "INSERT INTO posts SET ?";
   db.query(sqlInsert, body, (err, result) => {
     if (err) {
       res.status(404).json({ err });
       throw err;
     }
-    res.status(200).json({ msg: "Post added..." });
+    // post_id will be equal to the post inserted, and will be reused to link the image at the correct post in the below query
+    const post_id = result.insertId;
+    if (file) {
+      const sqlInsertImage = `INSERT INTO images (image_url, post_id) VALUES ("${file.filename}", ${post_id})`;
+      db.query(sqlInsertImage, (err, result) => {
+        if (err) {
+          res.status(404).json({ err });
+          throw err;
+        }
+        res.status(200).json({ msg: "added..." });
+      });
+    }
   });
 };
 
