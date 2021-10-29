@@ -51,6 +51,9 @@ exports.getOneImage = (req, res, next) => {
       res.status(404).json({ err });
       throw err;
     }
+    if (result[0]) {
+      result[0].image_url = req.protocol + '://' + req.get('host') + '/images/' + result[0].image_url
+    }
     res.status(200).json(result);
   });
 };

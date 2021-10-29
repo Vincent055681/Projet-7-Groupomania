@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Post.scss";
 
 import axios from "axios";
@@ -22,6 +22,9 @@ dayjs.extend(relativeTime);
 // ===
 
 const Post = ({ post }) => {
+
+const [mediaURL, setMediaURL] = useState(null)
+
   const id = post.id;
   useEffect(() => {
     const toFetch = async () => {
@@ -29,7 +32,10 @@ const Post = ({ post }) => {
         const response = await axios.get(
           `http://localhost:4200/api/post/image/${id}`
         );
-        console.log(response);
+        if (response.data.length > 0) {
+          console.log(response);
+          setMediaURL(response.data[0].image_url)
+        }
       } catch (err) {
         throw err;
       }
@@ -63,7 +69,7 @@ const Post = ({ post }) => {
           </div>
         </div>
         <Text message={message} />
-        {media && <Media />}
+        {mediaURL && <Media mediaURL={mediaURL}/>}
         <ToInteract postId={postId} />
         <Comments postId={postId} />
         <ToRespond postId={postId} />
