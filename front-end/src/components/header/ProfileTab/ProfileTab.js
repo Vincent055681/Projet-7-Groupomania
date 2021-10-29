@@ -36,14 +36,11 @@ const ProfileTab = () => {
         />
       </div>
       <div className="profil-tab__menu-roller">
-      <div onClick={""} className="profil-tab__menu-roller--change-picture">
-          Changer de photo de profil
+      <div onClick={""} className="profil-tab__menu-roller--edit-profile">
+          Editer le profil
         </div>
         <div onClick={logoutHandler} className="profil-tab__menu-roller--logout">
           Déconnexion
-        </div>
-      <div  className="profil-tab__menu-roller--delete-account">
-          Supprimer mon compte
         </div>
       </div>
     </nav>
