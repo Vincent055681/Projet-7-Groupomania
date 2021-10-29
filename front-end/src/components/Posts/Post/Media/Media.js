@@ -4,7 +4,7 @@ import "./Media.scss"
 const Media = () => {
     return (
         <div>
-            UN MEDIA :D
+            UN MEDIA 
         </div>
     );
 };

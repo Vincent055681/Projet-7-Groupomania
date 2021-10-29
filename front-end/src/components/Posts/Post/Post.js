@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Post.scss";
+
+import axios from "axios";
+import ENDPOINTS from "../../../api/endpoints";
+import { GET } from "../../../api/axios";
 
 import Avatar from "../../UI/Avatar/Avatar";
 import Date from "../../UI/Date/Date";
@@ -18,28 +22,53 @@ dayjs.extend(relativeTime);
 // ===
 
 const Post = ({ post }) => {
-  console.log(post);
-  const { author_firstname, author_lastname, date_creation, message, media, id: postId} = post;
+  const id = post.id;
+  useEffect(() => {
+    const toFetch = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4200/api/post/image/${id}`
+        );
+        console.log(response);
+      } catch (err) {
+        throw err;
+      }
+    };
+    toFetch();
+  }, []);
+
+  const {
+    author_firstname,
+    author_lastname,
+    date_creation,
+    message,
+    media,
+    id: postId,
+  } = post;
+
   return (
     <>
-    <div className="post">
-      <div className="post__author_group">
-        <Avatar className={"post__avatar"} />
-        <div className="post__author_and_date">
-          <Author className="post__author" author={`${author_firstname} ${author_lastname}`} />
-          <Date
-            className="post__date"
-            date={dayjs(date_creation).locale("fr").fromNow()}
-          />
+      <div className="post">
+        <div className="post__author_group">
+          <Avatar className={"post__avatar"} />
+          <div className="post__author_and_date">
+            <Author
+              className="post__author"
+              author={`${author_firstname} ${author_lastname}`}
+            />
+            <Date
+              className="post__date"
+              date={dayjs(date_creation).locale("fr").fromNow()}
+            />
+          </div>
         </div>
+        <Text message={message} />
+        {media && <Media />}
+        <ToInteract postId={postId} />
+        <Comments postId={postId} />
+        <ToRespond postId={postId} />
       </div>
-      <Text message={message} />
-      { media && <Media /> }
-      <ToInteract postId={postId} /> 
-      <Comments postId={postId} />
-      <ToRespond postId={postId}/>
-    </div>
-      </>
+    </>
   );
 };
 
