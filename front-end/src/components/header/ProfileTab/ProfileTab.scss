@@ -16,6 +16,9 @@
     justify-content: center;
     flex-direction: column;
   }
+  &:hover .profil-tab__id {
+    display: none;
+  }
   &__id {
     @include flex-center;
     overflow: hidden;
@@ -50,6 +53,11 @@
     font-weight: 500;
     cursor: pointer;
   }
+}
+
+// Select all div which start by profil-tab__menu-roller--
+div[class*="profil-tab__menu-roller--"] {
+ margin: 1px;
 }
 
 @keyframes slide-bottom {

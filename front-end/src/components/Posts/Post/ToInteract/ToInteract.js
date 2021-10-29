@@ -38,7 +38,6 @@ const ToInteract = ({ postId }) => {
         userId: JSON.parse(localStorage.getItem("user")).user_id,
       };
       const response = await POST(ENDPOINTS.POST_LIKED, data);
-      console.log(response);
       if (response.data[0]) {
         setPostLiked(true);
       } else {

@@ -5,6 +5,7 @@ import Avatar from "../../UI/Avatar/Avatar";
 import Date from "../../UI/Date/Date";
 import Author from "./Author/Author";
 import Text from "./Text/Text";
+import Media from "./Media/Media";
 
 // Permet d'afficher le temps relatif par rapport à la date actuelle, et en français
 import dayjs from "dayjs";
@@ -17,7 +18,8 @@ dayjs.extend(relativeTime);
 // ===
 
 const Post = ({ post }) => {
-  const { author_firstname, author_lastname, date_creation, message, id: postId } = post;
+  console.log(post);
+  const { author_firstname, author_lastname, date_creation, message, media, id: postId} = post;
   return (
     <>
     <div className="post">
@@ -32,7 +34,7 @@ const Post = ({ post }) => {
         </div>
       </div>
       <Text message={message} />
-      {/* <Media /> */}
+      { media && <Media /> }
       <ToInteract postId={postId} /> 
       <Comments postId={postId} />
       <ToRespond postId={postId}/>

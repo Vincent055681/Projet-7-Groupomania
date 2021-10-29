@@ -32,8 +32,8 @@ exports.createPost = (req, res, next) => {
 };
 
 exports.getAllPosts = (req, res, next) => {
-  const sql = "SELECT * FROM posts ORDER BY date_creation DESC;";
-  db.query(sql, (err, result) => {
+  const sqlGet = "SELECT * FROM posts ORDER BY date_creation DESC;";
+  db.query(sqlGet, (err, result) => {
     if (err) {
       res.status(404).json({ err });
       throw err;
@@ -41,6 +41,9 @@ exports.getAllPosts = (req, res, next) => {
     // console.log(result);
     res.status(200).json(result);
   });
+
+  // Fetch the images
+
 };
 
 exports.updatePost = (req, res, next) => {
