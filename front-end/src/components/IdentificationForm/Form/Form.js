@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Button from "../Button/Button";
 import "./Form.scss";
 import { POST } from "../../../api/axios";

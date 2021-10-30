@@ -20,7 +20,7 @@ export default {
   USER_LOGOUT: "api/auth/logout",
 
   // RUD user
-  GET_USER: "api/user/:id",
+  GET_ONE_USER: "api/user/:id",
   GET_ALL: "api/user/",
   UPDATE_USER: "api/user/:id",
   DELETE_USER: "api/user/:id",

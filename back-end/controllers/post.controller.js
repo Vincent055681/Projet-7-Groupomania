@@ -176,5 +176,3 @@ exports.createComment = (req, res, next) => {
     res.status(200).json(result);
   });
 };
-
-// Like & unlike comments
