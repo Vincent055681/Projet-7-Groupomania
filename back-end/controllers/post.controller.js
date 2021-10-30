@@ -52,7 +52,7 @@ exports.getOneImage = (req, res, next) => {
       throw err;
     }
     if (result[0]) {
-      result[0].image_url = req.protocol + '://' + req.get('host') + '/images/' + result[0].image_url
+      result[0].image_url = req.protocol + '://' + req.get('host') + '/images/posts/' + result[0].image_url
     }
     res.status(200).json(result);
   });

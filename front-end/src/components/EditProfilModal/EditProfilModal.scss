@@ -1,17 +1,50 @@
-@import "../../styles/settings.scss" ;
+@import "../../styles/settings.scss";
 
 .modal {
+  flex-direction: column;
   background: white;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 30%;
-  height: 70%;
   opacity: 100% !important;
   z-index: 10;
   pointer-events: auto !important;
   border-radius: 5px;
   border: solid 1px $black;
   padding: 5px;
+  &__infos {
+    @include flex-center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+    & > * {
+      @include flex-center;
+      justify-content: space-between;
+      width: 100%;
+      & > input {
+          width: 75% !important;
+      }
+      & > span {
+          
+      }
+    }
+  }
+  &__photo {
+    @include avatar;
+    width: 120px;
+    height: 120px;
+    margin: auto;
+  }
+  &__firstname {
+    margin-top: 15px ;
+  }
+  &__email {
+    margin-bottom: 20px ;
+  }
+  &__password {
+      display: flex;
+      flex-direction: column;
+  }
 }
