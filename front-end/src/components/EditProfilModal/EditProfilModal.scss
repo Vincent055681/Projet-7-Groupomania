@@ -14,6 +14,16 @@
   border-radius: 5px;
   border: solid 1px $black;
   padding: 5px;
+  &__close {
+      &--icon {
+          font-size: 26px;
+          margin: 5px;
+          padding: 2px;
+          color: rgb(216, 34, 34);
+          background: rgb(218, 218, 218);
+          border-radius: 5px
+      }
+  }
   &__infos {
     @include flex-center;
     flex-direction: column;

@@ -18,13 +18,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // const post = {
-    //   author_firstname: JSON.parse(localStorage.getItem("user")).user_firstname,
-    //   author_lastname: JSON.parse(localStorage.getItem("user")).user_lastname,
-    //   message: inputValue,
-    //   date_creation: dayjs().format(),
-    //   image: ""
-    // };
+
     const post = new FormData()
     post.append("author_firstname", JSON.parse(localStorage.getItem("user")).user_firstname);
     post.append("author_lastname", JSON.parse(localStorage.getItem("user")).user_lastname);
@@ -36,7 +30,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
     await POST(ENDPOINTS.CREATE_POST, post);
 
     // this code is just for MVP, it will be upgrade in final version
-    // document.location.reload()
+     document.location.reload()
   };
 
   return (
