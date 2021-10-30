@@ -3,9 +3,10 @@ import "./Media.scss";
 
 const Media = ({ mediaURL }) => {
   console.log(mediaURL);
+
   return (
     <div className="media">
-      {<img src={mediaURL} alt="myPicture" className="media__img" />}
+      {<img src={mediaURL} alt="myPicture" className="media__img"/>}
     </div>
   );
 }

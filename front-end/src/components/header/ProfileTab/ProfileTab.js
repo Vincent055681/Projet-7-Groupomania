@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./ProfileTab.scss";
 
 // Font Awesome
@@ -37,7 +38,7 @@ const ProfileTab = () => {
       </div>
       <div className="profil-tab__menu-roller">
       <div onClick={""} className="profil-tab__menu-roller--edit-profile">
-          Editer le profil
+      <Link to="/editprofil">Editer le profil</Link>
         </div>
         <div onClick={logoutHandler} className="profil-tab__menu-roller--logout">
           Déconnexion
