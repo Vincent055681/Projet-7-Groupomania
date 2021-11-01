@@ -1,35 +1,31 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./ProfileTab.scss";
 
 // Font Awesome
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { GET } from "../../../api/axios";
-import ENDPOINTS from "../../../api/endpoints";
+import axios from "axios"
 
 const ProfileTab = () => {
   const userName = JSON.parse(localStorage.getItem("user")).user_firstname;
 
   const logoutHandler = async () => {
-    const response = await GET(ENDPOINTS.USER_LOGOUT);
-    console.log(response);
+    localStorage.clear();
+    const response = await axios.get("http://localhost:4200/api/auth/logout");
+    console.log("response : ", response);
+    window.location.href = "http://localhost:3000/connexion";
   };
-  // const changePage = () => {
-  //   document.getElementById("test123");
-  //   window.location.href = "/connexion";
-  // };
 
   return (
-    // remplacer les a par react router dom
     <nav className="profil-tab">
       <div className="profil-tab__id">
         <img
-              className="profil-tab__id-img"
-              src={`${process.env.PUBLIC_URL}/imgs/profile-imgs/me.jpg`}
-              alt="Profil"
-            />
+          className="profil-tab__id-img"
+          src={`${process.env.PUBLIC_URL}/imgs/profile-imgs/me.jpg`}
+          alt="Profil"
+        />
         <div className="profil-tab__id-user-name">{userName}</div>
         <FontAwesomeIcon
           className="profil-tab__id-chevron"
@@ -37,10 +33,13 @@ const ProfileTab = () => {
         />
       </div>
       <div className="profil-tab__menu-roller">
-      <div onClick={""} className="profil-tab__menu-roller--edit-profile">
-      <Link to="/editprofil">Editer le profil</Link>
+        <div className="profil-tab__menu-roller--edit-profile">
+          <Link to="/editprofil">Editer le profil</Link>
         </div>
-        <div onClick={logoutHandler} className="profil-tab__menu-roller--logout">
+        <div
+          onClick={logoutHandler}
+          className="profil-tab__menu-roller--logout"
+        >
           Déconnexion
         </div>
       </div>

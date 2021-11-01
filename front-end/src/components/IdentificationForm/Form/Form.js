@@ -26,6 +26,7 @@ const Form = ({ form }) => {
     special: false,
   });
 
+  const [loginError, setLoginError] = useState("")
   const [accountCreated, setAccountCreated] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
 
@@ -174,8 +175,10 @@ const Form = ({ form }) => {
         withCredentials: true,
       });
       console.log(response);
-      if (response.data.token) {
+      if (!response.data.error) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
+      } else {
+        setLoginError(response.data.message)
       }
     } catch (err) {
       console.log("Error during connection... : ", err);
@@ -339,6 +342,8 @@ const Form = ({ form }) => {
             }
             value={userLogin.user_password}
           />
+          <div className="login_error">{loginError}</div>
+            	<p></p>
           <Button name="Connexion" />
         </form>
       )}

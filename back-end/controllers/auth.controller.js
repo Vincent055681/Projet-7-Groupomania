@@ -43,45 +43,53 @@ exports.login = (req, res) => {
     }
 
     // ===== Verify password with hash in DB ======
-    const { user_password: hashedPassword, user_id } = results[0];
-    try {
-      const match = await bcrypt.compare(clearPassword, hashedPassword);
-      if (match) {
-        // If match, generate JWT token
-        console.log("match ... user_id : ", user_id);
+    if (results[0]) {
+      try {
+        const { user_password: hashedPassword, user_id } = results[0];
+        const match = await bcrypt.compare(clearPassword, hashedPassword);
+        if (match) {
+          // If match, generate JWT token
+          console.log("match ... user_id : ", user_id);
 
-        const maxAge = 1 * (24 * 60 * 60 * 1000);
-        const token = jwt.sign({ user_id }, process.env.JWT_TOKEN, {
-          expiresIn: maxAge,
-        });
+          const maxAge = 1 * (24 * 60 * 60 * 1000);
+          const token = jwt.sign({ user_id }, process.env.JWT_TOKEN, {
+            expiresIn: maxAge,
+          });
 
-        // httpOnly: true,
-        // maxAge,
-        // sameSite: true,
-        // secure: true,
+          // httpOnly: true,
+          // maxAge,
+          // sameSite: true,
+          // secure: true,
 
-        // remove the password key of the response
-        delete results[0].user_password
+          // remove the password key of the response
+          delete results[0].user_password;
 
-        res.cookie("jwt", token);
-        res.status(200).json({
-          // user: results[0], // need to remove password, i must not send in front
-          user: results[0],
-          token: jwt.sign({ userId: user_id }, process.env.JWT_TOKEN, {
-            expiresIn: "24h",
-          }),
-        });
-      } else {
-        console.log("not match");
+          res.cookie("jwt", token);
+          res.status(200).json({
+            user: results[0],
+            token: jwt.sign({ userId: user_id }, process.env.JWT_TOKEN, {
+              expiresIn: "24h",
+            }),
+          });
+        } else {
+          console.log("not match");
+        }
+      } catch (err) {
+        console.log(err);
+        return res.status(400).json({ err });
       }
-    } catch (err) {
-      console.log(err);
-      return res.status(400).json({ err });
+    } else {
+      res
+        .status(200)
+        .json({
+          error: true,
+          message: "Mauvaise combinaison email / mot de passe",
+        });
     }
   });
 };
 
 exports.logout = (req, res) => {
   res.clearCookie("jwt");
-  res.redirect("/ereddede");
+  res.status(200).json("OUT");
 };

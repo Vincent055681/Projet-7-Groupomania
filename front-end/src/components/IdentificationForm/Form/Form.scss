@@ -19,8 +19,10 @@ form {
   .password.infos {
     text-align: left;
   }
+  .login_error {
+    color: red;
+  }
 }
-
 
 input {
   width: 80% !important;
