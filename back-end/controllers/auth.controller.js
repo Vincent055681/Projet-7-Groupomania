@@ -33,7 +33,7 @@ exports.signup = async (req, res) => {
 exports.login = (req, res) => {
   //===== Check if user exists in DB ======
   const { user_email, user_password: clearPassword } = req.body;
-  const sql = `SELECT user_firstname, user_lastname, user_password, user_id FROM users WHERE user_email=?`;
+  const sql = `SELECT user_firstname, user_lastname, user_password, user_id, active FROM users WHERE user_email=?`;
   const db = dbc.getDB();
   db.query(sql, [user_email], async (err, results) => {
     console.log(req.body);

@@ -26,7 +26,7 @@ const Form = ({ form }) => {
     special: false,
   });
 
-  const [loginError, setLoginError] = useState("")
+  const [loginError, setLoginError] = useState("");
   const [accountCreated, setAccountCreated] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
 
@@ -150,7 +150,6 @@ const Form = ({ form }) => {
         special &&
         checkSamePassword()
       ) {
-
         const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
         console.log(response);
         if (response.status === 200) {
@@ -158,9 +157,7 @@ const Form = ({ form }) => {
         }
         if (response.status === 201) {
           setAccountCreated(true);
-          setTimeout(() => {
-            
-          },2000)
+          setTimeout(() => {}, 2000);
         }
       }
     } catch (err) {
@@ -175,10 +172,12 @@ const Form = ({ form }) => {
         withCredentials: true,
       });
       console.log(response);
-      if (!response.data.error) {
+      if (!response.data.error && response.data.user.active === 1) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        console.log("peut se connecter");
       } else {
-        setLoginError(response.data.message)
+        setLoginError(response.data.message);
+        console.log("peut pas se connecter");
       }
     } catch (err) {
       console.log("Error during connection... : ", err);
@@ -343,7 +342,7 @@ const Form = ({ form }) => {
             value={userLogin.user_password}
           />
           <div className="login_error">{loginError}</div>
-            	<p></p>
+          <p></p>
           <Button name="Connexion" />
         </form>
       )}
