@@ -5,7 +5,13 @@ import Avatar from "../UI/Avatar/Avatar";
 import WhatsUpForm from "./WhatsUpForm";
 
 const WhatsUp = () => {
-  const userName = JSON.parse(localStorage.getItem("user")).user_firstname;
+  let userName
+  // If localstorage is empty, that's mean we aren't connected so go back to the connexion page
+  if (JSON.parse(localStorage.getItem("user"))) {
+    userName = JSON.parse(localStorage.getItem("user")).user_firstname;
+  } else {
+    document.location.href = "http://localhost:3000/connexion"
+  }
 
   return (
     <div className="whats_up">
