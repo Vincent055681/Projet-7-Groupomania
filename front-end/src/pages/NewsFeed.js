@@ -6,7 +6,7 @@ import "./NewsFeed.scss";
 
 const NewsFeed = ({transparent}) => {
   return (
-    <div className={transparent && "transparent"}>
+    <div className={transparent ? "transparent" : "container__global"}>
       <Header profileTab={true} />
       <div className="container">
         <WhatsUp />

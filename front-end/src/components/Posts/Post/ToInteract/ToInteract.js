@@ -55,7 +55,7 @@ const ToInteract = ({ postId }) => {
       </div>
       <hr />
       <div className="to-interact__buttons">
-        <button onClick={likeHandle}>
+        <button className={postLiked && "button__liked"} onClick={likeHandle}>
           <span>
             <FontAwesomeIcon
               icon={faThumbsUp}

@@ -1,3 +1,5 @@
+@import "../../../../styles/settings.scss";
+
 .to-interact {
   &__buttons {
     button {
@@ -6,10 +8,19 @@
       border: none;
       border-radius: 5px;
       margin-right: 10px;
+      &.button__liked {
+        background: lighten($secondary-color, 45%);
+        &:hover {
+        background: #b5d4f5
+
+        }
+      }
+      
     }
     span {
       margin-right: 10px;
     }
+   
   }
   &__nb-of-likes {
     display: flex;

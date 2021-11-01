@@ -1,9 +1,7 @@
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import "./ToRespond.scss";
 
-import { POST, PATCH } from "../../../../api/axios";
+import { POST } from "../../../../api/axios";
 import ENDPOINTS from "../../../../api/endpoints";
 
 const ToRespond = ({postId}) => {
@@ -41,7 +39,6 @@ const ToRespond = ({postId}) => {
           value={commentMessage}
           id="input-comment"
         />
-        {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
       </form>
     </>
   );

@@ -1,41 +1,32 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./EditProfilModal.scss";
 
 import axios from "axios";
-import ENDPOINTS from "../../api/endpoints";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const EditProfilModal = () => {
+
   const refFirstname = useRef();
   const refLastname = useRef();
   const refEmail = useRef();
 
   useEffect(() => {
-    refFirstname.current.value = JSON.parse(
-      localStorage.getItem("user")
-    ).user_firstname;
-    refLastname.current.value = JSON.parse(
-      localStorage.getItem("user")
-    ).user_lastname;
-    refEmail.current.value = "dh";
-
-    const toFetch = async () => {
+    const toFetchEmail = async () => {
       try {
-        const params = 465;
-        const response = await axios.get(
-          `http://localhost:4200/api/user/${params}`
-        );
-        console.log(response);
-
+        refFirstname.current.value = JSON.parse(localStorage.getItem("user")).user_firstname;
+        refLastname.current.value = JSON.parse(localStorage.getItem("user")).user_lastname;
+        const response = await axios.get(`http://localhost:4200/api/user/${JSON.parse(localStorage.getItem("user")).user_id}`)
+        refEmail.current.value = response.data;
       } catch (err) {
         throw err;
       }
     };
-    toFetch();
+    toFetchEmail()
   }, []);
+ 
 
   return (
     <div className="modal">

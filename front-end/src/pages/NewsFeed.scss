@@ -20,6 +20,13 @@
         padding: 15px 0;
         color: $black;
     }
+    &__global {
+        width: 100%;
+        @include flex-center;
+        flex-direction: column;
+        margin-bottom: 50px;
+        
+    }
 }
 
 .transparent {
