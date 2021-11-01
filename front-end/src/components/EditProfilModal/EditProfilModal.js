@@ -27,6 +27,13 @@ const EditProfilModal = () => {
     toFetchEmail()
   }, []);
  
+  const desactivateAccount = () => {
+    const userId = JSON.parse(localStorage.getItem("user")).user_id
+    axios.get(`http://localhost:4200/api/auth/desactivateAccount/${userId}`)
+    localStorage.clear()
+    document.location.href = "http://localhost:3000/connexion"
+  }
+  
 
   return (
     <div className="modal">
@@ -60,6 +67,7 @@ const EditProfilModal = () => {
         <div className="modal__save">
           <input type="submit" name="" id="" />
         </div>
+        <button className="modal__delete_account" onClick={desactivateAccount}>DESACTIVER COMPTE</button>
       </form>
     </div>
   );

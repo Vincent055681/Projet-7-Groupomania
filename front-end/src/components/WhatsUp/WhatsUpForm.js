@@ -34,6 +34,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
     post.append("message", inputValue);
     post.append("date_creation", dayjs().format());
     post.append("image", document.getElementById("image").files[0]);
+    post.append("user_id", JSON.parse(localStorage.getItem("user")).user_id);
 
     // Requête POST axios
     await POST(ENDPOINTS.CREATE_POST, post);

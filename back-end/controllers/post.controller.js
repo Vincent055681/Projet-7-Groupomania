@@ -4,6 +4,7 @@ const db = dbc.getDB();
 // CRUD post
 
 exports.createPost = (req, res, next) => {
+  console.log(req.body);
   let { body, file } = req;
   if (!file) delete req.body.image;
   body = {
@@ -32,7 +33,7 @@ exports.createPost = (req, res, next) => {
 };
 
 exports.getAllPosts = (req, res, next) => {
-  const sql = "SELECT * FROM posts ORDER BY date_creation DESC;";
+  const sql = "SELECT * FROM posts p, users u WHERE u.active=1 AND p.user_id = u.user_id ORDER BY date_creation DESC;";
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });

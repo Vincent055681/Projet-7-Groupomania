@@ -4,7 +4,6 @@ const db = dbc.getDB();
 // RUD users
 
 exports.getOneUser = (req, res, next) => {
-  console.log(req.params.id);
   const { id: userId } = req.params;
   const sqlGetEmail = `SELECT user_email FROM users WHERE users.user_id = ${userId};`;
   db.query(sqlGetEmail, (err, result) => {

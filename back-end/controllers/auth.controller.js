@@ -79,12 +79,10 @@ exports.login = (req, res) => {
         return res.status(400).json({ err });
       }
     } else {
-      res
-        .status(200)
-        .json({
-          error: true,
-          message: "Mauvaise combinaison email / mot de passe",
-        });
+      res.status(200).json({
+        error: true,
+        message: "Mauvaise combinaison email / mot de passe",
+      });
     }
   });
 };
@@ -92,4 +90,17 @@ exports.login = (req, res) => {
 exports.logout = (req, res) => {
   res.clearCookie("jwt");
   res.status(200).json("OUT");
+};
+
+exports.desactivateAccount = (req, res) => {
+  const userId = req.params.id;
+  const sql = `UPDATE users u SET active=0 WHERE u.user_id = ?`;
+  const db = dbc.getDB();
+  db.query(sql, userId, (err, results) => {
+    if (err) {
+      return res.status(404).json({ err });
+    }
+    res.clearCookie("jwt");
+    res.status(200).json("DESACTIVATE")
+  });
 };
