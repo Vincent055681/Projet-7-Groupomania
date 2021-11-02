@@ -53,6 +53,10 @@
   &__email {
     margin-bottom: 20px;
   }
+  #modal__email--input {
+    cursor: not-allowed;
+    background: darken($grey, 5%);
+  }
   &__password {
     display: flex;
     flex-direction: column;

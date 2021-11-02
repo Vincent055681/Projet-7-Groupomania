@@ -3,7 +3,8 @@
 .whatsup__avatar {
   @include flex-center;
   img {
- @include avatar
+ @include avatar;
+ object-fit: cover
   }
 }
 
@@ -12,5 +13,6 @@
     @include avatar;
     width: 40px;
     height: 40px;
+    object-fit: cover;
   }
 }

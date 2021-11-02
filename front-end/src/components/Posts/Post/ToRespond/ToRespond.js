@@ -17,7 +17,7 @@ const ToRespond = ({postId}) => {
       post_id: postId,
       message: commentMessage,
     };
-    const response = await axios.post(`http://localhost:4200/api/comment/${data.post_id}`, data);
+    await axios.post(`http://localhost:4200/api/comment/${data.post_id}`, data);
 
     // this code is just for MVP, it will be upgrade in final version
     document.location.reload()

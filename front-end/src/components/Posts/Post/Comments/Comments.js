@@ -7,7 +7,6 @@ import Comment from "./Comment";
 const Comments = ({ postId }) => {
   // States
   const [allComments, setAllComments] = useState([]);
-  console.log("postId :", postId);
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(`http://localhost:4200/api/comment/${postId}`);

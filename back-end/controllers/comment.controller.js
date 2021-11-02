@@ -3,9 +3,7 @@ const db = dbc.getDB();
 
 // CRUD comments
 exports.getAllComments = (req, res) => {
-    console.log(req.params);
     const postId = req.params.id
-    console.log('postId :', postId);
     const sql = `SELECT * FROM comments WHERE comments.post_id = ${postId}`;
     db.query(sql, (err, result) => {
       if (err) {
