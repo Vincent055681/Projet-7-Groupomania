@@ -36,21 +36,17 @@ exports.login = (req, res) => {
   const sql = `SELECT user_firstname, user_lastname, user_password, user_id, active FROM users WHERE user_email=?`;
   const db = dbc.getDB();
   db.query(sql, [user_email], async (err, results) => {
-    console.log(req.body);
-    console.log(results);
     if (err) {
       return res.status(404).json({ err });
     }
 
     // ===== Verify password with hash in DB ======
-    if (results[0]) {
+    if (results[0] && results[0].active === 1) {
       try {
         const { user_password: hashedPassword, user_id } = results[0];
         const match = await bcrypt.compare(clearPassword, hashedPassword);
         if (match) {
           // If match, generate JWT token
-          console.log("match ... user_id : ", user_id);
-
           const maxAge = 1 * (24 * 60 * 60 * 1000);
           const token = jwt.sign({ user_id }, process.env.JWT_TOKEN, {
             expiresIn: maxAge,
@@ -78,11 +74,16 @@ exports.login = (req, res) => {
         console.log(err);
         return res.status(400).json({ err });
       }
-    } else {
+    } else if (results[0] && results[0].active === 0) {
       res.status(200).json({
         error: true,
-        message: "Mauvaise combinaison email / mot de passe",
+        message: "Votre compte a été désactivé",
       });
+    } else if (!results[0]) {
+      res.status(200).json({
+        error: true,
+        message: "Mauvaise combinaison email / mot de passe"
+      })
     }
   });
 };
@@ -101,6 +102,6 @@ exports.desactivateAccount = (req, res) => {
       return res.status(404).json({ err });
     }
     res.clearCookie("jwt");
-    res.status(200).json("DESACTIVATE")
+    res.status(200).json("DESACTIVATE");
   });
 };

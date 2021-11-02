@@ -13,13 +13,8 @@ router.put("/:id", auth, postCtrl.updatePost);
 // Images
 router.get("/image/:id", auth, postCtrl.getOneImage);
 
-
 router.patch("/:id/likeunlike", auth, postCtrl.likeUnlikePost);
 router.post("/:id/postLikedByUser", auth, postCtrl.postLikedByUser);
 router.post("/:id/likeunlike", auth, postCtrl.countLikes);
-
-// Comments CRUD
-router.post("/:id/comments", auth, postCtrl.getAllComments);
-router.post("/:id/comments/create", auth, postCtrl.createComment);
 
 module.exports = router;

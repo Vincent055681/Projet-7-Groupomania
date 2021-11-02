@@ -157,7 +157,6 @@ const Form = ({ form }) => {
         }
         if (response.status === 201) {
           setAccountCreated(true);
-          setTimeout(() => {}, 2000);
         }
       }
     } catch (err) {
@@ -172,12 +171,12 @@ const Form = ({ form }) => {
         withCredentials: true,
       });
       console.log(response);
-      if (!response.data.error && response.data.user.active === 1) {
+      if (!response.data.error) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
-        console.log("peut se connecter");
+       
       } else {
         setLoginError(response.data.message);
-        console.log("peut pas se connecter");
+        
       }
     } catch (err) {
       console.log("Error during connection... : ", err);

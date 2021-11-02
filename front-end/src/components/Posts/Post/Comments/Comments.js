@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./Comments.scss";
 
-import { POST } from "../../../../api/axios";
-import ENDPOINTS from "../../../../api/endpoints";
+import axios from "axios"
 import Comment from "./Comment";
-
-import { v4 as uuid } from "uuid";
 
 const Comments = ({ postId }) => {
   // States
   const [allComments, setAllComments] = useState([]);
-
+  console.log("postId :", postId);
   useEffect(() => {
     async function fetchData() {
-      const response = await POST(ENDPOINTS.GET_ALL_COMMENTS, { postId });
+      const response = await axios.get(`http://localhost:4200/api/comment/${postId}`);
       const data = response.data;
       if (Array.isArray(data)) {
         setAllComments((prevState) => [...prevState, ...data]);

@@ -65,9 +65,9 @@ const EditProfilModal = () => {
           <input type="password" name="" id="" />
         </div>
         <div className="modal__save">
-          <input type="submit" name="" id="" />
+          <input type="submit" name="modal__save" id="modal__save" value="Enregistrer" />
         </div>
-        <button className="modal__delete_account" onClick={desactivateAccount}>DESACTIVER COMPTE</button>
+        <button className="modal__delete_account" onClick={desactivateAccount}>Désactiver le compte</button>
       </form>
     </div>
   );

@@ -15,15 +15,15 @@
   border: solid 1px $black;
   padding: 5px;
   &__close {
-      &--icon {
-          font-size: 26px;
-          margin: 5px;
-          margin-bottom: 0;
-          padding: 2px;
-          color: rgb(216, 34, 34);
-          background: rgb(231, 231, 231);
-          border-radius: 5px
-      }
+    &--icon {
+      font-size: 26px;
+      margin: 5px;
+      margin-bottom: 0;
+      padding: 2px;
+      color: rgb(216, 34, 34);
+      background: rgb(231, 231, 231);
+      border-radius: 5px;
+    }
   }
   &__infos {
     @include flex-center;
@@ -35,10 +35,9 @@
       justify-content: space-between;
       width: 100%;
       & > input {
-          width: 75% !important;
+        width: 75% !important;
       }
       & > span {
-          
       }
     }
   }
@@ -49,13 +48,25 @@
     margin: auto;
   }
   &__firstname {
-    margin-top: 15px ;
+    margin-top: 15px;
   }
   &__email {
-    margin-bottom: 20px ;
+    margin-bottom: 20px;
   }
   &__password {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
+  }
+  &__save {
+    width: 100%;
+  }
+  #modal__save {
+    width: 100% !important;
+  }
+  &__delete_account {
+    @include flex-center;
+    background: darken($primary-color, 5%);
+    color: $white;
+    width: 100%;
   }
 }

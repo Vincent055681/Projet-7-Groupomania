@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./ToRespond.scss";
 
-import { POST } from "../../../../api/axios";
-import ENDPOINTS from "../../../../api/endpoints";
+import axios from "axios"
 
 const ToRespond = ({postId}) => {
   // States
@@ -18,7 +17,7 @@ const ToRespond = ({postId}) => {
       post_id: postId,
       message: commentMessage,
     };
-    const response = await POST(ENDPOINTS.CREATE_COMMENT, data);
+    const response = await axios.post(`http://localhost:4200/api/comment/${data.post_id}`, data);
 
     // this code is just for MVP, it will be upgrade in final version
     document.location.reload()
