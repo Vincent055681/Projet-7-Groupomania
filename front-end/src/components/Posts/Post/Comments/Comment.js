@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import "./Comment.scss";
 
 import axios from "axios";
@@ -31,6 +32,7 @@ const Comment = ({ comment }) => {
     };
     toFetchTrash();
   }, []);
+
 
   const handleClick = () => {
     const deleteComment = async () => {

@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./WhatsUp.scss";
 
 import Avatar from "../UI/Avatar/Avatar";

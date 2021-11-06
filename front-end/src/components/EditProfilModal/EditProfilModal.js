@@ -1,4 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import "./EditProfilModal.scss";
 
 import axios from "axios";
@@ -27,7 +29,7 @@ const EditProfilModal = () => {
           }`
         );
         console.log(response);
-        const email = response.data[0].user_email
+        const email = response.data[0].user_email;
         refEmail.current.value = email;
       } catch (err) {
         throw err;
@@ -36,11 +38,16 @@ const EditProfilModal = () => {
     toFetchEmail();
   }, []);
 
+  const history = useHistory();
+
   const desactivateAccount = () => {
     const userId = JSON.parse(localStorage.getItem("user")).user_id;
     axios.get(`http://localhost:4200/api/auth/desactivateAccount/${userId}`);
     localStorage.clear();
-    document.location.href = "http://localhost:3000/connexion";
+    const toRedirect = (link) => {
+      history.push(link);
+    };
+    toRedirect("/connexion");
   };
 
   const [userNewInfos, setUserNewInfos] = useState({
@@ -68,16 +75,18 @@ const EditProfilModal = () => {
     );
     console.log(response);
 
-    const user_id = JSON.parse(localStorage.getItem("user")).user_id
+    const user_id = JSON.parse(localStorage.getItem("user")).user_id;
     const user = {
       ...updatedUserNewInfos,
-      user_id: user_id
-    }
+      user_id: user_id,
+    };
     console.log(user);
-    localStorage.clear()
-    localStorage.setItem("user", JSON.stringify(user))
-    document.location.reload()
-
+    localStorage.clear();
+    localStorage.setItem("user", JSON.stringify(user));
+    const toRedirect = (link) => {
+      history.push(link);
+    };
+    toRedirect("/editprofil");
   };
 
   return (

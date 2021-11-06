@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+
 import "./Post.scss";
 
 import axios from "axios";
@@ -69,6 +71,7 @@ const Post = ({ post }) => {
     toFetchTrash();
   }, []);
 
+  
   const handleClick = () => {
     const deletePost = async () => {
       try {

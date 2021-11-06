@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import "./WhatsUpForm.scss";
 
 import ENDPOINTS from "../../api/endpoints";
@@ -40,10 +42,10 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
     // Requête POST axios
     const res = await POST(ENDPOINTS.CREATE_POST, post);
     console.log(res);
-      console.log("1");
+    
     // this code is just for MVP, it will be upgrade in final version
     document.location.reload();
-    console.log("2");
+ 
 
   };
 
