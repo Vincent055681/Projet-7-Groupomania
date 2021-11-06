@@ -26,7 +26,9 @@ const EditProfilModal = () => {
             JSON.parse(localStorage.getItem("user")).user_id
           }`
         );
-        refEmail.current.value = response.data;
+        console.log(response);
+        const email = response.data[0].user_email
+        refEmail.current.value = email;
       } catch (err) {
         throw err;
       }
