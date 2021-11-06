@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Comment.scss";
+
+import axios from "axios";
 
 import dayjs from "dayjs";
 import Trash from "../../../UI/Trash/Trash";
@@ -8,6 +10,38 @@ const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
 const Comment = ({ comment }) => {
+  // // Render Trash component if user is Admin or if user is author of the post
+
+  const { id: comment_id, post_id, author_id } = comment;
+  const [trash, setTrash] = useState(false);
+
+  useEffect(() => {
+    const toFetchTrash = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4200/api/comment/${comment_id}`
+        );
+        if (response.data[0].author_id === author_id) {
+          setTrash(true);
+        }
+      } catch (err) {
+        throw err;
+      }
+    };
+    toFetchTrash();
+  }, []);
+
+  const handleClick = () => {
+    const toFetchTrash = async () => {
+      try {
+        await axios.delete(`http://localhost:4200/api/comment/${comment_id}`);
+      } catch (err) {
+        throw err;
+      }
+    };
+    toFetchTrash();
+  };
+
   return (
     <div className="comment">
       <div className="comment__author-infos">
@@ -16,7 +50,7 @@ const Comment = ({ comment }) => {
           {`${comment.author_firstname} ${comment.author_lastname}`}
         </div>
       </div>
-      <Trash />
+      {trash && <Trash comment={comment} onClick={handleClick} />}
       <div className="comment__message">{comment.message}</div>
       <div className="comment__date">
         {dayjs(comment.created_at).locale("fr").fromNow()}

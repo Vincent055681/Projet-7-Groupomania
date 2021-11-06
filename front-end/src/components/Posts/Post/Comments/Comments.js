@@ -9,7 +9,7 @@ const Comments = ({ postId }) => {
   const [allComments, setAllComments] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(`http://localhost:4200/api/comment/${postId}`);
+      const response = await axios.get(`http://localhost:4200/api/comment/${postId}/allcomments`);
       const data = response.data;
       if (Array.isArray(data)) {
         setAllComments((prevState) => [...prevState, ...data]);

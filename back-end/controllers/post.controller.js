@@ -11,7 +11,7 @@ exports.createPost = (req, res, next) => {
     ...body,
     likes: "",
   };
-  
+
   const sqlInsert = "INSERT INTO posts SET ?";
   db.query(sqlInsert, body, (err, result) => {
     if (err) {
@@ -34,7 +34,8 @@ exports.createPost = (req, res, next) => {
 };
 
 exports.getAllPosts = (req, res, next) => {
-  const sql = "SELECT * FROM posts p, users u WHERE u.active=1 AND p.active=1 AND p.user_id = u.user_id ORDER BY date_creation DESC;";
+  const sql =
+    "SELECT * FROM posts p, users u WHERE u.active=1 AND p.active=1 AND p.user_id = u.user_id ORDER BY date_creation DESC;";
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });
@@ -45,27 +46,17 @@ exports.getAllPosts = (req, res, next) => {
   });
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+exports.getOnePost = (req, res, next) => {
+  const { id: postId } = req.params;
+  const sqlGetOnePost = `SELECT * FROM posts p WHERE p.id = ${postId};`;
+  db.query(sqlGetOnePost, (err, result) => {
+    if (err) {
+      res.status(404).json({ err });
+      throw err;
+    }
+    res.status(200).json(result);
+  });
+};
 
 exports.getOneImage = (req, res, next) => {
   const { id: postId } = req.params;
@@ -76,7 +67,12 @@ exports.getOneImage = (req, res, next) => {
       throw err;
     }
     if (result[0]) {
-      result[0].image_url = req.protocol + '://' + req.get('host') + '/images/posts/' + result[0].image_url
+      result[0].image_url =
+        req.protocol +
+        "://" +
+        req.get("host") +
+        "/images/posts/" +
+        result[0].image_url;
     }
     res.status(200).json(result);
   });
