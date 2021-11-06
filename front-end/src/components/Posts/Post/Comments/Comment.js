@@ -10,7 +10,7 @@ const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
 const Comment = ({ comment }) => {
-  // // Render Trash component if user is Admin or if user is author of the post
+  // // Render Trash component if user is Admin or if user is author of the comment
 
   const { id: comment_id, post_id, author_id } = comment;
   const [trash, setTrash] = useState(false);
@@ -18,10 +18,11 @@ const Comment = ({ comment }) => {
   useEffect(() => {
     const toFetchTrash = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:4200/api/comment/${comment_id}`
-        );
-        if (response.data[0].author_id === author_id) {
+        const response = await axios.get(`http://localhost:4200/api/comment/${comment_id}`);
+        let isAdmin = await axios.get(`http://localhost:4200/api/user/${JSON.parse(localStorage.getItem("user")).user_id}`)
+        isAdmin = isAdmin.data[0].admin;
+          if (response.data[0].author_id === JSON.parse(localStorage.getItem("user")).user_id || isAdmin) {
+          
           setTrash(true);
         }
       } catch (err) {
@@ -32,14 +33,16 @@ const Comment = ({ comment }) => {
   }, []);
 
   const handleClick = () => {
-    const toFetchTrash = async () => {
+    const deleteComment = async () => {
       try {
-        await axios.delete(`http://localhost:4200/api/comment/${comment_id}`);
+        const response = await axios.delete(`http://localhost:4200/api/comment/${comment_id}`);
+        console.log(response);
+        if (response.status === 200) document.location.reload();
       } catch (err) {
         throw err;
       }
     };
-    toFetchTrash();
+    deleteComment();
   };
 
   return (

@@ -27,8 +27,10 @@ exports.createPost = (req, res, next) => {
           res.status(404).json({ err });
           throw err;
         }
-        res.status(200).json({ msg: "added..." });
+        res.status(200).json(result);
       });
+    } else {
+      res.status(200).json(result);
     }
   });
 };
@@ -41,7 +43,6 @@ exports.getAllPosts = (req, res, next) => {
       res.status(404).json({ err });
       throw err;
     }
-    // console.log(result);
     res.status(200).json(result);
   });
 };
@@ -91,24 +92,22 @@ exports.updatePost = (req, res, next) => {
   // });
 };
 
-exports.deletePost = (req, res, next) => {
-  // const { postId } = req.body;
-  // const sql = `DELETE FROM posts WHERE id = ${postId}`;
-  // db.query(sql, (err, result) => {
-  //   if (err) {
-  //     res.status(404).json({ err });
-  //     throw err;
-  //   }
-  //   // console.log(result);
-  //   res.status(200).json(result);
-  // });
+exports.deleteOnePost = (req, res, next) => {
+  const { id: post_id } = req.params
+  const sql = `DELETE FROM posts p WHERE p.id = ${post_id}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.status(404).json({ err });
+      throw err;
+    }
+    res.status(200).json(result);
+  });
 };
 
 // Like & unlike a post
 
 exports.likeUnlikePost = (req, res) => {
   const { userId, postId } = req.body;
-
   const sqlSelect = `SELECT * FROM likes WHERE likes.user_id = ${userId} AND likes.post_id = ${postId}`;
   db.query(sqlSelect, (err, result) => {
     if (err) {

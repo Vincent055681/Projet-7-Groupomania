@@ -5,15 +5,14 @@ const db = dbc.getDB();
 
 exports.getOneUser = (req, res, next) => {
   const { id: userId } = req.params;
-  const sqlGetEmail = `SELECT user_email FROM users WHERE users.user_id = ${userId};`;
-  db.query(sqlGetEmail, (err, result) => {
+  const sqlGetUser = `SELECT * FROM users WHERE users.user_id = ${userId};`;
+  db.query(sqlGetUser, (err, result) => {
     if (err) {
       res.status(404).json({ err });
       throw err;
     }
-    if (result[0]) {
-      res.status(200).json(result[0].user_email);
-    }
+      res.status(200).json(result);
+    
   });
 };
 

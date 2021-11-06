@@ -27,8 +27,7 @@ const Post = ({ post }) => {
   useEffect(() => {
     const toFetch = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:4200/api/post/image/${id}`
+        const response = await axios.get(`http://localhost:4200/api/post/image/${id}`
         );
         if (response.data.length > 0) {
           setMediaURL(response.data[0].image_url);
@@ -57,7 +56,9 @@ const Post = ({ post }) => {
     const toFetchTrash = async () => {
       try {
         const response = await axios.get(`http://localhost:4200/api/post/${id}`);
-        if (response.data[0].user_id ===  JSON.parse(localStorage.getItem("user")).user_id
+        let isAdmin = await axios.get(`http://localhost:4200/api/user/${JSON.parse(localStorage.getItem("user")).user_id}`)
+        isAdmin = isAdmin.data[0].admin;
+        if (response.data[0].user_id ===  JSON.parse(localStorage.getItem("user")).user_id || isAdmin
         ) {
           setTrash(true);
         }
@@ -67,6 +68,20 @@ const Post = ({ post }) => {
     };
     toFetchTrash();
   }, []);
+
+  const handleClick = () => {
+    const deletePost = async () => {
+      try {
+        const response = await axios.delete(`http://localhost:4200/api/post/${id}`);
+        console.log(response);
+        if (response.status === 200) document.location.reload();
+      } catch (err) {
+        throw err;
+      }
+    };
+    deletePost();
+  };
+
 
   return (
     <>
@@ -84,7 +99,7 @@ const Post = ({ post }) => {
             />
           </div>
         </div>
-        {trash && <Trash post={post} />}
+        {trash && <Trash post={post} onClick={handleClick} />}
         <Text message={message} />
         {mediaURL && <Media mediaURL={mediaURL} />}
         <ToInteract postId={postId} />

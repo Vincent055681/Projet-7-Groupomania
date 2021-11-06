@@ -4,6 +4,8 @@ import "./Form.scss";
 import { POST } from "../../../api/axios";
 import ENDPOINTS from "../../../api/endpoints";
 
+import { useHistory } from "react-router-dom";
+
 const Form = ({ form }) => {
   // States
   const [userSignup, setUserSignup] = useState({
@@ -164,6 +166,7 @@ const Form = ({ form }) => {
     }
   };
 
+  const history = useHistory();
   const login = async (e) => {
     try {
       e.preventDefault();
@@ -173,10 +176,12 @@ const Form = ({ form }) => {
       console.log(response);
       if (!response.data.error) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
-       
+        const toRedirect = (link) => {
+          history.push(link);
+        };
+        toRedirect("/");
       } else {
         setLoginError(response.data.message);
-        
       }
     } catch (err) {
       console.log("Error during connection... : ", err);
