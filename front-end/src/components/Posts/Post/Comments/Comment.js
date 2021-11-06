@@ -2,6 +2,7 @@ import React from "react";
 import "./Comment.scss";
 
 import dayjs from "dayjs";
+import Trash from "../../../UI/Trash/Trash";
 require("dayjs/locale/fr");
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -15,6 +16,7 @@ const Comment = ({ comment }) => {
           {`${comment.author_firstname} ${comment.author_lastname}`}
         </div>
       </div>
+      <Trash />
       <div className="comment__message">{comment.message}</div>
       <div className="comment__date">
         {dayjs(comment.created_at).locale("fr").fromNow()}

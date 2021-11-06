@@ -6,7 +6,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Trash = () => {
     return (
-        <div className="post__trash">
+        <div className="trash">
             <FontAwesomeIcon icon={faTrash} color="#f57251" />
         </div>
     );
