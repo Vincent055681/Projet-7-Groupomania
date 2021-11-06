@@ -11,6 +11,7 @@ exports.createPost = (req, res, next) => {
     ...body,
     likes: "",
   };
+  
   const sqlInsert = "INSERT INTO posts SET ?";
   db.query(sqlInsert, body, (err, result) => {
     if (err) {
@@ -43,6 +44,28 @@ exports.getAllPosts = (req, res, next) => {
     res.status(200).json(result);
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exports.getOneImage = (req, res, next) => {
   const { id: postId } = req.params;

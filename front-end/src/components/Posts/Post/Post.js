@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import ToInteract from "./ToInteract/ToInteract";
 import ToRespond from "./ToRespond/ToRespond";
 import Comments from "./Comments/Comments";
+import Trash from "../../UI/Trash/Trash";
 require("dayjs/locale/fr");
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -65,6 +66,7 @@ const [mediaURL, setMediaURL] = useState(null)
             />
           </div>
         </div>
+        <Trash />
         <Text message={message} />
         {mediaURL && <Media mediaURL={mediaURL}/>}
         <ToInteract postId={postId} />
