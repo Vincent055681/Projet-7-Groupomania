@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "./ProfileTab.scss";
 
 // Font Awesome
-import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronCircleDown, faEdit, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import axios from "axios"
 
@@ -34,12 +34,20 @@ const ProfileTab = () => {
       </div>
       <div className="profil-tab__menu-roller">
         <div className="profil-tab__menu-roller--edit-profile">
-          <Link to="/editprofil">Editer le profil</Link>
+        <FontAwesomeIcon
+          className="profil-tab__menu-roller--edit-profile-icon"
+          icon={faEdit}
+        />
+          <Link to="/editprofil">Éditer le profil</Link>
         </div>
         <div
           onClick={logoutHandler}
           className="profil-tab__menu-roller--logout"
         >
+          <FontAwesomeIcon
+          className="profil-tab__menu-roller--logout-icon"
+          icon={faSignOutAlt}
+        />
           Déconnexion
         </div>
       </div>
