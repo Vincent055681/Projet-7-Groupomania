@@ -2,7 +2,7 @@
 
 .profil-tab {
   @include flex-center;
-  width: 150px;
+  width: 170px;
   flex-direction: column;
   background: #eee;
   padding: 2px 10px;
@@ -28,11 +28,6 @@
   &__id {
     @include flex-center;
     overflow: hidden;
-    &-img {
-      @include avatar;
-      width: 35px;
-      height: 35px;
-    }
     &-user-name {
       padding: 0 8px;
       font-size: 18px;
@@ -54,16 +49,22 @@
   width: 100%;
   &--edit-profile {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
+    &-icon {
+      margin-right: 5px;
+    }
   }
   &--logout {
     color: $primary-color;
     font-weight: 500;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
+    &-icon {
+      margin-right: 5px;
+    }
   }
   &--delete-account {
     font-weight: 500;
