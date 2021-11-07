@@ -35,10 +35,9 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
     );
     post.append("message", inputValue);
     post.append("date_creation", dayjs().format());
-    post.append("image", document.getElementById("image").files[0]);
+    post.append("post_image", document.getElementById("post_image").files[0]);
     post.append("user_id", JSON.parse(localStorage.getItem("user")).user_id);
 
-    console.log("0");
     // Requête POST axios
     const res = await POST(ENDPOINTS.CREATE_POST, post);
     console.log(res);
@@ -77,13 +76,13 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       <div className="icons_container">
         <input
           type="file"
-          name="image"
-          id="image"
+          name="post_image"
+          id="post_image"
           className="icons_container__add_file"
           onInput={imageAddedToPost}
         />
         <div className="image_name">{imageName}</div>
-        <label for="image">
+        <label for="post_image">
           <FontAwesomeIcon icon={faImages} color={imageAdded && "#f57251"} />
         </label>
         <button type="submit" className="icons_container__submit">

@@ -6,10 +6,10 @@ import "./EditProfilModal.scss";
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faImage } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-import Avatar from "../UI/Avatar/Avatar"
+import Avatar from "../UI/Avatar/Avatar";
 
 const EditProfilModal = () => {
   const refFirstname = useRef();
@@ -30,7 +30,6 @@ const EditProfilModal = () => {
             JSON.parse(localStorage.getItem("user")).user_id
           }`
         );
-        console.log(response);
         const email = response.data[0].user_email;
         refEmail.current.value = email;
       } catch (err) {
@@ -64,16 +63,23 @@ const EditProfilModal = () => {
       ...userNewInfos,
       user_firstname: refFirstname.current.value,
       user_lastname: refLastname.current.value,
+       user_image: document.getElementById("profil_image").files[0],
     };
     setUserNewInfos(updatedUserNewInfos);
     const data = {
       ...updatedUserNewInfos,
     };
+
+    const post = new FormData()
+    post.append("user_firstname", refFirstname.current.value)
+    post.append("user_lastname", refLastname.current.value)
+    post.append("profil_image", document.getElementById("profil_image").files[0])
+
     const response = await axios.put(
       `http://localhost:4200/api/user/${
         JSON.parse(localStorage.getItem("user")).user_id
       }`,
-      data
+      post
     );
     console.log(response);
 
@@ -91,6 +97,8 @@ const EditProfilModal = () => {
     toRedirect("/editprofil");
   };
 
+  const img = document.getElementById("profil_image");
+
   return (
     <div className="modal">
       <div className="modal__close">
@@ -99,7 +107,18 @@ const EditProfilModal = () => {
         </Link>
       </div>
       <form className="modal__infos" onSubmit={saveChange}>
-        <Avatar className="modal__photo" />
+        {/* <Avatar className="modal__photo" editable id="profil_image" /> */}
+        <div className="modal__photo"> 
+          <img src="/imgs/profile-imgs/mee.png" alt="profile_picture" />
+          <input type="file" name="profil_image" id="profil_image" />
+          <label for="profil_image">
+        
+            <FontAwesomeIcon
+              icon={faImage}
+              className="profile_picture__change"
+            />
+          </label>
+        </div>
         <div className="modal__firstname">
           <span>Prénom : </span>
           <input ref={refFirstname} type="text" name="" id="" />

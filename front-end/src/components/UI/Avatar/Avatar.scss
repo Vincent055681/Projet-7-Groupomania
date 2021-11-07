@@ -45,3 +45,29 @@
     margin-right: 5px;
   }
 }
+
+.modal__photo img {
+  position: relative;
+}
+.profile_picture__change {
+  position: absolute;
+  color: $primary-color;
+  left: 60%;
+  transform: translate(-50%);
+  top: 28%;
+  font-size: 36px;
+  border-radius: 50%;
+  border: 1px solid black;
+  padding: 8px;
+  background: rgb(243, 243, 243);
+  transition: .3s;
+  &:hover {
+    cursor: pointer;
+    background: white;
+    transition: .3s;
+    opacity: 90%;
+  }
+}
+input[type="file"] {
+ display: none;
+}
