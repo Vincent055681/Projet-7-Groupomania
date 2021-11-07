@@ -6,6 +6,7 @@ import axios from "axios";
 
 import dayjs from "dayjs";
 import Trash from "../../../UI/Trash/Trash";
+import Avatar from "../../../UI/Avatar/Avatar";
 require("dayjs/locale/fr");
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -50,7 +51,8 @@ const Comment = ({ comment }) => {
   return (
     <div className="comment">
       <div className="comment__author-infos">
-        <div className="comment__author-id">{comment.author_id}</div>
+        <Avatar className="comment__author_avatar" />
+        {/* <div className="comment__author-id">{comment.author_id}</div> */}
         <div className="comment__author-name">
           {`${comment.author_firstname} ${comment.author_lastname}`}
         </div>

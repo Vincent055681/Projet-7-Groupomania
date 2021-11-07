@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
+import Avatar from "../UI/Avatar/Avatar"
+
 const EditProfilModal = () => {
   const refFirstname = useRef();
   const refLastname = useRef();
@@ -97,7 +99,7 @@ const EditProfilModal = () => {
         </Link>
       </div>
       <form className="modal__infos" onSubmit={saveChange}>
-        <div className="modal__photo"></div>
+        <Avatar className="modal__photo" />
         <div className="modal__firstname">
           <span>Prénom : </span>
           <input ref={refFirstname} type="text" name="" id="" />

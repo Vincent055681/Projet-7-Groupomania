@@ -25,3 +25,23 @@
     object-fit: cover;
   }
 }
+
+.modal__photo{
+  img {
+    @include avatar;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin: auto;
+  }
+}
+
+.comment__author_avatar {
+  img {
+    @include avatar;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin-right: 5px;
+  }
+}

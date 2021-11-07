@@ -41,12 +41,6 @@
       }
     }
   }
-  &__photo {
-    @include avatar;
-    width: 120px;
-    height: 120px;
-    margin: auto;
-  }
   &__firstname {
     margin-top: 15px;
   }
