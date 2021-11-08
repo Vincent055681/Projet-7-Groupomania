@@ -17,7 +17,7 @@ const ToInteract = ({ postId }) => {
       postId: postId,
     };
 
-    const response = await PATCH(ENDPOINTS.LIKE_UNLINKE, data);
+    await PATCH(ENDPOINTS.LIKE_UNLINKE, data);
     document.location.reload()
   };
 
@@ -29,7 +29,7 @@ const ToInteract = ({ postId }) => {
       setNbOfLikes(nbOfLikes);
     };
     getLikesNb();
-  }, []);
+  }, [postId]);
 
   useEffect(() => {
     const getColorLikeButton = async () => {
@@ -45,7 +45,7 @@ const ToInteract = ({ postId }) => {
       }
     };
     getColorLikeButton();
-  }, []);
+  }, [postId]);
 
   return (
     <div className="to-interact">

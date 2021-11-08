@@ -67,9 +67,6 @@ const EditProfilModal = () => {
        user_image: document.getElementById("profil_image").files[0],
     };
     setUserNewInfos(updatedUserNewInfos);
-    const data = {
-      ...updatedUserNewInfos,
-    };
 
     const post = new FormData()
     post.append("user_firstname", refFirstname.current.value)

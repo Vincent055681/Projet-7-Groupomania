@@ -39,14 +39,13 @@ const Post = ({ post }) => {
       }
     };
     toFetch();
-  }, []);
+  }, [id]);
 
   const {
     author_firstname,
     author_lastname,
     date_creation,
     message,
-    media,
     id: postId,
   } = post;
 
@@ -69,7 +68,7 @@ const Post = ({ post }) => {
       }
     };
     toFetchTrash();
-  }, []);
+  }, [id]);
 
   
   const handleClick = () => {

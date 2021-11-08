@@ -1,4 +1,4 @@
-export default {
+const endpoints = {
   // CRUD posts
   GET_ALL_POSTS: "/api/post",
   CREATE_POST: "/api/post",
@@ -26,3 +26,5 @@ export default {
   UPDATE_USER: "api/user/:id",
   DELETE_USER: "api/user/:id",
 };
+
+export default endpoints;

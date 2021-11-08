@@ -14,7 +14,7 @@ dayjs.extend(relativeTime);
 const Comment = ({ comment }) => {
   // // Render Trash component if user is Admin or if user is author of the comment
 
-  const { id: comment_id, post_id, author_id } = comment;
+  const { id: comment_id } = comment;
   const [trash, setTrash] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Comment = ({ comment }) => {
       }
     };
     toFetchTrash();
-  }, []);
+  }, [comment_id]);
 
 
   const handleClick = () => {
