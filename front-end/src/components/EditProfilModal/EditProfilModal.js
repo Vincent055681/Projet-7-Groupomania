@@ -9,13 +9,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faImage } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-import Avatar from "../UI/Avatar/Avatar";
 
 const EditProfilModal = () => {
   const refFirstname = useRef();
   const refLastname = useRef();
   const refEmail = useRef();
 
+  const [imgSrc, setImgSrc] = useState("")
+  
   useEffect(() => {
     const toFetchEmail = async () => {
       try {
@@ -88,7 +89,7 @@ const EditProfilModal = () => {
       ...updatedUserNewInfos,
       user_id: user_id,
     };
-    console.log(user);
+  
     localStorage.clear();
     localStorage.setItem("user", JSON.stringify(user));
     const toRedirect = (link) => {
@@ -96,6 +97,23 @@ const EditProfilModal = () => {
     };
     toRedirect("/editprofil");
   };
+
+  
+
+  useEffect(() => {
+    const toFetchProfilPicture = async () => {
+      try {       
+        const response = await axios.get(
+          `http://localhost:4200/api/user/image/${JSON.parse(localStorage.getItem("user")).user_id}`
+          );
+          
+          setImgSrc(response.data[0].image_url)
+      } catch (err) {
+        throw err;
+      }
+    };
+    toFetchProfilPicture();
+  }, []);
 
   const img = document.getElementById("profil_image");
 
@@ -109,7 +127,7 @@ const EditProfilModal = () => {
       <form className="modal__infos" onSubmit={saveChange}>
         {/* <Avatar className="modal__photo" editable id="profil_image" /> */}
         <div className="modal__photo"> 
-          <img src="/imgs/profile-imgs/mee.png" alt="profile_picture" />
+          <img src={`http://localhost:4200/${imgSrc}`} alt="profile_picture" />
           <input type="file" name="profil_image" id="profil_image" />
           <label for="profil_image">
         

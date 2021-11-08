@@ -4,9 +4,8 @@ const db = dbc.getDB();
 // CRUD post
 
 exports.createPost = (req, res, next) => {
-  console.log(req.body);
   let { body, file } = req;
-  if (!file) delete req.body.image;
+  if (!file) delete req.body.post_image;
   body = {
     ...body,
     likes: "",
