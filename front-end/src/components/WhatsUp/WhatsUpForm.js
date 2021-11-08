@@ -61,7 +61,7 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
       onSubmit={submitHandler}
       method="POST"
       action="/api/post"
-      enctype="multipart/form-data"
+      encType="multipart/form-data"
     >
       <input
         className="testt"
@@ -82,8 +82,8 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
           onInput={imageAddedToPost}
         />
         <div className="image_name">{imageName}</div>
-        <label for="post_image">
-          <FontAwesomeIcon icon={faImages} color={imageAdded && "#f57251"} />
+        <label htmlFor="post_image">
+          <FontAwesomeIcon icon={faImages} color={imageAdded ? "#f57251" : null} />
         </label>
         <button type="submit" className="icons_container__submit">
           <FontAwesomeIcon icon={faPaperPlane} />
