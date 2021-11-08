@@ -88,10 +88,7 @@ const EditProfilModal = () => {
   
     localStorage.clear();
     localStorage.setItem("user", JSON.stringify(user));
-    const toRedirect = (link) => {
-      history.push(link);
-    };
-    toRedirect("/editprofil");
+    window.location.href = "/"
   };
 
   
