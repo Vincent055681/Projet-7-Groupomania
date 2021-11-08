@@ -24,7 +24,9 @@ const WhatsUp = () => {
           `http://localhost:4200/api/user/image/${JSON.parse(localStorage.getItem("user")).user_id}`
           );
           
-          setImgSrc(response.data[0].image_url)
+          if (response.data[0]) setImgSrc(response.data[0].image_url)
+          else setImgSrc("./images/profils/default/mee.png")
+          
       } catch (err) {
         throw err;
       }
