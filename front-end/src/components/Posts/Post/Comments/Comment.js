@@ -39,7 +39,6 @@ const Comment = ({ comment }) => {
     const deleteComment = async () => {
       try {
         const response = await axios.delete(`http://localhost:4200/api/comment/${comment_id}`);
-        console.log(response);
         if (response.status === 200) document.location.reload();
       } catch (err) {
         throw err;

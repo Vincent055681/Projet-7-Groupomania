@@ -75,7 +75,6 @@ const Post = ({ post }) => {
     const deletePost = async () => {
       try {
         const response = await axios.delete(`http://localhost:4200/api/post/${id}`);
-        console.log(response);
         if (response.status === 200) document.location.reload();
       } catch (err) {
         throw err;

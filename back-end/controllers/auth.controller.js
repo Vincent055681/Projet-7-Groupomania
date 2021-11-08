@@ -18,7 +18,6 @@ exports.signup = async (req, res) => {
     const sql = "INSERT INTO users SET ?";
     const db = dbc.getDB();
     db.query(sql, user, (err, result) => {
-      console.log(result);
       if (!result) {
         res.status(200).json({ message: "Email déjà enregistré" });
       } else {
@@ -67,9 +66,7 @@ exports.login = (req, res) => {
               expiresIn: "24h",
             }),
           });
-        } else {
-          console.log("not match");
-        }
+        } 
       } catch (err) {
         console.log(err);
         return res.status(400).json({ err });

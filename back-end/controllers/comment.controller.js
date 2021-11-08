@@ -40,7 +40,6 @@ exports.getAllComments = (req, res) => {
   };
   
   exports.createComment = (req, res, next) => {
-    // console.log(req.body);
     const { message, post_id, author_id, author_firstname, author_lastname } =
       req.body;
     const sql = `INSERT INTO comments (id, post_id, author_id, author_firstname, author_lastname, message, created_at, updated_at, likes) VALUES (NULL, ${post_id}, ${author_id}, "${author_firstname}", "${author_lastname}", "${message}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0')`;
@@ -50,7 +49,6 @@ exports.getAllComments = (req, res) => {
         console.log(err);
         throw err;
       }
-      // console.log(result);
       res.status(200).json(result);
     });
   };

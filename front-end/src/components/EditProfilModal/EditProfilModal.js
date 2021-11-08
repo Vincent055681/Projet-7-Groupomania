@@ -73,13 +73,12 @@ const EditProfilModal = () => {
     post.append("user_lastname", refLastname.current.value)
     post.append("profil_image", document.getElementById("profil_image").files[0])
 
-    const response = await axios.put(
+    await axios.put(
       `http://localhost:4200/api/user/${
         JSON.parse(localStorage.getItem("user")).user_id
       }`,
       post
     );
-    console.log(response);
 
     const user_id = JSON.parse(localStorage.getItem("user")).user_id;
     const user = {

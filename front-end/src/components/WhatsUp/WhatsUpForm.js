@@ -39,13 +39,10 @@ const WhatsUpForm = ({ className, id, name, placeholder }) => {
     post.append("user_id", JSON.parse(localStorage.getItem("user")).user_id);
 
     // Requête POST axios
-    const res = await POST(ENDPOINTS.CREATE_POST, post);
-    console.log(res);
-    
+     await POST(ENDPOINTS.CREATE_POST, post);
+
     // this code is just for MVP, it will be upgrade in final version
     document.location.reload();
- 
-
   };
 
 

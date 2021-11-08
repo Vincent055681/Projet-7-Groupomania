@@ -119,7 +119,6 @@ const Form = ({ form }) => {
       flags.special = true;
     }
     setPasswordFlag((prev) => ({ ...prev, ...flags }));
-    console.log(flags);
   };
 
   const checkSamePassword = () => {
@@ -153,7 +152,6 @@ const Form = ({ form }) => {
         checkSamePassword()
       ) {
         const response = await POST(ENDPOINTS.USER_SIGNUP, userSignup);
-        console.log(response);
         if (response.status === 200) {
           refSignupEmailError.current.innerText = "Email déjà enregistré";
         }
@@ -162,7 +160,7 @@ const Form = ({ form }) => {
         }
       }
     } catch (err) {
-      console.log("Error during registration... : ", err);
+      throw err;
     }
   };
 
@@ -173,7 +171,6 @@ const Form = ({ form }) => {
       const response = await POST(ENDPOINTS.USER_LOGIN, userLogin, {
         withCredentials: true,
       });
-      console.log(response);
       if (!response.data.error) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         const toRedirect = (link) => {
@@ -184,7 +181,7 @@ const Form = ({ form }) => {
         setLoginError(response.data.message);
       }
     } catch (err) {
-      console.log("Error during connection... : ", err);
+      throw err;
     }
   };
 

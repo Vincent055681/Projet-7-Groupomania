@@ -13,10 +13,9 @@ const Comments = ({ postId }) => {
       const data = response.data;
       if (Array.isArray(data)) {
         setAllComments((prevState) => [...prevState, ...data]);
-      } else {
-        console.log("else...");
-        throw new Error("Oops, didn't get an array.");
-      }
+      } 
+      else throw new Error("Oops, didn't get an array.");
+  
     }
     fetchData();
   }, [postId]);
