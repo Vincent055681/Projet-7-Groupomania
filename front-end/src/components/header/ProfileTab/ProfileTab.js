@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./ProfileTab.scss";
 
@@ -10,6 +10,8 @@ import axios from "axios"
 import Avatar from "../../UI/Avatar/Avatar";
 
 const ProfileTab = () => {
+const [imgSrc, setImgSrc] = useState("")
+
   const userName = JSON.parse(localStorage.getItem("user")).user_firstname;
 
   const logoutHandler = async () => {
@@ -18,10 +20,25 @@ const ProfileTab = () => {
     window.location.href = "http://localhost:3000/connexion";
   };
 
+  useEffect(() => {
+    const toFetchProfilPicture = async () => {
+      try {       
+        const response = await axios.get(
+          `http://localhost:4200/api/user/image/${JSON.parse(localStorage.getItem("user")).user_id}`
+          );
+          
+          setImgSrc(response.data[0].image_url)
+      } catch (err) {
+        throw err;
+      }
+    };
+    toFetchProfilPicture();
+  }, []);
+
   return (
     <nav className="profil-tab">
       <div className="profil-tab__id">
-        <Avatar className="profil-tab__id-img"/>
+        <Avatar className="profil-tab__id-img" imgSrc={imgSrc}/>
         <div className="profil-tab__id-user-name">{userName}</div>
         <FontAwesomeIcon
           className="profil-tab__id-chevron"
