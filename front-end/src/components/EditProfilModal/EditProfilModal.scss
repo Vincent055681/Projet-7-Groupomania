@@ -60,11 +60,16 @@
   }
   #modal__save {
     width: 100% !important;
+    cursor: pointer
   }
   &__delete_account {
     @include flex-center;
     background: darken($primary-color, 5%);
     color: $white;
     width: 100%;
+    &:hover {
+    background: darken($primary-color, 20%);
+
+    }
   }
 }

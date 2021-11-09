@@ -16,6 +16,7 @@ const Comment = ({ comment }) => {
 
   const { id: comment_id } = comment;
   const [trash, setTrash] = useState(false);
+  const [imgSrc, setImgSrc] = useState("")
 
   useEffect(() => {
     const toFetchTrash = async () => {
@@ -47,10 +48,22 @@ const Comment = ({ comment }) => {
     deleteComment();
   };
 
+  const toFetchAvatarOfCommenter = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4200/api/user/image/${comment.author_id}`
+      );
+      setImgSrc(response.data[0].image_url)
+    } catch (err) {
+      throw err;
+    }
+  };
+     toFetchAvatarOfCommenter()
+
   return (
     <div className="comment">
       <div className="comment__author-infos">
-        <Avatar className="comment__author_avatar" />
+        <Avatar className="comment__author_avatar" imgSrc={imgSrc} />
         {/* <div className="comment__author-id">{comment.author_id}</div> */}
         <div className="comment__author-name">
           {`${comment.author_firstname} ${comment.author_lastname}`}

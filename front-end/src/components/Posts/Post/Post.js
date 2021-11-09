@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 import "./Post.scss";
 
 import axios from "axios";
@@ -25,11 +24,14 @@ dayjs.extend(relativeTime);
 const Post = ({ post }) => {
   const [mediaURL, setMediaURL] = useState(null);
 
+  const [imgSrc, setImgSrc] = useState("")
+
   const id = post.id;
   useEffect(() => {
     const toFetch = async () => {
       try {
-        const response = await axios.get(`http://localhost:4200/api/post/image/${id}`
+        const response = await axios.get(
+          `http://localhost:4200/api/post/image/${id}`
         );
         if (response.data.length > 0) {
           setMediaURL(response.data[0].image_url);
@@ -47,6 +49,7 @@ const Post = ({ post }) => {
     date_creation,
     message,
     id: postId,
+    post_user_id: user_id,
   } = post;
 
   // Render Trash component if user is Admin or if user is author of the post
@@ -56,10 +59,19 @@ const Post = ({ post }) => {
   useEffect(() => {
     const toFetchTrash = async () => {
       try {
-        const response = await axios.get(`http://localhost:4200/api/post/${id}`);
-        let isAdmin = await axios.get(`http://localhost:4200/api/user/${JSON.parse(localStorage.getItem("user")).user_id}`)
+        const response = await axios.get(
+          `http://localhost:4200/api/post/${id}`
+        );
+        let isAdmin = await axios.get(
+          `http://localhost:4200/api/user/${
+            JSON.parse(localStorage.getItem("user")).user_id
+          }`
+        );
         isAdmin = isAdmin.data[0].admin;
-        if (response.data[0].user_id ===  JSON.parse(localStorage.getItem("user")).user_id || isAdmin
+        if (
+          response.data[0].user_id ===
+            JSON.parse(localStorage.getItem("user")).user_id ||
+          isAdmin
         ) {
           setTrash(true);
         }
@@ -70,11 +82,12 @@ const Post = ({ post }) => {
     toFetchTrash();
   }, [id]);
 
-  
   const handleClick = () => {
     const deletePost = async () => {
       try {
-        const response = await axios.delete(`http://localhost:4200/api/post/${id}`);
+        const response = await axios.delete(
+          `http://localhost:4200/api/post/${id}`
+        );
         if (response.status === 200) document.location.reload();
       } catch (err) {
         throw err;
@@ -83,12 +96,23 @@ const Post = ({ post }) => {
     deletePost();
   };
 
+  const toFetchAvatarOfPoster = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4200/api/user/image/${post.user_id}`
+      );
+      setImgSrc(response.data[0].image_url)
+    } catch (err) {
+      throw err;
+    }
+  };
+  toFetchAvatarOfPoster()
 
   return (
     <>
       <div className="post">
         <div className="post__author_group">
-          <Avatar className={"post__avatar"} />
+          <Avatar className={"post__avatar"} imgSrc={imgSrc} />
           <div className="post__author_and_date">
             <Author
               className="post__author"

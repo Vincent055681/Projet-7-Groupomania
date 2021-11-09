@@ -43,6 +43,8 @@ const EditProfilModal = () => {
   const history = useHistory();
 
   const desactivateAccount = () => {
+    if (!window.confirm(`Voulez-vous vraiment désactiver le compte ?`)) return;
+
     const userId = JSON.parse(localStorage.getItem("user")).user_id;
     axios.get(`http://localhost:4200/api/auth/desactivateAccount/${userId}`);
     localStorage.clear();

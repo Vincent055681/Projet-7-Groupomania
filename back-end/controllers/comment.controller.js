@@ -27,6 +27,20 @@ exports.getOneComment = (req, res) => {
   });
 };
 
+// exports.getProfilPicture = (req, res) => {
+//   const { id: user_id } = req.params;
+//   const sqlGetUser = `SELECT image_url FROM images WHERE images.user_id = ${user_id} ORDER BY images.image_id desc;`;
+//   db.query(sqlGetUser, (err, result) => {
+//     if (err) {
+//       res.status(404).json({ err });
+//       throw err;
+//     }
+//     res.status(200).json(result);
+//   });
+// };
+
+
+
 exports.getAllComments = (req, res) => {
     const postId = req.params.id
     const sql = `SELECT * FROM comments WHERE comments.post_id = ${postId}`;
