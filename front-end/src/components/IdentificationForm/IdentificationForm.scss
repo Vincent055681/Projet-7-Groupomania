@@ -10,3 +10,9 @@
   overflow: hidden;
   background: white;
 }
+
+@media (max-width: 480px) {
+  .identification-container  {
+    width: 300px;
+  }
+ }
