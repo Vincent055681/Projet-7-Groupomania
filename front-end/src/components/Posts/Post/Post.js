@@ -101,7 +101,7 @@ const Post = ({ post }) => {
       const response = await axios.get(
         `http://localhost:4200/api/user/image/${post.user_id}`
       );
-      setImgSrc(response.data[0].image_url)
+      if (response.data[0]) setImgSrc(response.data[0].image_url)
     } catch (err) {
       throw err;
     }
