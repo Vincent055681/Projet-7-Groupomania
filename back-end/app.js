@@ -21,16 +21,18 @@ app.use((req, res, next) => {
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-//
+// Routes files
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
 const authRoutes = require("./routes/auth.routes");
 const commentRoutes = require("./routes/comment.routes");
 
+// Middlewares always executed
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
