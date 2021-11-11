@@ -54,6 +54,7 @@ const Comment = ({ comment }) => {
         `http://localhost:4200/api/user/image/${comment.author_id}`
       );
       if (response.data[0]) setImgSrc(response.data[0].image_url)
+      else setImgSrc("./images/profils/default/mee.png")
     } catch (err) {
       throw err;
     }
