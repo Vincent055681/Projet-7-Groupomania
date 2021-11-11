@@ -47,7 +47,6 @@ exports.updateOneUser = (req, res, next) => {
 
 exports.getProfilPicture = (req, res, next) => {
   const { id: user_id } = req.params;
-  console.log(req.params);
   const sqlGetUser = `SELECT image_url FROM images WHERE images.user_id = ${user_id} ORDER BY images.image_id desc;`;
   db.query(sqlGetUser, (err, result) => {
     if (err) {
